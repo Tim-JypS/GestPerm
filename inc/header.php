@@ -21,27 +21,9 @@
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link active">
+                                    <a href="/" class="nav-link active">
                                         Home 
-                                        <i class='bx bxs-chevron-right'></i>
                                     </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="index.php" class="nav-link active">
-                                                Home One 
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="index-two.php" class="nav-link">
-                                                Home Two
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="index-three.php" class="nav-link">
-                                                Home Three
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a href="about.php" class="nav-link">

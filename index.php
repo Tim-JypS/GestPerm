@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="assets/css/responsive.css">
 
         <!-- Title -->
-        <title>Bonsa - SEO & Marketing Company HTML Template</title>
+        <title>GestPerm - Gestion des Permutations</title>
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
@@ -34,13 +34,13 @@
 
     <body>
         
-        <?php require("inc\preloader.php");?>
+        <?php require("inc/preloader.php");?>
 
         <!-- Start Navbar Area -->
-        <?php require("inc\header.php");?>
+        <?php require("inc/header.php");?>
         <!-- End Navbar Area -->
 
-        <?php require("inc\banniere.php");?>
+        <?php require("inc/banniere.php");?>
 
         <!-- Brand Area -->
         <div class="brand-area brand-bg ptb-100">
