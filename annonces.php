@@ -1,260 +1,37 @@
+<?php
+    require("inc\config.php");
+    $Page="ann";
+    $PageTitle=SITENAME." - Annonces";
+?>
+
 <!doctype html>
-<html lang="zxx">
+<html lang="fr">
     <head>
         <!-- Required Meta Tags -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css"> 
-        <!-- Owl Carousel CSS -->
-        <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-        <!-- Magnific Popup CSS -->
-        <link rel="stylesheet" href="assets/css/magnific-popup.min.css">
-        <!-- Animate Min CSS -->
-        <link rel="stylesheet" href="assets/css/animate.min.css">
-        <!-- Boxicons CSS --> 
-        <link rel="stylesheet" href="assets/css/boxicons.min.css">
-        <!-- Flaticon CSS -->
-        <link rel="stylesheet" href="assets/fonts/flaticon.css">
-        <!-- Meanmenu CSS -->
-        <link rel="stylesheet" href="assets/css/meanmenu.min.css">
-        <!-- Style CSS -->
-        <link rel="stylesheet" href="assets/css/style.css">
-        <!-- Responsive CSS -->
-        <link rel="stylesheet" href="assets/css/responsive.css">
+        <?php require("inc/links.php");?>
 
         <!-- Title -->
-        <title>Bonsa - SEO & Marketing Company HTML Template</title>
+        <title><?=$PageTitle?></title>
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
     </head>
 
     <body>
-        <!-- Start Preloader -->
-        <div class="preloader">
-            <div class="preloader-wave"></div>
-        </div>
-        <!-- End Preloader -->
+        
+    <?php require("inc/preloader.php");?>
 
-        <!-- Start Navbar Area -->
-        <div class="navbar-area">
-            <!-- Menu For Mobile Device -->
-            <div class="mobile-nav">
-                <a href="index.php" class="logo">
-                    <img src="assets/img/logo.png" alt="Logo">
-                </a>
-            </div>
-
-            <!-- Menu For Desktop Device -->
-            <div class="main-nav top-nav">
-                <div class="container">
-                    <nav class="navbar navbar-expand-md navbar-light ">
-                        <a class="navbar-brand" href="index.php">
-                            <img src="assets/img/logo.png" alt="Logo">
-                        </a>
-                        <a class="navbar-brand-sticky" href="index.php">
-                            <img src="assets/img/sticky-logo.png" alt="Logo">
-                        </a>
-
-                        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                            <ul class="navbar-nav m-auto">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Home 
-                                        <i class='bx bxs-chevron-right'></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="index.php" class="nav-link">
-                                                Home One 
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="index-two.php" class="nav-link">
-                                                Home Two
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="index-three.php" class="nav-link">
-                                                Home Three
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="about.php" class="nav-link">
-                                        About
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link active">
-                                        Pages 
-                                        <i class='bx bxs-chevron-right'></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="members.php" class="nav-link">
-                                                Members
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="portfolio.php" class="nav-link active">
-                                                Portfolio
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="pricing.php" class="nav-link">
-                                                Pricing
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="404.php" class="nav-link">
-                                                404 Page
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="faq.php" class="nav-link">
-                                                FAQ
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="sign-in.php" class="nav-link">
-                                                Sign In
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="sign-up.php" class="nav-link">
-                                                Sign Up
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="recover-password.php" class="nav-link">Recover Password</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="terms-condition.php" class="nav-link">
-                                                Terms & Conditions
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="privacy-policy.php" class="nav-link">
-                                                Privacy Policy
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                Level 1
-                                                <i class="bx bx-chevron-right"></i>
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item">
-                                                    <a href="#" class="nav-link">Level 2</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#" class="nav-link">Level 2</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#" class="nav-link">
-                                                        Level 2
-                                                        <i class="bx bx-chevron-right"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li class="nav-item">
-                                                            <a href="#" class="nav-link">Level 3</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a href="#" class="nav-link">Level 3</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Services 
-                                        <i class='bx bxs-chevron-right'></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="services.php" class="nav-link">
-                                                Services 
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="service-details.php" class="nav-link">
-                                                Service Details 
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="testimonial.php" class="nav-link">
-                                        Testimonial
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Blog 
-                                        <i class='bx bxs-chevron-right'></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="blog.php" class="nav-link">
-                                                Blog
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="blog-details.php" class="nav-link">
-                                                Blog Details 
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="contact.php" class="nav-link">
-                                        Contact
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <div class="menu-btn">
-                                <a href="#" class="seo-btn">SEO Score</a>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <!-- End Navbar Area -->
-
-        <!-- Inner Banner -->
-        <div class="inner-banner inner-bg7">
-            <div class="container">
-                <div class="inner-title text-center">
-                    <h3>Portfolio</h3>
-                    <ul>
-                        <li>
-                            <a href="index.php">Home</a>
-                        </li>
-                        <li>
-                            <i class='bx bxs-chevrons-right'></i>
-                        </li>
-                        <li>Portfolio</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- Inner Banner End -->
+    <?php require("inc/header.php");?>
+        
 
         <!-- Portfolio Area -->
-        <section class="portfolio-area pt-100 pb-70">
+        <section class="portfolio-area pt-70 pb-70">
             <div class="container">
                 <div class="scetion-title text-center">
-                    <span>Our Portfolio</span>
+                    <!-- <span>Our Portfolio</span> -->
                     <h2>We Have Done Business with Thousand of Comapnies</h2>
                     <p>
                         It is a long established fact that a reader will be distracted 
