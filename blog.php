@@ -25,6 +25,11 @@
         <!-- Responsive CSS -->
         <link rel="stylesheet" href="assets/css/responsive.css">
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                <!-- Nav Custom Style -->
+                <link rel="stylesheet" href="assets/css/customnavestyle.css">
+
         <!-- Title -->
         <title>Bonsa - SEO & Marketing Company HTML Template</title>
 
@@ -222,10 +227,25 @@
                                 </li>
                             </ul>
 
-                            <div class="menu-btn">
+                            <!--<div class="menu-btn">
                                 <a href="#" class="seo-btn">SEO Score</a>
-                            </div>
+                            </div>-->
                         </div>
+
+
+                        <ul class="nav navbar-nav navbar-right nav-avatar">
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle user-action"><img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="avatar rounded-circle" width="40" height="40" alt="Avatar"> Paula Wilson <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#"><i class="fa fa-user-o"></i> Profile</a></li>
+                                    <li><a href="#"><i class="fa fa-calendar-o"></i> Calendar</a></li>
+                                    <li><a href="#"><i class="fa fa-sliders"></i> Settings</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#"><i class="material-icons">&#xE8AC;</i> Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
                     </nav>
                 </div>
             </div>
