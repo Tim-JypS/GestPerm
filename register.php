@@ -1,4 +1,8 @@
 <?php
+	require("inc/config.php");
+    $Page="reg";
+    $PageTitle=SITENAME." - Nouveau compte";
+
 	if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['dna']) && isset($_POST['mat']) && isset($_POST['pass1']) && isset($_POST['pass2'])) 
 	{
 		extract($_POST);
@@ -30,39 +34,41 @@
 			$ErrMsg="Mots de passe différents.";
 			$ErrPage="reg1";
 		}
-
-		if(!class_exists("Database"))
-			require 'class/database.php';
-
-		$reponse=Database::SelectQuery("select * from agent where MatriculeAgent='".$mat."'");
-
-		//
-		if(count($reponse)>0)
-		{
-			$ErrMsg="Le matricule existe déjà.";
-			$ErrPage="reg1";
-		}
 		else
 		{
-			// Insertion dans la bd
-			$password_hash=password_hash(htmlspecialchars($password),PASSWORD_BCRYPT);
-			$query="INSERT INTO users(IdAgent,MatriculeAgent,NomAgent,PrenomsAgent,CiviliteAgent,NomJeuneFilleAgent,SexeAgent,DateNaissanceAgent,EmailAgent,SituationMatrimonialeAgent,DateCreationAgent,PasswordAgent)";
-			$query.=" VALUES (NULL,'".Database::EnleverApost($mat)."','".Database::EnleverApost($nom)."','".Database::EnleverApost($prenom)."','".Database::EnleverApost($civ)."','".Database::EnleverApost($nomfille)."','".Database::EnleverApost($sexe)."','".Database::EnleverApost($dna)."','".Database::EnleverApost($email)."','".Database::EnleverApost($sitm)."','".date("Y-m-d")."','".$password_hash."')";
-    		var_dump($query);die();
-    		$sauvegarder=Database::InsertQuery($query);
-			header("location:admin/dashbord.php");
+
+			if(!class_exists("Database"))
+				require 'class/database.php';
+
+			$reponse=Database::SelectQuery("select * from agent where MatriculeAgent='".$mat."'");
+
+			//
+			if(count($reponse)>0)
+			{
+				$ErrMsg="Le matricule existe déjà.";
+				$ErrPage="reg1";
+			}
+			else
+			{
+				// Insertion dans la bd
+				$password_hash=password_hash(htmlspecialchars($pass1),PASSWORD_BCRYPT);
+				$query="INSERT INTO agent(IdAgent,MatriculeAgent,NomAgent,PrenomsAgent,CiviliteAgent,NomJeuneFilleAgent,SexeAgent,DateNaissanceAgent,EmailAgent,SituationMatrimonialeAgent,DateCreationAgent,PasswordAgent)";
+				$query.=" VALUES (NULL,'".Database::EnleverApost($mat)."','".Database::EnleverApost($nom)."','".Database::EnleverApost($prenom)."','".Database::EnleverApost($civ)."','".Database::EnleverApost($nomfille)."','".Database::EnleverApost($sexe)."','".Database::EnleverApost($dna)."','".Database::EnleverApost($email)."','".Database::EnleverApost($sitm)."','".date("Y-m-d")."','".$password_hash."')";
+				$sauvegarder=Database::InsertQuery($query);
+				// var_dump($query,$sauvegarder);die();
+				$_SESSION['auth']["status"] = true;
+				$reponse=Database::SelectQuery("select MAX(IdAgent) from agent");
+				$_SESSION['auth']["user"] = $reponse[0];
+				header("location:admin/dashboard.php");
+			}
 		}
 	}
 
-    if(isset($_SESSION['auth']) && $_SESSION['auth'])
+    if(isset($_SESSION['auth']["status"]) && $_SESSION['auth']["status"])
     {
 		header("location:admin/dashboard.php");
     }
 
-	require("inc/config.php");
-    $Page="reg";
-    $PageTitle=SITENAME." - Nouveau compte";
-	
 ?>
 
 <!doctype html>

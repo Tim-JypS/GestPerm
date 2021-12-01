@@ -1,4 +1,12 @@
 <?php
+	require("inc/config.php");
+	if(isset($_SESSION['auth']["status"]) && $_SESSION['auth']["status"])
+    {
+		header("location:admin/dashboard.php");
+    }
+    $Page="log";
+    $PageTitle=SITENAME." - Connexion";
+
 	if(isset($_POST['login']) AND isset($_POST['password'])) 
 	{
 		$login= htmlspecialchars($_POST['login']); 
@@ -10,7 +18,7 @@
 		if(!class_exists("Database"))
 			require 'class/database.php';
 
-		$reponse=Database::SelectQuery("select * from agent where EmailAgent='".$login."'");
+		$reponse=Database::SelectQuery("select * from agent where MatriculeAgent='".$login."'");
 
 		//
 		if(count($reponse)>0)
@@ -21,9 +29,9 @@
 			{
 				//On sauvegarde les info en session
 				$date=date("Y-m-d").' '.date("G:i:s");
-				$_SESSION['auth'] = true;
+				$_SESSION['auth']["status"] = true;
 				$_SESSION['auth']["user"] = $reponse[0];
-				header("location:admin/dashbord.php");
+				header("location:admin/dashboard.php");
 			}
 			else 
 			{
@@ -38,19 +46,12 @@
 		}
 		else
 		{
-			$ErrMsg="Email inconnu.";
+			$ErrMsg="Matricule non reconnu.";
 			$ErrPage="log1";
 			// echo 'Mauvais identifiant! <a href="index.php">Cliquer ici pour revenir a la page de connexion.</a>';
 		}
 	}
 
-    if(isset($_SESSION['auth']) && $_SESSION['auth'])
-    {
-		header("location:admin/dashboard.php");
-    }
-    require("inc/config.php");
-    $Page="log";
-    $PageTitle=SITENAME." - Connexion";
 ?>
 
 <!doctype html>
@@ -108,7 +109,7 @@
 
 							<div class="col-12">
 								<div class="form-group">
-									<input class="form-control" type="email" value="<?php if(isset($login))echo $login; ?>" name="login" required placeholder="Email">
+									<input class="form-control" type="text" value="<?php if(isset($login))echo $login; ?>" name="login" required placeholder="Matricule">
 								</div>
 							</div>
 

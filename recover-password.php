@@ -1,15 +1,12 @@
 <?php
-	if(session_status()!=PHP_SESSION_NONE)
-	{
-		session_start();
-	}
-    if(isset($_SESSION['auth']) && $_SESSION['auth'])
+	require("inc/config.php");
+    $Page="log";
+    $PageTitle=SITENAME." - Réinitialiser mot de passe";
+    if(isset($_SESSION['auth']["status"]) && $_SESSION['auth']["status"])
     {
 		header("location:admin/dashboard.php");
     }
-    require("inc/config.php");
-    $Page="log";
-    $PageTitle=SITENAME." - Réinitialiser mot de passe";
+    
 ?>
 
 <!doctype html>
