@@ -17,3 +17,5 @@
         <link rel="stylesheet" href="assets/css/style.css">
         <!-- Responsive CSS -->
         <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="assets/css/customnavestyle.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">

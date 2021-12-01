@@ -1,5 +1,13 @@
 <?php
-    require("inc\config.php");
+	if(session_status()!=PHP_SESSION_NONE)
+	{
+		session_start();
+	}
+    if(isset($_SESSION['auth']) && $_SESSION['auth'])
+    {
+		header("location:admin/dashboard.php");
+    }
+    require("inc/config.php");
     $Page="log";
     $PageTitle=SITENAME." - Réinitialiser mot de passe";
 ?>
@@ -68,7 +76,7 @@
 		</section>
 		<!-- End Sign Up Area -->
 
-        <?php require "inc\\footer.php"?>
+        <?php require "inc/footer.php"?>
         
     </body>
 </html>

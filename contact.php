@@ -1,5 +1,5 @@
 <?php
-    require("inc\config.php");
+    require("inc/config.php");
     $Page="con";
     $PageTitle=SITENAME." - Contact";
 ?>
@@ -180,7 +180,7 @@
         </div>*/ ?>
         <!-- Submission Area End -->
 
-        <?php require "inc\\footer.php"?>
+        <?php require "inc/footer.php"?>
 
     </body>
 </html>

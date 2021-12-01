@@ -1,5 +1,5 @@
 <?php
-    require("inc\config.php");
+    require("inc/config.php");
     $Page="acc";
     $PageTitle=SITENAME." - Accueil";
 ?>
@@ -897,7 +897,7 @@
         </div>
         <!-- Blog Area End -->
 
-        <?php require "inc\\footer.php"?>
+        <?php require "inc/footer.php"?>
 
     </body>
 </html>
