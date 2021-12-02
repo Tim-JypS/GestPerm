@@ -32,17 +32,22 @@ $one->l_m_content                = 'narrow';
 $one->main_nav                   = array(
     array(
         'name'  => 'Direction régionale',
-        'icon'  => 'si si-speedometer',
+        'icon'  => 'si si-note',
         'url'   => 'dr.php'
     ),
     array(
         'name'  => 'Inspection',
-        'icon'  => 'si si-speedometer',
+        'icon'  => 'si si-note',
         'url'   => 'inspection.php'
     ),
     array(
+        'name'  => 'Etablissement',
+        'icon'  => 'si si-note',
+        'url'   => 'etablissement.php'
+    ),
+    array(
         'name'  => 'Zone géographique',
-        'icon'  => 'si si-speedometer',
+        'icon'  => 'si si-note',
         'url'   => 'zone.php'
     ),
     array(

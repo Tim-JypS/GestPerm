@@ -105,7 +105,7 @@ class Database
         else return "";
     }
     
-     public static function EnleverApost($str="")
+    public static function EnleverApost($str="")
     {
         if ($str<>"")
         {

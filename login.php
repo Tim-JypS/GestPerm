@@ -15,9 +15,7 @@
 			$remember_me = htmlspecialchars($_POST['remember']);
 		else
 			$remember_me=false;
-		if(!class_exists("Database"))
-			require 'class/database.php';
-
+		
 		$reponse=Database::SelectQuery("select * from agent where MatriculeAgent='".$login."'");
 
 		//

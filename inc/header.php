@@ -5,7 +5,7 @@
     <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
         <a href="index.php" class="logo">
-            <img src="assets/img/logo1.jpg" alt="Logo" style="width: 12em; height: auto;">
+            <img src="assets/img/logo.png" alt="Logo" style="width: 12em; height: auto;">
         </a>
     </div>
 
@@ -14,10 +14,10 @@
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light ">
                 <a class="navbar-brand" href="index.php">
-                    <img src="assets/img/logo1.jpg" alt="Logo"  style="width: 12em; height: auto;">
+                    <img src="assets/img/logo.png" alt="Logo"  style="width: 12em; height: auto;">
                 </a>
                 <a class="navbar-brand-sticky" href="index.php" style="width: 12em; height: auto;">
-                    <img src="assets/img/logo1.jpg" alt="Logo">
+                    <img src="assets/img/logo.png" alt="Logo">
                 </a>
 
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">

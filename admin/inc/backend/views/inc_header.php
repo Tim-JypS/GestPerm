@@ -24,16 +24,16 @@
 
             <!-- Toggle Mini Sidebar -->
             <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
-            <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
+            <!-- <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
                 <i class="fa fa-fw fa-ellipsis-v"></i>
-            </button>
+            </button> -->
             <!-- END Toggle Mini Sidebar -->
 
             <!-- Apps Modal -->
             <!-- Opens the Apps modal found at the bottom of the page, after footer’s markup -->
-            <button type="button" class="btn btn-sm btn-dual mr-2" data-toggle="modal" data-target="#one-modal-apps">
+            <!-- <button type="button" class="btn btn-sm btn-dual mr-2" data-toggle="modal" data-target="#one-modal-apps">
                 <i class="fa fa-fw fa-cubes"></i>
-            </button>
+            </button> -->
             <!-- END Apps Modal -->
 
             <!-- Open Search Section (visible on smaller screens) -->
@@ -44,7 +44,7 @@
             <!-- END Open Search Section -->
 
             <!-- Search Form (visible on larger screens) -->
-            <form class="d-none d-md-inline-block" action="be_pages_generic_search.php" method="POST">
+            <!-- <form class="d-none d-md-inline-block" action="be_pages_generic_search.php" method="POST">
                 <div class="input-group input-group-sm">
                     <input type="text" class="form-control form-control-alt" placeholder="Search.." id="page-header-search-input2" name="page-header-search-input2">
                     <div class="input-group-append">
@@ -53,7 +53,7 @@
                         </span>
                     </div>
                 </div>
-            </form>
+            </form> -->
             <!-- END Search Form -->
         </div>
         <!-- END Left Section -->
