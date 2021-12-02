@@ -41,6 +41,11 @@ $one->main_nav                   = array(
         'url'   => 'inspection.php'
     ),
     array(
+        'name'  => 'Zone géographique',
+        'icon'  => 'si si-speedometer',
+        'url'   => 'zone.php'
+    ),
+    array(
         'name'  => 'Page Packs',
         'icon'  => 'si si-layers',
         'sub'   => array(

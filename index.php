@@ -1,9 +1,5 @@
 <?php
     require("inc/config.php");
-	if(isset($_SESSION['auth']["status"]) && $_SESSION['auth']["status"])
-    {
-		header("location:admin/dashboard.php");
-    }
     $Page="log";
     $PageTitle=SITENAME." - Connexion";
 
