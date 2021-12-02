@@ -2,7 +2,7 @@
 /**
  * page_end.php
  *
- * Author: pixelcave
+ * Author: TEAMDEV
  *
  * The end section of each page used in every page of the template
  *

@@ -2,7 +2,7 @@
 /**
  * footer_end.php
  *
- * Author: pixelcave
+ * Author: TEAMDEV
  *
  * The last block of code used in every page of the template
  *

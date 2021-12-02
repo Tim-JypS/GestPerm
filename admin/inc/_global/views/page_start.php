@@ -2,7 +2,7 @@
 /**
  * page_start.php
  *
- * Author: pixelcave
+ * Author: TEAMDEV
  *
  * The start section of each page used in every page of the template
  *

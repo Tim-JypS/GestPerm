@@ -7,16 +7,16 @@
                             <div class="footer-single">
                                 <div class="footer-single-content">
                                     <a href="index.php">
-                                        <img src="assets/img/footer-logo.png" alt="Logo">
+                                        <img src="assets\img\logo1.jpg" alt="Logo">
                                     </a>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum efficitur convallis arcu, id dapibus nulla tincidunt.</p>
+                                    <p>Gestperm vos faciliter la vie dans vos demarche de permutation est notre priorité.</p>
                                 </div>
 
                                 <div class="newsletter-area">
                                     <form class="newsletter-form" data-toggle="validator">
                                         <input type="email" class="form-control" placeholder="Email" name="EMAIL" required autocomplete="off">
                                         <button class="subscribe-btn" type="submit">
-                                            Subscribe
+                                            Soumettre
                                         </button>
                                         <div id="validator-newsletter" class="form-result"></div>
                                     </form>
@@ -30,27 +30,15 @@
                                 <ul>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="services.php">SEO Optimization</a>
+                                        <a href="services.php">Demande de permutation</a>
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="services.php">Social Marketing</a>
+                                        <a href="services.php">Publication d'annonce de permutation</a>
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="services.php">Busines Growing</a>
-                                    </li>
-                                    <li>
-                                        <i class='bx bxs-chevron-right'></i>
-                                        <a href="services.php"> Data Analysis</a>
-                                    </li>
-                                    <li>
-                                        <i class='bx bxs-chevron-right'></i>
-                                        <a href="services.php">App Development </a>
-                                    </li>
-                                    <li>
-                                        <i class='bx bxs-chevron-right'></i>
-                                        <a href="services.php"> Web Development</a>
+                                        <a href="services.php">Mutation</a>
                                     </li>
                                 </ul>
                             </div>
@@ -62,27 +50,27 @@
                                 <ul>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="index.php">Home</a>
+                                        <a href="index.php">accueil</a>
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="services.php">Service</a>
+                                        <a href="services.php">Annonces</a>
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="about.php">About Us</a>
+                                        <a href="about.php">Contact</a>
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="testimonial.php">Testimonial</a>
+                                        <a href="testimonial.php">Notre Equipes</a>
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="blog.php">Blog</a>
+                                        <a href="blog.php">Presentation</a>
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="contact.php">Contact</a>
+                                        <a href="contact.php">Statistique</a>
                                     </li>
                                 </ul>
                             </div>
@@ -90,27 +78,27 @@
 
                         <div class="col-lg-3 col-md-6">
                             <div class="footer-list ml-20">
-                                <h3>Contact Us</h3>
+                                <h3>Contact</h3>
                                 <ul>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="tel:+1123456789">+1  1234 56 789</a>
+                                        <a href="tel:+1123456789">+225 0758784603</a>
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="tel:+19876543210">+1  9876 543 210</a>
+                                        <a href="tel:+19876543210">+22500565390479</a>
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="mailto:email@bonsa.com">email@bonsa.com</a>
+                                        <a href="mailto:email@Gestperm.com">email@Gestperm.com</a>
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="mailto:hello@bonsa.com">hello@bonsa.com</a>
+                                        <a href="mailto:hello@Gestperm.com">hello@Gestperm.com</a>
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        28/A Street, New York, USA
+                                        2 Plateau cocody, Abidjan, Cote D'Ivoire
                                     </li>
                                 </ul>
                             </div>
@@ -125,7 +113,7 @@
                         <div class="col-lg-12">
                             <div class="bottom-text text-center">
                                 <p>
-                                    Copyright ©2021 Bonsa. All Rights Reserved by 
+                                    Copyright ©2021 TeamDev G001. Universite Virtuelle de Cote D'Ivoire 
                                     <a href="https://hibootstrap.com/" target="_blank">HiBootstrap</a> 
                                 </p>
                             </div>

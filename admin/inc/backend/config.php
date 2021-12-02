@@ -31,9 +31,14 @@ $one->l_m_content                = 'narrow';
 
 $one->main_nav                   = array(
     array(
-        'name'  => 'Dashboard',
+        'name'  => 'Direction régionale',
         'icon'  => 'si si-speedometer',
-        'url'   => 'be_pages_dashboard.php'
+        'url'   => 'dr.php'
+    ),
+    array(
+        'name'  => 'Inspection',
+        'icon'  => 'si si-speedometer',
+        'url'   => 'inspection.php'
     ),
     array(
         'name'  => 'Page Packs',

@@ -17,7 +17,7 @@ require 'inc/_classes/Template.php';
 // **************************************************************************************************
 
 //                               : Name, version and assets folder's name
-$one                             = new Template('OneUI', '4.9', 'assets');
+$one                             = new Template('GestPerm', '1.1', 'assets');
 
 
 // **************************************************************************************************
@@ -25,10 +25,10 @@ $one                             = new Template('OneUI', '4.9', 'assets');
 // **************************************************************************************************
 
 //                               : The data is added in the <head> section of the page
-$one->author                     = 'pixelcave';
+$one->author                     = 'TEAMDEV';
 $one->robots                     = 'noindex, nofollow';
-$one->title                      = 'OneUI - Bootstrap 4 Admin Template &amp; UI Framework';
-$one->description                = 'OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest';
+$one->title                      = 'GestPerm - Gestion des permutations';
+$one->description                = 'GestPerm - Gestion des permutations';
 
 //                               : The url of your site, used in Open Graph Meta Data (eg 'https://example.com')
 $one->og_url_site                = '';

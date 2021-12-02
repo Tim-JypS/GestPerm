@@ -2,7 +2,7 @@
 /**
  * footer_start.php
  *
- * Author: pixelcave
+ * Author: TEAMDEV
  *
  * All vital JS scripts are included here
  *

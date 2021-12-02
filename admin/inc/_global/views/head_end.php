@@ -2,7 +2,7 @@
 /**
  * head_end.php
  *
- * Author: pixelcave
+ * Author: TEAMDEV
  *
  * (continue) The first block of code used in every page of the template
  *

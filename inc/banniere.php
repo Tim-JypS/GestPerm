@@ -3,34 +3,27 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="banner-text">
-                    <span>Search Engine Optimization</span>
-                    <h1>We Highlight Your Business to the World Market</h1>
+                    <h1>Bienvenue Sur NOtre platforme GESTPERM</h1>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusod tempor
-                        incididunt ut labore et dolore magna aliqua. Quis ipsu  msuspendisse ultrices gravida.
+                       Pour toutes vos demande de permuttation sans vous fatiguer;nous sommes la pour repondre 
+                       a vos demande!
                     </p>
                     
                     <div class="banner-btn">
-                        <a href="contact.php" class="default-btn">Contact Us</a>
-                        <a href="#" class="default-btn active">Know More</a>
+                        <a href="contact.php" class="default-btn">Contactez Nous</a>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-6">
-                <div class="banner-img">
-                    <img src="assets/img/home1.png" alt="Banner Images">
-                </div>
+        
             </div>
             <div class="banner-shape-1">
-                <img src="assets/img/shape/home1.png" alt="Banner Shape">
+                <img src="assets\img\shape\permu4.jpg_name=small" alt="Banner Shape">
             </div>
         </div>
     </div>
     <div class="home-shape">
-        <div class="shape1">
-            <img src="assets/img/shape/1.png" alt="shape">
-        </div>
         <div class="shape2">
             <img src="assets/img/shape/2.png" alt="shape">
         </div>

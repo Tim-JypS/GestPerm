@@ -4,7 +4,7 @@
  * various helper functions for populating the template with
  * random content
  *
- * @author pixelcave
+ * @author TEAMDEV
  *
  */
 class Template {
