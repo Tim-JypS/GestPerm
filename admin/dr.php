@@ -6,154 +6,100 @@
 <?php $one->get_css('js/plugins/datatables/dataTables.bootstrap4.css'); ?>
 <?php $one->get_css('js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css'); ?>
 
+
 <?php require 'inc/_global/views/head_end.php'; ?>
 <?php require 'inc/_global/views/page_start.php'; ?>
 
-<!-- Hero -->
-<div class="bg-body-light">
-    <div class="content content-full">
-        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <h1 class="flex-sm-fill h3 my-2">
-                DataTables <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">Tables transformed with dynamic features.</small>
-            </h1>
-            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item">Tables</li>
-                    <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href="">DataTables</a>
-                    </li>
-                </ol>
-            </nav>
-        </div>
-   </div>
-</div>
-<!-- END Hero -->
-
-<!-- Page Content -->
-<div class="content">
-    <!-- Dynamic Table Full -->
-    <div class="block block-rounded">
-        <div class="block-header">
-            <h3 class="block-title">Dynamic Table <small>Full</small></h3>
-        </div>
-        <div class="block-content block-content-full">
-            <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="width: 80px;">ID</th>
-                        <th>Name</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
-                        <th style="width: 15%;">Registered</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for ($i = 1; $i < 41; $i++) { ?>
-                    <tr>
-                        <td class="text-center font-size-sm"><?php echo $i; ?></td>
-                        <td class="font-w600 font-size-sm">
-                            <a href="be_pages_generic_blank.php"><?php $one->get_name(); ?></a>
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            client<?php echo $i; ?><em class="text-muted">@example.com</em>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            <?php $one->get_tag(); ?>
-                        </td>
-                        <td>
-                            <em class="text-muted font-size-sm"><?php echo rand(2, 10); ?> days ago</em>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- END Dynamic Table Full -->
-
-    <!-- Dynamic Table Full Pagination -->
-    <div class="block block-rounded">
-        <div class="block-header">
-            <h3 class="block-title">Dynamic Table <small>Full pagination</small></h3>
-        </div>
-        <div class="block-content block-content-full">
-            <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="width: 80px;">ID</th>
-                        <th>Name</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
-                        <th style="width: 15%;">Registered</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for ($i = 1; $i < 41; $i++) { ?>
-                    <tr>
-                        <td class="text-center font-size-sm"><?php echo $i; ?></td>
-                        <td class="font-w600 font-size-sm"><?php $one->get_name(); ?></td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            client<?php echo $i; ?><em class="text-muted">@example.com</em>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            <?php $one->get_tag(); ?>
-                        </td>
-                        <td>
-                            <em class="text-muted font-size-sm"><?php echo rand(2, 10); ?> days ago</em>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- END Dynamic Table Full Pagination -->
-
-    <!-- Dynamic Table Simple -->
-    <div class="block block-rounded">
-        <div class="block-header">
-            <h3 class="block-title">Dynamic Table <small>With only sorting and pagination</small></h3>
-        </div>
-        <div class="block-content block-content-full">
-            <!-- DataTables init on table by adding .js-dataTable-simple class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-simple">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="width: 80px;">ID</th>
-                        <th>Name</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
-                        <th style="width: 15%;">Registered</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for ($i = 1; $i < 41; $i++) { ?>
-                    <tr>
-                        <td class="text-center font-size-sm"><?php echo $i; ?></td>
-                        <td class="font-w600 font-size-sm"><?php $one->get_name(); ?></td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            client<?php echo $i; ?><em class="text-muted">@example.com</em>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            <?php $one->get_tag(); ?>
-                        </td>
-                        <td>
-                            <em class="text-muted font-size-sm"><?php echo rand(2, 10); ?> days ago</em>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- END Dynamic Table Simple -->
+<style>
+    .modal-confirm {		
+	color: #636363;
+	width: 400px;
+}
+.modal-confirm .modal-content {
+	padding: 20px;
+	border-radius: 5px;
+	border: none;
+	text-align: center;
+	font-size: 14px;
+}
+.modal-confirm .modal-header {
+	border-bottom: none;   
+	position: relative;
+}
+.modal-confirm h4 {
+	text-align: center;
+	font-size: 26px;
+	margin: 30px 0 -10px;
+}
+.modal-confirm .close {
+	position: absolute;
+	top: -5px;
+	right: -2px;
+}
+.modal-confirm .modal-body {
+	color: #999;
+}
+.modal-confirm .modal-footer {
+	border: none;
+	text-align: center;		
+	border-radius: 5px;
+	font-size: 13px;
+	padding: 10px 15px 25px;
+}
+.modal-confirm .modal-footer a {
+	color: #999;
+}		
+.modal-confirm .icon-box {
+	width: 80px;
+	height: 80px;
+	margin: 0 auto;
+	border-radius: 50%;
+	z-index: 9;
+	text-align: center;
+	border: 3px solid #f15e5e;
+}
+.modal-confirm .icon-box i {
+	color: #f15e5e;
+	font-size: 46px;
+	display: inline-block;
+	margin-top: 13px;
+}
+.modal-confirm .btn, .modal-confirm .btn:active {
+	color: #fff;
+	border-radius: 4px;
+	background: #60c7c1;
+	text-decoration: none;
+	transition: all 0.4s;
+	line-height: normal;
+	min-width: 120px;
+	border: none;
+	min-height: 40px;
+	border-radius: 3px;
+	margin: 0 5px;
+}
+.modal-confirm .btn-secondary {
+	background: #c1c1c1;
+}
+.modal-confirm .btn-secondary:hover, .modal-confirm .btn-secondary:focus {
+	background: #a8a8a8;
+}
+.modal-confirm .btn-danger {
+	background: #f15e5e;
+}
+.modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+	background: #ee3535;
+}
+.trigger-btn {
+	display: inline-block;
+	margin: 100px auto;
+}
+</style>
 
     <!-- Dynamic Table with Export Buttons -->
     <div class="block block-rounded">
         <div class="block-header">
-            <h3 class="block-title">Dynamic Table <small>Export Buttons</small></h3>
+            <h3 class="block-title">Direction Régionale <small>Ressource Humaine</small></h3>
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#add-newdr-modal">+ Ajouter Nouvelle Direction</button>
         </div>
         <div class="block-content block-content-full">
             <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
@@ -161,10 +107,12 @@
                 <thead>
                     <tr>
                         <th class="text-center" style="width: 80px;">ID</th>
-                        <th>Name</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
-                        <th style="width: 15%;">Registered</th>
+                        <th>Nom & Prénom</th>
+                        <th class="d-none d-sm-table-cell" style="width: 17%;">Tel</th>
+                        <th class="d-none d-sm-table-cell" style="width: 20%;">Email</th>
+                        <th class="d-none d-sm-table-cell" style="width: 12%;">Commune</th>
+                        <th class="d-none d-sm-table-cell" style="width: 12%;">DRH</th>
+                        <th style="width: 15%;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -183,12 +131,215 @@
                         <td>
                             <em class="text-muted font-size-sm"><?php echo rand(2, 10); ?> days ago</em>
                         </td>
+                        <td>
+                            <em class="text-muted font-size-sm"><?php echo rand(2, 10); ?> days ago</em>
+                        </td>
+                        <td class="d-none d-sm-table-cell">
+                            <?php /*$one->get_tag();*/ ?>
+                            <a href="#Edit-newdr-modal" class="badge badge-primary" data-toggle="modal"><i class="fa fa-fw fa-pencil-alt mr-1" data-toggle="tooltip" title="Editer"></i>Editer</a>
+
+                            <a href="#Delete-newdr-modal" class="badge badge-danger" data-toggle="modal"><i class="fa fa-fw fa-times mr-1" data-toggle="tooltip" title="Supprimer"></i>Supprimer</a>
+                        </td>
                     </tr>
                     <?php } ?>
                 </tbody>
             </table>
         </div>
     </div>
+
+    <!--Modal Ajout Nouvelle direction-->
+
+    	<!-- Large Block Modal -->
+    <div class="modal" id="add-newdr-modal" tabindex="-1" role="dialog" aria-labelledby="add-newdr-modal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-rounded block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Nouvelle Direction Régionale</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="block-content font-size-sm">
+                    <?php /*$one->get_text('small', 2);*/ ?>
+                    <form action="save.php" id="form">
+
+			    	<div class="form-group form-row">
+                        <div class="col-6">
+                            <label for="NomDirectionRegionale">Nom</label>
+                            <input class="form-control" type="text" name="NomDirectionRegionale" placeholder="Nom Direction Régionale">
+                        </div>
+
+                        <div class="col-6">
+                            <label for="TelDirectionRegionale">Téléphone</label>
+                            <input class="form-control" type="text" name="TelDirectionRegionale" placeholder="Numéro de Téléphone">
+                        </div>
+				  	</div>
+
+				  	<!--<div class="form-group">
+					    <label for="first_name">Téléphone</label>
+					    <input class="form-control" type="text" name="first_name">
+				  	</div>-->
+				  	<div class="form-group form-row">
+                      <div class="col-6">
+                            <label for="EmailDirectionRegionale">Email</label>
+                            <input class="form-control" type="text" name="EmailDirectionRegionale" placeholder="Email direction Régionale">
+				  	    </div>
+                        <div class="col-6">
+                            <label for="CommuneDirectionRegionale">Commune</label>
+                            <select class="custom-select my-1 mr-sm-2" id="CommuneDirectionRegionale"  name="CommuneDirectionRegionale">
+                                <option selected>Choisissez votre commune...</option>
+                                <option value="1">Bingerville</option>
+                                <option value="2">Cocody</option>
+                                <option value="3">Dabou</option>
+                                <option value="2">Yamoussoukro</option>
+                                <option value="3">Adjamé</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row">
+                      <div class="col-12">
+                            <label for="IdDRH">DRH</label>
+                            <select class="custom-select my-1 mr-sm-2" id="IdDRH"  name="IdDRH">
+                                <option selected>Votre Choix...</option>
+                                <option value="1">MAOTTO</option>
+                                <option value="2">KADJO</option>
+                                <option value="3">TIEMOKO</option>
+                                <option value="2">DJIMAN</option>
+                                <option value="3">FULGENCE</option>
+                            </select>
+				  	    </div>
+                    </div>
+				  	
+				</form>
+                    </div>
+
+
+                    
+                    <div class="block-content block-content-full text-right border-top">
+                        <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-primary" id="btnSubmit">Ajouter Nouvelle Direction</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Large Block Modal -->
+
+    <!--Fin ajout Modal-->
+
+    <!--Edit Modal-->
+
+        <!-- Large Block Modal -->
+    <div class="modal" id="Edit-newdr-modal" tabindex="-1" role="dialog" aria-labelledby="Edit-newdr-modal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-rounded block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Modification de la Direction Régionale</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="block-content font-size-sm">
+                    <?php /*$one->get_text('small', 2);*/ ?>
+                    <form action="save.php" id="form">
+
+			    	<div class="form-group form-row">
+                        <div class="col-6">
+                            <label for="NomDirectionRegionale">Nom</label>
+                            <input class="form-control" type="text" name="NomDirectionRegionale" placeholder="Nom Direction Régionale">
+                        </div>
+
+                        <div class="col-6">
+                            <label for="TelDirectionRegionale">Téléphone</label>
+                            <input class="form-control" type="text" name="TelDirectionRegionale" placeholder="Numéro de Téléphone">
+                        </div>
+				  	</div>
+
+				  	<!--<div class="form-group">
+					    <label for="first_name">Téléphone</label>
+					    <input class="form-control" type="text" name="first_name">
+				  	</div>-->
+				  	<div class="form-group form-row">
+                      <div class="col-6">
+                            <label for="EmailDirectionRegionale">Email</label>
+                            <input class="form-control" type="text" name="EmailDirectionRegionale" placeholder="Email direction Régionale">
+				  	    </div>
+                        <div class="col-6">
+                            <label for="CommuneDirectionRegionale">Commune</label>
+                            <select class="custom-select my-1 mr-sm-2" id="CommuneDirectionRegionale"  name="CommuneDirectionRegionale">
+                                <option selected>Choisissez votre commune...</option>
+                                <option value="1">Bingerville</option>
+                                <option value="2">Cocody</option>
+                                <option value="3">Dabou</option>
+                                <option value="2">Yamoussoukro</option>
+                                <option value="3">Adjamé</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row">
+                      <div class="col-12">
+                            <label for="IdDRH">DRH</label>
+                            <select class="custom-select my-1 mr-sm-2" id="IdDRH"  name="IdDRH">
+                                <option selected>Votre Choix...</option>
+                                <option value="1">MAOTTO</option>
+                                <option value="2">KADJO</option>
+                                <option value="3">TIEMOKO</option>
+                                <option value="2">DJIMAN</option>
+                                <option value="3">FULGENCE</option>
+                            </select>
+				  	    </div>
+                    </div>
+				  	
+				</form>
+                    </div>
+
+
+                    
+                    <div class="block-content block-content-full text-right border-top">
+                        <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-primary" id="btnSubmit">Modifier Direction</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Large Block Modal -->
+    <!--Fin Edit modal-->
+
+    <!--Remove Modal-->
+        <!-- Modal HTML -->
+        <div class="modal" id="Delete-newdr-modal" tabindex="-1" role="dialog" aria-labelledby="Delete-newdr-modal" aria-hidden="true">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header flex-column">
+                        <div class="icon-box">
+                            <i class="fa fa-fw fa-times"></i>
+                        </div>						
+                        <h4 class="modal-title w-100">Etes-vous sur?</h4>	
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Voulez-vous vraiment supprimer ces enregistrements ? Ce processus ne peut pas être annulé.</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-danger">Supprimer</button>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    <!--End Remove modal-->
+                        
     <!-- END Dynamic Table with Export Buttons -->
 </div>
 <!-- END Page Content -->
