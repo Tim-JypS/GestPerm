@@ -51,6 +51,11 @@ $one->main_nav                   = array(
         'url'   => 'zone.php'
     ),
     array(
+        'name'  => 'Fonction',
+        'icon'  => 'si si-note',
+        'url'   => 'fonction.php'
+    ),
+    array(
         'name'  => 'Page Packs',
         'icon'  => 'si si-layers',
         'sub'   => array(
