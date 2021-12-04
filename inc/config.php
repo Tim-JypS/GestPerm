@@ -1,6 +1,12 @@
 <?php
     if(!class_exists("Database"))
-        require '../class/database.php';
+    {
+        if(file_exists('../class/database.php'))
+        {
+            require '../class/database.php';
+        }
+        else require 'class/database.php';
+    }
     define('SITENAME','GestPerm');
     $Page="";
     if(session_status()==PHP_SESSION_NONE)
