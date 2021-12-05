@@ -7,6 +7,8 @@
 <?php $one->get_css('js/plugins/datatables/dataTables.bootstrap4.css'); ?>
 <?php $one->get_css('js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css'); ?>
 <?php $one->get_css('js/plugins/select2/css/select2.min.css'); ?>
+<!-- Page JS Plugins CSS -->
+<?php $one->get_css('js/plugins/sweetalert2/sweetalert2.min.css'); ?>
 
 <?php require 'inc/_global/views/head_end.php'; ?>
 <?php require 'inc/_global/views/page_start.php'; ?>
@@ -127,20 +129,65 @@
         <div class="modal" id="Delete-newdr-modal" tabindex="-1" role="dialog" aria-labelledby="Delete-newdr-modal" aria-hidden="true">
             <div class="modal-dialog modal-confirm">
                 <div class="modal-content">
-                    <div class="modal-header flex-column">
-                        <div class="icon-box">
-                            <i class="fa fa-fw fa-times"></i>
-                        </div>						
-                        <h4 class="modal-title w-100">Etes-vous sur?</h4>	
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-icon-warning swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;">
+                        <div class="swal2-header">
+                            <ul class="swal2-progress-steps" style="display: none;"></ul>
+                            <div class="swal2-icon swal2-error" style="display: none;"></div>
+                            <div class="swal2-icon swal2-question" style="display: none;"></div>
+                            <div class="swal2-icon swal2-warning swal2-icon-show" style="display: flex;">
+                                <div class="swal2-icon-content">!</div>
+                            </div>
+                            <div class="swal2-icon swal2-info" style="display: none;"></div>
+                            <div class="swal2-icon swal2-success" style="display: none;"></div>
+                            <img class="swal2-image" style="display: none;">
+                            <h2 class="swal2-title" id="swal2-title" style="display: flex;">Êtes-vous sûr?</h2>
+                            <button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button>
+                        </div>
+                        <div class="swal2-content">
+                            <div id="swal2-content" class="swal2-html-container" style="display: block;">Vous ne pourrez plus recupérer cet enregistrement!</div>
+                            <input class="swal2-input" style="display: none;">
+                            <input type="file" class="swal2-file" style="display: none;">
+                            <div class="swal2-range" style="display: none;">
+                                <input type="range">
+                                <output></output>
+                            </div>
+                            <select class="swal2-select" style="display: none;"></select>
+                            <div class="swal2-radio" style="display: none;"></div>
+                            <label for="swal2-checkbox" class="swal2-checkbox" style="display: none;">
+                            <input type="checkbox"><span class="swal2-label"></span></label>
+                            <textarea class="swal2-textarea" style="display: none;"></textarea>
+                            <div class="swal2-validation-message" id="swal2-validation-message"></div>
+                        </div>
+                        <div class="swal2-actions">
+                            <div class="swal2-loader"></div>
+                            <a href="#ConfirmDelete-modal" data-toggle="modal" class="swal2-confirm btn btn-danger m-1" data-dismiss="modal" title="Edit">Oui, Supprimer!</a>
+                            <button type="button" class="swal2-deny" aria-label="" style="display: none;">Non</button>
+                            <button type="button" class="swal2-cancel btn btn-secondary m-1" aria-label="" data-dismiss="modal" style="display: inline-block;">Annuler</button>
+                        </div>
+                        <div class="swal2-footer" style="display: none;"></div>
+                        <div class="swal2-timer-progress-bar-container">
+                            <div class="swal2-timer-progress-bar" style="display: none;"></div>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <p>Voulez-vous vraiment supprimer ces enregistrements ? Ce processus ne peut pas être annulé.</p>
+                </div>
+            </div>
+        </div>  
+    <!--End Remove modal-->
+
+
+<!--Confirm Remove Modal-->
+        <!-- Modal HTML -->
+        <div class="modal" id="ConfirmDelete-modal" tabindex="-1" role="dialog" aria-labelledby="Delete-newdr-modal" aria-hidden="true">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+
+                <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-icon-success swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;"><div class="swal2-header"><ul class="swal2-progress-steps" style="display: none;"></ul><div class="swal2-icon swal2-error" style="display: none;"></div><div class="swal2-icon swal2-question" style="display: none;"></div><div class="swal2-icon swal2-warning" style="display: none;"></div><div class="swal2-icon swal2-info" style="display: none;"></div><div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+                    <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
+                    <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                    <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
                     </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-danger">Supprimer</button>
-                    </div>
+                    <img class="swal2-image" style="display: none;"><h2 class="swal2-title" id="swal2-title" style="display: flex;">Supprimé!</h2>
+                    <button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button></div><div class="swal2-content"><div id="swal2-content" class="swal2-html-container" style="display: block;">Votre enregistrement à été supprimé.</div><input class="swal2-input" style="display: none;"><input type="file" class="swal2-file" style="display: none;"><div class="swal2-range" style="display: none;"><input type="range"><output></output></div><select class="swal2-select" style="display: none;"></select><div class="swal2-radio" style="display: none;"></div><label for="swal2-checkbox" class="swal2-checkbox" style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea class="swal2-textarea" style="display: none;"></textarea><div class="swal2-validation-message" id="swal2-validation-message"></div></div><div class="swal2-actions"><div class="swal2-loader"></div><button type="button" class="swal2-confirm btn btn-success m-1" aria-label="" style="display: inline-block;" data-dismiss="modal">OK</button><button type="button" class="swal2-deny" aria-label="" style="display: none;">Non</button><button type="button" class="swal2-cancel btn btn-danger m-1" aria-label="" style="display: none;">Annuler</button></div><div class="swal2-footer" style="display: none;"></div><div class="swal2-timer-progress-bar-container"><div class="swal2-timer-progress-bar" style="display: none;"></div></div></div>
                 </div>
             </div>
         </div>  
@@ -158,7 +205,7 @@
             <div class="modal-content">
                 <div class="block block-rounded block-themed block-transparent mb-0">
                     <div class="block-header bg-primary-dark">
-                        <h3 class="block-title">Modification de la Localité</h3>
+                        <h3 class="block-title">Modification de la fonction</h3>
                         <div class="block-options">
                             <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
                                 <i class="fa fa-fw fa-times"></i>

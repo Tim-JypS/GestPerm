@@ -4,11 +4,9 @@
 <?php require 'inc/_global/views/head_start.php'; ?>
 
 <!-- Page JS Plugins CSS -->
-<?php $one->get_css('js/plugins/datatables/dataTables.bootstrap4.css'); ?>
-<?php $one->get_css('js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css'); ?>
 <?php $one->get_css('js/plugins/select2/css/select2.min.css'); ?>
-<?php $one->get_css('js/plugins/modal/modal.css'); ?>
-
+<!-- Page JS Plugins CSS -->
+<?php $one->get_css('js/plugins/sweetalert2/sweetalert2.min.css'); ?>
 
 
 <?php require 'inc/_global/views/head_end.php'; ?>
@@ -54,9 +52,8 @@
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
                     <tr>
-                        <th class="text-center" style="width: 12%;">Code</th>
-                        <th>Libéllé</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Structure</th>
+                        <th class="text-center">Localité</th>
+                        <th class="d-none d-sm-table-cell" style="width: 30%;">Type</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
                         <!-- <th style="width: 15%;">Registered</th> -->
                     </tr>
@@ -67,7 +64,6 @@
                         foreach($localites as $localite):
                     ?>
                     <tr>
-                        <td class="text-center font-size-sm"><?=$localite->CodeZone?></td>
                         <td class="font-w600 font-size-sm"><?=$localite->LibelleZone?></td>
                         <td class="d-none d-sm-table-cell font-size-sm">
                             <?=DataBase::SelectQuery("SELECT LibelleStr FROM struct_localite WHERE NiveauStr='$localite->NiveauStr'")[0]->LibelleStr?>
@@ -94,131 +90,11 @@
     <!-- END Dynamic Table Full -->
     
     
-    
-    
-    <?php /*
-    <!-- Dynamic Table Full Pagination -->
-    <div class="block block-rounded">
-        <div class="block-header">
-            <h3 class="block-title">Dynamic Table <small>Full pagination</small></h3>
-        </div>
-        <div class="block-content block-content-full">
-            <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="width: 80px;">ID</th>
-                        <th>Name</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
-                        <th style="width: 15%;">Registered</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for ($i = 1; $i < 41; $i++) { ?>
-                    <tr>
-                        <td class="text-center font-size-sm"><?php echo $i; ?></td>
-                        <td class="font-w600 font-size-sm"><?php $one->get_name(); ?></td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            client<?php echo $i; ?><em class="text-muted">@example.com</em>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            <?php $one->get_tag(); ?>
-                        </td>
-                        <td>
-                            <em class="text-muted font-size-sm"><?php echo rand(2, 10); ?> days ago</em>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- END Dynamic Table Full Pagination -->
-
-    <!-- Dynamic Table Simple -->
-    <div class="block block-rounded">
-        <div class="block-header">
-            <h3 class="block-title">Dynamic Table <small>With only sorting and pagination</small></h3>
-        </div>
-        <div class="block-content block-content-full">
-            <!-- DataTables init on table by adding .js-dataTable-simple class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-simple">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="width: 80px;">ID</th>
-                        <th>Name</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
-                        <th style="width: 15%;">Registered</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for ($i = 1; $i < 41; $i++) { ?>
-                    <tr>
-                        <td class="text-center font-size-sm"><?php echo $i; ?></td>
-                        <td class="font-w600 font-size-sm"><?php $one->get_name(); ?></td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            client<?php echo $i; ?><em class="text-muted">@example.com</em>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            <?php $one->get_tag(); ?>
-                        </td>
-                        <td>
-                            <em class="text-muted font-size-sm"><?php echo rand(2, 10); ?> days ago</em>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- END Dynamic Table Simple -->
-
-    <!-- Dynamic Table with Export Buttons -->
-    <div class="block block-rounded">
-        <div class="block-header">
-            <h3 class="block-title">Dynamic Table <small>Export Buttons</small></h3>
-        </div>
-        <div class="block-content block-content-full">
-            <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="width: 80px;">ID</th>
-                        <th>Name</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
-                        <th style="width: 15%;">Registered</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for ($i = 1; $i < 41; $i++) { ?>
-                    <tr>
-                        <td class="text-center font-size-sm"><?php echo $i; ?></td>
-                        <td class="font-w600 font-size-sm">
-                            <a href="be_pages_generic_blank.php"><?php $one->get_name(); ?></a>
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            client<?php echo $i; ?><em class="text-muted">@example.com</em>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            <?php $one->get_tag(); ?>
-                        </td>
-                        <td>
-                            <em class="text-muted font-size-sm"><?php echo rand(2, 10); ?> days ago</em>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>*/?>
     <!-- END Dynamic Table with Export Buttons -->
 </div>
 <!-- Pop Out Block Modal -->
 <div class="modal fade" id="modal-block-popout" tabindex="-1" role="dialog" aria-labelledby="modal-block-popout" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-popout" role="document">
+    <div class="modal-dialog modal-dialog-popout modal-lg" role="document">
         <div class="modal-content">
             <div class="block block-rounded block-themed block-transparent mb-0">
                 <div class="block-header bg-primary-dark">
@@ -230,14 +106,32 @@
                     </div>
                 </div>
                 <div class="block-content font-size-sm">
-                <div class="form-group">
+                    <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
-                                    Structure
+                                    Type
                                 </span>
                             </div>
-                            <select class="js-select2 form-control" id="val-select2" name="val-select2" style="width: 79%;" data-placeholder="Choisir une..">
+                            <select class="js-select2 form-control" id="val-select1" name="val-select1" style="width: 91%;"  data-placeholder="Choisir une..">
+                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                <?php 
+                                    $structures=Database::SelectQuery("SELECT * FROM struct_localite WHERE NiveauStr>1 ORDER BY LibelleStr ASC");
+                                    foreach($structures as $structure):
+                                ?>
+                                <option value="<?=$structure->NiveauStr?>"><?=$structure->LibelleStr?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    Issue de
+                                </span>
+                            </div>
+                            <select class="js-select2 form-control" id="val-select2" name="val-select2" style="width: 88%;" data-placeholder="Choisir une..">
                                 <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                 <?php 
                                     $structures=Database::SelectQuery("SELECT * FROM struct_localite WHERE NiveauStr>1 ORDER BY LibelleStr ASC");
@@ -278,20 +172,65 @@
         <div class="modal" id="Delete-newdr-modal" tabindex="-1" role="dialog" aria-labelledby="Delete-newdr-modal" aria-hidden="true">
             <div class="modal-dialog modal-confirm">
                 <div class="modal-content">
-                    <div class="modal-header flex-column">
-                        <div class="icon-box">
-                            <i class="fa fa-fw fa-times"></i>
-                        </div>						
-                        <h4 class="modal-title w-100">Etes-vous sur?</h4>	
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-icon-warning swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;">
+                        <div class="swal2-header">
+                            <ul class="swal2-progress-steps" style="display: none;"></ul>
+                            <div class="swal2-icon swal2-error" style="display: none;"></div>
+                            <div class="swal2-icon swal2-question" style="display: none;"></div>
+                            <div class="swal2-icon swal2-warning swal2-icon-show" style="display: flex;">
+                                <div class="swal2-icon-content">!</div>
+                            </div>
+                            <div class="swal2-icon swal2-info" style="display: none;"></div>
+                            <div class="swal2-icon swal2-success" style="display: none;"></div>
+                            <img class="swal2-image" style="display: none;">
+                            <h2 class="swal2-title" id="swal2-title" style="display: flex;">Êtes-vous sûr?</h2>
+                            <button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button>
+                        </div>
+                        <div class="swal2-content">
+                            <div id="swal2-content" class="swal2-html-container" style="display: block;">Vous ne pourrez plus recupérer cet enregistrement!</div>
+                            <input class="swal2-input" style="display: none;">
+                            <input type="file" class="swal2-file" style="display: none;">
+                            <div class="swal2-range" style="display: none;">
+                                <input type="range">
+                                <output></output>
+                            </div>
+                            <select class="swal2-select" style="display: none;"></select>
+                            <div class="swal2-radio" style="display: none;"></div>
+                            <label for="swal2-checkbox" class="swal2-checkbox" style="display: none;">
+                            <input type="checkbox"><span class="swal2-label"></span></label>
+                            <textarea class="swal2-textarea" style="display: none;"></textarea>
+                            <div class="swal2-validation-message" id="swal2-validation-message"></div>
+                        </div>
+                        <div class="swal2-actions">
+                            <div class="swal2-loader"></div>
+                            <a href="#ConfirmDelete-modal" data-toggle="modal" class="swal2-confirm btn btn-danger m-1" data-dismiss="modal" title="Edit">Oui, Supprimer!</a>
+                            <button type="button" class="swal2-deny" aria-label="" style="display: none;">Non</button>
+                            <button type="button" class="swal2-cancel btn btn-secondary m-1" aria-label="" data-dismiss="modal" style="display: inline-block;">Annuler</button>
+                        </div>
+                        <div class="swal2-footer" style="display: none;"></div>
+                        <div class="swal2-timer-progress-bar-container">
+                            <div class="swal2-timer-progress-bar" style="display: none;"></div>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <p>Voulez-vous vraiment supprimer ces enregistrements ? Ce processus ne peut pas être annulé.</p>
+                </div>
+            </div>
+        </div>  
+    <!--End Remove modal-->
+
+
+<!--Confirm Remove Modal-->
+        <!-- Modal HTML -->
+        <div class="modal" id="ConfirmDelete-modal" tabindex="-1" role="dialog" aria-labelledby="Delete-newdr-modal" aria-hidden="true">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+
+                <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-icon-success swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;"><div class="swal2-header"><ul class="swal2-progress-steps" style="display: none;"></ul><div class="swal2-icon swal2-error" style="display: none;"></div><div class="swal2-icon swal2-question" style="display: none;"></div><div class="swal2-icon swal2-warning" style="display: none;"></div><div class="swal2-icon swal2-info" style="display: none;"></div><div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+                    <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
+                    <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                    <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
                     </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-danger">Supprimer</button>
-                    </div>
+                    <img class="swal2-image" style="display: none;"><h2 class="swal2-title" id="swal2-title" style="display: flex;">Supprimé!</h2>
+                    <button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button></div><div class="swal2-content"><div id="swal2-content" class="swal2-html-container" style="display: block;">Votre enregistrement à été supprimé.</div><input class="swal2-input" style="display: none;"><input type="file" class="swal2-file" style="display: none;"><div class="swal2-range" style="display: none;"><input type="range"><output></output></div><select class="swal2-select" style="display: none;"></select><div class="swal2-radio" style="display: none;"></div><label for="swal2-checkbox" class="swal2-checkbox" style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea class="swal2-textarea" style="display: none;"></textarea><div class="swal2-validation-message" id="swal2-validation-message"></div></div><div class="swal2-actions"><div class="swal2-loader"></div><button type="button" class="swal2-confirm btn btn-success m-1" aria-label="" style="display: inline-block;" data-dismiss="modal">OK</button><button type="button" class="swal2-deny" aria-label="" style="display: none;">Non</button><button type="button" class="swal2-cancel btn btn-danger m-1" aria-label="" style="display: none;">Annuler</button></div><div class="swal2-footer" style="display: none;"></div><div class="swal2-timer-progress-bar-container"><div class="swal2-timer-progress-bar" style="display: none;"></div></div></div>
                 </div>
             </div>
         </div>  
@@ -320,33 +259,57 @@
                     <div class="block-content font-size-sm">
                     <?php /*$one->get_text('small', 2);*/ ?>
                     <form action="save.php" id="form">
-				  	<div class="form-group form-row">
-                      <div class="col-12">
-                            <label for="LibelleZone">Localité</label>
-                            <input class="form-control" type="text" name="LibelleZone" placeholder="Localité">
-				  	    </div>
-                    </div>
-
-                    <div class="form-group form-row">
-                        <div class="col-12">
-                            <label for="CommuneDirectionRegionale">Commune</label>
-                            <select class="custom-select my-1 mr-sm-2" id="CommuneDirectionRegionale"  name="CommuneDirectionRegionale">
-                                <option selected>Choisissez votre commune...</option>
-                                <option value="1">Bingerville</option>
-                                <option value="2">Cocody</option>
-                                <option value="3">Dabou</option>
-                                <option value="2">Yamoussoukro</option>
-                                <option value="3">Adjamé</option>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    Type
+                                </span>
+                            </div>
+                            <select class="js-select2 form-control" id="val-select4" name="val-select4" style="width: 91%;"  data-placeholder="Choisir une..">
+                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                <?php 
+                                    $structures=Database::SelectQuery("SELECT * FROM struct_localite WHERE NiveauStr>1 ORDER BY LibelleStr ASC");
+                                    foreach($structures as $structure):
+                                ?>
+                                <option value="<?=$structure->NiveauStr?>"><?=$structure->LibelleStr?></option>
+                                <?php endforeach ?>
                             </select>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    Issue de
+                                </span>
+                            </div>
+                            <select class="js-select2 form-control" id="val-select3" name="val-select3" style="width: 88%;" data-placeholder="Choisir une..">
+                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                <?php 
+                                    $structures=Database::SelectQuery("SELECT * FROM struct_localite WHERE NiveauStr>1 ORDER BY LibelleStr ASC");
+                                    foreach($structures as $structure):
+                                ?>
+                                <option value="<?=$structure->NiveauStr?>"><?=$structure->LibelleStr?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    Libéllé
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" id="example-group1-input1" name="example-group1-input1">
+                         </div>
                     </div>
 
 				  	
 				</form>
                     </div>
 
-
-                    
                     <div class="block-content block-content-full text-right border-top">
                         <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
                         <button type="button" class="btn btn-primary" id="btnSubmit">Modifier</button>
@@ -357,6 +320,43 @@
     </div>
     <!-- END Large Block Modal -->
     <!--Fin Edit modal-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -382,5 +382,12 @@
 
 <!-- Page JS Code -->
 <?php $one->get_js('js/pages/be_tables_datatables.min.js'); ?>
+<?php $one->get_js('js/pages/be_comp_dialogs.min.js'); ?>
+<!-- Page JS Plugins -->
+<?php $one->get_js('js/plugins/es6-promise/es6-promise.auto.min.js'); ?>
+<?php $one->get_js('js/plugins/sweetalert2/sweetalert2.min.js'); ?>
+
+<!-- Page JS Code -->
+<?php $one->get_js('js/pages/be_comp_dialogs.min.js'); ?>
 
 <?php require 'inc/_global/views/footer_end.php'; ?>
