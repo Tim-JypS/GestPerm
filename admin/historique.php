@@ -16,13 +16,13 @@
     <div class="content content-full">
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
             <!-- <h1 class="flex-sm-fill h3 my-2">
-                Etablissement <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
+                Fonction <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
             </h1> -->
             <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-alt">
                     <li class="breadcrumb-item">Gestion</li>
                     <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href="">Etablissement</a>
+                        <a class="link-fx" href="">Historique des permutations</a>
                     </li>
                 </ol>
             </nav>
@@ -36,46 +36,52 @@
     <!-- Dynamic Table Full -->
     <div class="block block-rounded">
         <div class="block-header">
-            <h3 class="block-title">Liste des établissements <small</small></h3>
-            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item">
-                        <button type="button" class="btn btn-outline-primary push" data-toggle="modal" data-target="#modal-block-popout">Ajouter</button>
-                        <!-- <a class="btn btn-outline-primary" href="#" data-toggle="modal" data-target="#modal-block-popout"></a> -->
-                    </li>
-                </ol>
-            </nav>
+            <h3 class="block-title">Liste des permutations <small</small></h3>
         </div>
         <div class="block-content block-content-full">
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
                     <tr>
-                        <th class="text-center" style="width: 12%;">Type</th>
-                        <th>Dénomination</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Localité</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Date</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Matricule Demandeur</th>
+                        <th class="d-none d-sm-table-cell" style="width: 30%;">Nom Demandeur</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Fonction</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Localité d'origine</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Localité désirée</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Matricule Adhérent</th>
+                        <th class="d-none d-sm-table-cell" style="width: 30%;">Nom Adhérent</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
                         <!-- <th style="width: 15%;">Registered</th> -->
                     </tr>
                 </thead>
                 <tbody>
                     <?php 
-                        $ecoles=Database::SelectQuery("SELECT * FROM ecole ORDER BY NomEcole ASC");
-                        foreach($ecoles as $ecole):
+                        $annonces=Database::SelectQuery("SELECT * FROM annonce ORDER BY DateAjoutAnnonce DESC");
+                        foreach($annonces as $annonce):
                     ?>
                     <tr>
-                        <td class="text-center font-size-sm"><?=$ecole->TypeEcole?></td>
-                        <td class="font-w600 font-size-sm"><?=$ecole->NomEcole?></td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            <?=DataBase::SelectQuery("SELECT LibelleZone FROM localite WHERE CodeZone='$ecole->LocaliteEcole'")[0]->LibelleZone?>
-                        </td>
+                        <?php $agent1=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");?>
+                        <?php $agent2=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->AdherantAnnonce'");?>
+                        <td class="font-w600 font-size-sm"><?=$annonce->DateAjoutAnnonce?></td>
+                        <td class="font-w600 font-size-sm"><?=$agent1->MatriculeAgent?></td>
+                        <td class="font-w600 font-size-sm"><?=$agent1->NomAgent. " ". $agent1->PrenomsAgent?></td>
+                        <td class="font-w600 font-size-sm"><?=DataBase::SelectQuery("SELECT NomFonction FROM fonction WHERE IdFonction='$agent1->IdFonction'")[0]->NomFonction?></td>
+                        <td class="font-w600 font-size-sm">Abidjan</td>
+                        <td class="font-w600 font-size-sm">Tiassalé</td>
+                        <td class="font-w600 font-size-sm"><?=$agent2->MatriculeAgent?></td>
+                        <td class="font-w600 font-size-sm"><?=$agent2->NomAgent. " ". $agent2->PrenomsAgent?></td>
+
                         <td class="text-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="tooltip" title="Edit">
-                                    <i class="fa fa-fw fa-pencil-alt"></i>
+                                <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" data-target="#Edit-newinsp-modal">
+                                    <i class="fa fa-2x fa-print" data-toggle="tooltip" title="Imprimer"></i>
                                 </button>
-                                <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="tooltip" title="Delete">
-                                    <i class="fa fa-fw fa-times"></i>
+                                <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" data-target="#Edit-newinsp-modal">
+                                    <i class="fa fa-2x fa-check-circle" data-toggle="tooltip" title="Valider"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-alt-primary"  data-toggle="modal" data-target="#Delete-newinsp-modal">
+                                    <i class="fa fa-2x fa-times" data-toggle="tooltip" title="Refuser"></i>
                                 </button>
                             </div>
                         </td>
@@ -89,191 +95,80 @@
         </div>
     </div>
     <!-- END Dynamic Table Full -->
-    <?php /*
-    <!-- Dynamic Table Full Pagination -->
-    <div class="block block-rounded">
-        <div class="block-header">
-            <h3 class="block-title">Dynamic Table <small>Full pagination</small></h3>
-        </div>
-        <div class="block-content block-content-full">
-            <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="width: 80px;">ID</th>
-                        <th>Name</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
-                        <th style="width: 15%;">Registered</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for ($i = 1; $i < 41; $i++) { ?>
-                    <tr>
-                        <td class="text-center font-size-sm"><?php echo $i; ?></td>
-                        <td class="font-w600 font-size-sm"><?php $one->get_name(); ?></td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            client<?php echo $i; ?><em class="text-muted">@example.com</em>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            <?php $one->get_tag(); ?>
-                        </td>
-                        <td>
-                            <em class="text-muted font-size-sm"><?php echo rand(2, 10); ?> days ago</em>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- END Dynamic Table Full Pagination -->
-
-    <!-- Dynamic Table Simple -->
-    <div class="block block-rounded">
-        <div class="block-header">
-            <h3 class="block-title">Dynamic Table <small>With only sorting and pagination</small></h3>
-        </div>
-        <div class="block-content block-content-full">
-            <!-- DataTables init on table by adding .js-dataTable-simple class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-simple">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="width: 80px;">ID</th>
-                        <th>Name</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
-                        <th style="width: 15%;">Registered</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for ($i = 1; $i < 41; $i++) { ?>
-                    <tr>
-                        <td class="text-center font-size-sm"><?php echo $i; ?></td>
-                        <td class="font-w600 font-size-sm"><?php $one->get_name(); ?></td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            client<?php echo $i; ?><em class="text-muted">@example.com</em>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            <?php $one->get_tag(); ?>
-                        </td>
-                        <td>
-                            <em class="text-muted font-size-sm"><?php echo rand(2, 10); ?> days ago</em>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- END Dynamic Table Simple -->
-
-    <!-- Dynamic Table with Export Buttons -->
-    <div class="block block-rounded">
-        <div class="block-header">
-            <h3 class="block-title">Dynamic Table <small>Export Buttons</small></h3>
-        </div>
-        <div class="block-content block-content-full">
-            <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="width: 80px;">ID</th>
-                        <th>Name</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Email</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
-                        <th style="width: 15%;">Registered</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for ($i = 1; $i < 41; $i++) { ?>
-                    <tr>
-                        <td class="text-center font-size-sm"><?php echo $i; ?></td>
-                        <td class="font-w600 font-size-sm">
-                            <a href="be_pages_generic_blank.php"><?php $one->get_name(); ?></a>
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            client<?php echo $i; ?><em class="text-muted">@example.com</em>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            <?php $one->get_tag(); ?>
-                        </td>
-                        <td>
-                            <em class="text-muted font-size-sm"><?php echo rand(2, 10); ?> days ago</em>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    </div>*/?>
+    
     <!-- END Dynamic Table with Export Buttons -->
 </div>
-<!-- Pop Out Block Modal -->
-<div class="modal fade" id="modal-block-popout" tabindex="-1" role="dialog" aria-labelledby="modal-block-popout" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-popout" role="document">
-        <div class="modal-content">
-            <div class="block block-rounded block-themed block-transparent mb-0">
-                <div class="block-header bg-primary-dark">
-                    <h3 class="block-title">Ajouter une école</h3>
-                    <div class="block-options">
-                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+
+ <!--Remove Modal-->
+        <!-- Modal HTML -->
+        <div class="modal" id="Delete-newdr-modal" tabindex="-1" role="dialog" aria-labelledby="Delete-newdr-modal" aria-hidden="true">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header flex-column">
+                        <div class="icon-box">
                             <i class="fa fa-fw fa-times"></i>
-                        </button>
+                        </div>						
+                        <h4 class="modal-title w-100">Etes-vous sur?</h4>	
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Voulez-vous vraiment supprimer ces enregistrements ? Ce processus ne peut pas être annulé.</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-danger">Supprimer</button>
                     </div>
                 </div>
-                <div class="block-content font-size-sm">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    Type
-                                </span>
-                            </div>
-                            <select class="form-control" id="val-skill" name="val-skill">
-                                <option value="1">Primaire</option>
-                                <option value="2">Pré-scolaire</option>
-                            </select>
+            </div>
+        </div>  
+    <!--End Remove modal-->
+
+
+
+
+
+        <!--Edit Modal-->
+
+        <!-- Large Block Modal -->
+        <div class="modal" id="Edit-newdr-modal" tabindex="-1" role="dialog" aria-labelledby="Edit-newdr-modal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-rounded block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Modification de la Localité</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-times"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    Dénomination
-                                </span>
-                            </div>
-                            <input type="text" class="form-control" id="example-group1-input1" name="example-group1-input1">
-                        </div>
+
+                    <div class="block-content font-size-sm">
+                    <?php /*$one->get_text('small', 2);*/ ?>
+                    <form action="save.php" id="form">
+				  	<div class="form-group form-row">
+                      <div class="col-12">
+                            <label for="NomFonction">Fonction</label>
+                            <input class="form-control" type="text" name="NomFonction" placeholder="Fonction">
+				  	    </div>
                     </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    Localité
-                                </span>
-                            </div>
-                            <select class="js-select2 form-control" id="val-select2" name="val-select2" style="width: 81.5%;" data-placeholder="Choisir une..">
-                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                <?php 
-                                    $localites=Database::SelectQuery("SELECT * FROM localite WHERE NiveauStr>1 ORDER BY LibelleZone ASC");
-                                    foreach($localites as $loc):
-                                ?>
-                                <option value="<?=$loc->CodeZone?>"><?=$loc->LibelleZone?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
+
+				  	
+				</form>
                     </div>
-                </div>
-                <div class="block-content block-content-full text-right border-top">
-                    <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Enregistrer</button>
+
+
+                    
+                    <div class="block-content block-content-full text-right border-top">
+                        <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-primary" id="btnSubmit">Modifier</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- END Pop Out Block Modal -->
+    <!-- END Large Block Modal -->
+    <!--Fin Edit modal-->
 <!-- END Page Content -->
 
 <?php require 'inc/_global/views/page_end.php'; ?>

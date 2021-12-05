@@ -61,6 +61,16 @@ $one->main_nav                   = array(
         'url'   => 'emploi.php'
     ),
     array(
+        'name'  => 'Validation permutation',
+        'icon'  => 'si si-note',
+        'url'   => 'validation.php'
+    ),
+    array(
+        'name'  => 'Historique validation',
+        'icon'  => 'si si-note',
+        'url'   => 'historique.php'
+    ),
+    array(
         'name'  => 'Page Packs',
         'icon'  => 'si si-layers',
         'sub'   => array(
@@ -225,25 +235,6 @@ $one->main_nav                   = array(
     array(
         'name'  => 'User Interface',
         'type'  => 'heading'
-    ),
-    array(
-        'name'  => 'Mes données',
-        'icon'  => 'si si-energy',
-        'sub'   => array(
-            array(
-                'name'  => 'Mon profil',
-                'url'   => 'profile.php'
-            ),
-            array(
-                'name'  => 'Modifier mon profil',
-                'url'   => 'profile_edit.php'
-            )
-        )
-    ),
-    array(
-        'name'  => 'Messagerie',
-        'icon'  => 'si si-note',
-        'url'   => 'messagerie.php'
     ),
     array(
         'name'  => 'Blocks',
