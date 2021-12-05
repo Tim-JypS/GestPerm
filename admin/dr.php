@@ -1,156 +1,97 @@
 <?php require 'inc/_global/config.php'; ?>
+<?php require '../inc/config.php'; ?>
 <?php require 'inc/backend/config.php'; ?>
 <?php require 'inc/_global/views/head_start.php'; ?>
 
 <!-- Page JS Plugins CSS -->
 <?php $one->get_css('js/plugins/datatables/dataTables.bootstrap4.css'); ?>
 <?php $one->get_css('js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css'); ?>
-
+<?php $one->get_css('js/plugins/select2/css/select2.min.css'); ?>
 
 <?php require 'inc/_global/views/head_end.php'; ?>
 <?php require 'inc/_global/views/page_start.php'; ?>
 
-<style>
-    .modal-confirm {		
-	color: #636363;
-	width: 400px;
-}
-.modal-confirm .modal-content {
-	padding: 20px;
-	border-radius: 5px;
-	border: none;
-	text-align: center;
-	font-size: 14px;
-}
-.modal-confirm .modal-header {
-	border-bottom: none;   
-	position: relative;
-}
-.modal-confirm h4 {
-	text-align: center;
-	font-size: 26px;
-	margin: 30px 0 -10px;
-}
-.modal-confirm .close {
-	position: absolute;
-	top: -5px;
-	right: -2px;
-}
-.modal-confirm .modal-body {
-	color: #999;
-}
-.modal-confirm .modal-footer {
-	border: none;
-	text-align: center;		
-	border-radius: 5px;
-	font-size: 13px;
-	padding: 10px 15px 25px;
-}
-.modal-confirm .modal-footer a {
-	color: #999;
-}		
-.modal-confirm .icon-box {
-	width: 80px;
-	height: 80px;
-	margin: 0 auto;
-	border-radius: 50%;
-	z-index: 9;
-	text-align: center;
-	border: 3px solid #f15e5e;
-}
-.modal-confirm .icon-box i {
-	color: #f15e5e;
-	font-size: 46px;
-	display: inline-block;
-	margin-top: 13px;
-}
-.modal-confirm .btn, .modal-confirm .btn:active {
-	color: #fff;
-	border-radius: 4px;
-	background: #60c7c1;
-	text-decoration: none;
-	transition: all 0.4s;
-	line-height: normal;
-	min-width: 120px;
-	border: none;
-	min-height: 40px;
-	border-radius: 3px;
-	margin: 0 5px;
-}
-.modal-confirm .btn-secondary {
-	background: #c1c1c1;
-}
-.modal-confirm .btn-secondary:hover, .modal-confirm .btn-secondary:focus {
-	background: #a8a8a8;
-}
-.modal-confirm .btn-danger {
-	background: #f15e5e;
-}
-.modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
-	background: #ee3535;
-}
-.trigger-btn {
-	display: inline-block;
-	margin: 100px auto;
-}
-</style>
+<!-- Hero -->
+<div class="bg-body-light">
+    <div class="content content-full">
+        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+            <!-- <h1 class="flex-sm-fill h3 my-2">
+                Etablissement <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"></small>
+            </h1> -->
+            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-alt">
+                    <li class="breadcrumb-item">Gestion</li>
+                    <li class="breadcrumb-item" aria-current="page">
+                        <a class="link-fx" href="">Direction Régionale</a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+   </div>
+</div>
+<!-- END Hero -->
 
-    <!-- Dynamic Table with Export Buttons -->
+<!-- Page Content -->
+<div class="content">
+    <!-- Dynamic Table Full -->
     <div class="block block-rounded">
         <div class="block-header">
-            <h3 class="block-title">Direction Régionale <small>Ressource Humaine</small></h3>
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#add-newdr-modal">+ Ajouter Nouvelle Direction</button>
+            <h3 class="block-title">Liste des directions générale <small</small></h3>
+            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-alt">
+                    <li class="breadcrumb-item">
+                        <button type="button" class="btn btn-outline-primary push" data-toggle="modal" data-target="#add-newdr-modal">Ajouter</button>
+                        <!-- <a class="btn btn-outline-primary" href="#" data-toggle="modal" data-target="#modal-block-popout"></a> -->
+                    </li>
+                </ol>
+            </nav>
         </div>
         <div class="block-content block-content-full">
-            <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+            <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
                     <tr>
-                        <th class="text-center" style="width: 80px;">ID</th>
-                        <th>Nom & Prénom</th>
-                        <th class="d-none d-sm-table-cell" style="width: 17%;">Tel</th>
-                        <th class="d-none d-sm-table-cell" style="width: 20%;">Email</th>
-                        <th class="d-none d-sm-table-cell" style="width: 12%;">Commune</th>
-                        <th class="d-none d-sm-table-cell" style="width: 12%;">DRH</th>
-                        <th style="width: 15%;">Actions</th>
+                        <th class="text-center" style="width: 20%;">Nom</th>
+                        <th class="d-none d-sm-table-cell" style="width: 12%;">Téléphone</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Email</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Commune</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">DRH</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for ($i = 1; $i < 41; $i++) { ?>
-                    <tr>
-                        <td class="text-center font-size-sm"><?php echo $i; ?></td>
-                        <td class="font-w600 font-size-sm">
-                            <a href="be_pages_generic_blank.php"><?php $one->get_name(); ?></a>
-                        </td>
-                        <td class="d-none d-sm-table-cell font-size-sm">
-                            client<?php echo $i; ?><em class="text-muted">@example.com</em>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            <?php $one->get_tag(); ?>
-                        </td>
-                        <td>
-                            <em class="text-muted font-size-sm"><?php echo rand(2, 10); ?> days ago</em>
-                        </td>
-                        <td>
-                            <em class="text-muted font-size-sm"><?php echo rand(2, 10); ?> days ago</em>
-                        </td>
-                        <td class="d-none d-sm-table-cell">
-                            <?php /*$one->get_tag();*/ ?>
-                            <a href="#Edit-newdr-modal" class="badge badge-primary" data-toggle="modal"><i class="fa fa-fw fa-pencil-alt mr-1" data-toggle="tooltip" title="Editer"></i>Editer</a>
 
-                            <a href="#Delete-newdr-modal" class="badge badge-danger" data-toggle="modal"><i class="fa fa-fw fa-times mr-1" data-toggle="tooltip" title="Supprimer"></i>Supprimer</a>
+                    <tr>
+                        <td class="text-center font-size-sm">Test 1</td>
+                        <td class="font-w600 font-size-sm">Test 1</td>
+                        <td class="font-w600 font-size-sm">Test 1</td>
+                        <td class="font-w600 font-size-sm">Test 1</td>
+                        <td class="font-w600 font-size-sm">Test 1</td>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" title="Edit"  data-target="#Edit-newdr-modal">
+                                    <i class="fa fa-fw fa-pencil-alt"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-alt-primary"  data-toggle="modal" data-target="#Delete-newdr-modal" title="Delete">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </button>
+                            </div>
                         </td>
+                        <!-- <td>
+                            <em class="text-muted font-size-sm"><?php //echo rand(2, 10); ?> days ago</em>
+                        </td> -->
                     </tr>
-                    <?php } ?>
                 </tbody>
             </table>
         </div>
     </div>
-
+    <!-- END Dynamic Table Full -->
+    
+    
     <!--Modal Ajout Nouvelle direction-->
 
     	<!-- Large Block Modal -->
-    <div class="modal" id="add-newdr-modal" tabindex="-1" role="dialog" aria-labelledby="add-newdr-modal" aria-hidden="true">
+        <div class="modal" id="add-newdr-modal" tabindex="-1" role="dialog" aria-labelledby="add-newdr-modal" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="block block-rounded block-themed block-transparent mb-0">
@@ -342,6 +283,10 @@
                         
     <!-- END Dynamic Table with Export Buttons -->
 </div>
+<!-- END Pop Out Block Modal -->
+
+
+
 <!-- END Page Content -->
 
 <?php require 'inc/_global/views/page_end.php'; ?>
@@ -355,6 +300,12 @@
 <?php $one->get_js('js/plugins/datatables/buttons/buttons.html5.min.js'); ?>
 <?php $one->get_js('js/plugins/datatables/buttons/buttons.flash.min.js'); ?>
 <?php $one->get_js('js/plugins/datatables/buttons/buttons.colVis.min.js'); ?>
+<?php $one->get_js('js/plugins/select2/js/select2.full.min.js'); ?>
+<?php $one->get_js('js/plugins/jquery-validation/jquery.validate.min.js'); ?>
+<?php $one->get_js('js/plugins/jquery-validation/additional-methods.js'); ?>
+
+<!-- Page JS Helpers (Select2 plugin) -->
+<script>jQuery(function(){ One.helpers('select2'); });</script>
 
 <!-- Page JS Code -->
 <?php $one->get_js('js/pages/be_tables_datatables.min.js'); ?>
