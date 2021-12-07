@@ -51,6 +51,7 @@
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Localité désirée</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Matricule Adhérent</th>
                         <th class="d-none d-sm-table-cell" style="width: 30%;">Nom Adhérent</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
                         <!-- <th style="width: 15%;">Registered</th> -->
                     </tr>
@@ -73,15 +74,12 @@
                         <td class="font-w600 font-size-sm"><?=$agent2->NomAgent. " ". $agent2->PrenomsAgent?></td>
 
                         <td class="text-center">
+                            Validée
+                        </td>
+                        <td class="text-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" data-target="#Edit-newinsp-modal">
                                     <i class="fa fa-2x fa-print" data-toggle="tooltip" title="Imprimer"></i>
-                                </button>
-                                <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" data-target="#Edit-newinsp-modal">
-                                    <i class="fa fa-2x fa-check-circle" data-toggle="tooltip" title="Valider"></i>
-                                </button>
-                                <button type="button" class="btn btn-sm btn-alt-primary"  data-toggle="modal" data-target="#Delete-newinsp-modal">
-                                    <i class="fa fa-2x fa-times" data-toggle="tooltip" title="Refuser"></i>
                                 </button>
                             </div>
                         </td>
