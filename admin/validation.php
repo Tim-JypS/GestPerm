@@ -22,7 +22,7 @@
                 <ol class="breadcrumb breadcrumb-alt">
                     <li class="breadcrumb-item">Gestion</li>
                     <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href="">Fonction</a>
+                        <a class="link-fx" href="">Permutation</a>
                     </li>
                 </ol>
             </nav>
@@ -36,49 +36,61 @@
     <!-- Dynamic Table Full -->
     <div class="block block-rounded">
         <div class="block-header">
-            <h3 class="block-title">Liste des fonctions <small</small></h3>
-            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-alt">
-                    <li class="breadcrumb-item">
-                        <button type="button" class="btn btn-outline-primary push" data-toggle="modal" data-target="#modal-block-popout">Ajouter</button>
-                        <!-- <a class="btn btn-outline-primary" href="#" data-toggle="modal" data-target="#modal-block-popout"></a> -->
-                    </li>
-                </ol>
-            </nav>
+            <h3 class="block-title">Permutation en attente <small</small></h3>
         </div>
         <div class="block-content block-content-full">
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
-                    <tr>
-                        <th class="d-none d-sm-table-cell" style="width: 42%;">Fonction</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
-                        <!-- <th style="width: 15%;">Registered</th> -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        $fonctions=Database::SelectQuery("SELECT * FROM fonction ORDER BY NomFonction ASC");
-                        foreach($fonctions as $fonction):
-                    ?>
-                    <tr>
-                        <td class="font-w600 font-size-sm"><?=$fonction->NomFonction?></td>
-                        <td class="text-center">
-                        <div class="btn-group">
-                                <a href="#Edit-newdr-modal" data-toggle="modal" class="btn btn-sm btn-alt-primary" title="Edit">
-                                    <i class="fa fa-fw fa-pencil-alt" data-toggle="tooltip" title="Modifier"></i>
-                                </a>
-                                <a href="#Delete-newdr-modal" class="btn btn-sm btn-alt-primary" data-toggle="modal">
-                                    <i class="fa fa-fw fa-times" data-toggle="tooltip" title="Supprimer"></i>
-                                </a>
-                            </div>
-                        </td>
-                        <!-- <td>
-                            <em class="text-muted font-size-sm"><?php //echo rand(2, 10); ?> days ago</em>
-                        </td> -->
-                    </tr>
-                    <?php endforeach ?>
-                </tbody>
+                        <tr>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">Date</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">Matricule Demandeur</th>
+                            <th class="d-none d-sm-table-cell" style="width: 30%;">Nom Demandeur</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">Fonction</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">Localité d'origine</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">Localité désirée</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">Matricule Adhérent</th>
+                            <th class="d-none d-sm-table-cell" style="width: 30%;">Nom Adhérent</th>
+                            <th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
+                            <!-- <th style="width: 15%;">Registered</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            $annonces=Database::SelectQuery("SELECT * FROM annonce ORDER BY DateAjoutAnnonce DESC");
+                            foreach($annonces as $annonce):
+                        ?>
+                        <tr>
+                            <?php $agent1=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");?>
+                            <?php $agent2=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->AdherantAnnonce'");?>
+                            <td class="font-w600 font-size-sm"><?=$annonce->DateAjoutAnnonce?></td>
+                            <td class="font-w600 font-size-sm"><?=$agent1->MatriculeAgent?></td>
+                            <td class="font-w600 font-size-sm"><?=$agent1->NomAgent. " ". $agent1->PrenomsAgent?></td>
+                            <td class="font-w600 font-size-sm"><?=DataBase::SelectQuery("SELECT NomFonction FROM fonction WHERE IdFonction='$agent1->IdFonction'")[0]->NomFonction?></td>
+                            <td class="font-w600 font-size-sm">Abidjan</td>
+                            <td class="font-w600 font-size-sm">Tiassalé</td>
+                            <td class="font-w600 font-size-sm"><?=$agent2->MatriculeAgent?></td>
+                            <td class="font-w600 font-size-sm"><?=$agent2->NomAgent. " ". $agent2->PrenomsAgent?></td>
+
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" data-target="#Edit-newinsp-modal">
+                                        <i class="fa fa-2x fa-print" data-toggle="tooltip" title="Imprimer"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" data-target="#Edit-newinsp-modal">
+                                        <i class="fa fa-2x fa-check-circle" data-toggle="tooltip" title="Valider"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-alt-primary"  data-toggle="modal" data-target="#Delete-newinsp-modal">
+                                        <i class="fa fa-2x fa-times" data-toggle="tooltip" title="Refuser"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <!-- <td>
+                                <em class="text-muted font-size-sm"><?php //echo rand(2, 10); ?> days ago</em>
+                            </td> -->
+                        </tr>
+                        <?php endforeach ?>
+                    </tbody>
             </table>
         </div>
     </div>
