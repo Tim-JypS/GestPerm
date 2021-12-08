@@ -71,10 +71,10 @@
                         </td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="tooltip" title="Edit">
+                                <button data-toggle="modal" data-target="#modal-block-popoutModif" type="button" class="btn btn-sm btn-alt-primary editecole" data-toggle="tooltip" data-idecole="<?=$ecole->IdEcole ?>" data-type="<?=($ecole->TypeEcole=="Primaire"?'1':'2') ?>" data-lib="<?=$ecole->NomEcole ?>" data-loc="<?=$ecole->LocaliteEcole ?>" title="Modifier">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
-                                <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="tooltip" title="Delete">
+                                <button type="button" class="btn btn-sm btn-alt-primary js-swal-confirm" data-toggle="tooltip" data-idecole="<?=$ecole->IdEcole ?>" title="Delete">
                                     <i class="fa fa-fw fa-times"></i>
                                 </button>
                             </div>
@@ -230,7 +230,7 @@
                                     Type
                                 </span>
                             </div>
-                            <select class="form-control" id="val-skill" name="val-skill">
+                            <select id="type" class="form-control" id="val-skill" name="val-skill">
                                 <option value="1">Primaire</option>
                                 <option value="2">Pré-scolaire</option>
                             </select>
@@ -243,7 +243,7 @@
                                     Dénomination
                                 </span>
                             </div>
-                            <input type="text" class="form-control" id="example-group1-input1" name="example-group1-input1">
+                            <input id="lib" type="text" class="form-control" id="example-group1-input1" name="example-group1-input1">
                         </div>
                     </div>
                     <div class="form-group">
@@ -266,14 +266,80 @@
                     </div>
                 </div>
                 <div class="block-content block-content-full text-right border-top">
-                    <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Enregistrer</button>
+                    <button id="close" type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
+                    <button id="save" type="button" class="btn btn-primary" data-dismiss="modal">Enregistrer</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- END Pop Out Block Modal -->
+
+<!-- Modification -->
+<div class="modal fade" id="modal-block-popoutModif" tabindex="-1" role="dialog" aria-labelledby="modal-block-popout" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-popout" role="document">
+        <div class="modal-content">
+            <div class="block block-rounded block-themed block-transparent mb-0">
+                <div class="block-header bg-primary-dark">
+                    <h3 class="block-title">Modifier une école</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content font-size-sm">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    Type
+                                </span>
+                            </div>
+                            <select id="typeModif" class="form-control" id="val-skill" name="val-skill">
+                                <option value="1">Primaire</option>
+                                <option value="2">Pré-scolaire</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    Dénomination
+                                </span>
+                            </div>
+                            <input id="libModif" type="text" class="form-control" id="example-group1-input1" name="example-group1-input1">
+                            <input style="display: none;" id="idecole" type="text" class="form-control" id="example-group1-input1" name="example-group1-input1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    Localité
+                                </span>
+                            </div>
+                            <select class="js-select2 form-control" id="val-select2Modif" name="val-select2" style="width: 81.5%;" data-placeholder="Choisir une..">
+                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                <?php 
+                                    $localites=Database::SelectQuery("SELECT * FROM localite WHERE NiveauStr>1 ORDER BY LibelleZone ASC");
+                                    foreach($localites as $loc):
+                                ?>
+                                <option value="<?=$loc->CodeZone?>"><?=$loc->LibelleZone?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="block-content block-content-full text-right border-top">
+                    <button id="closeModif" type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
+                    <button id="saveModif" type="button" class="btn btn-primary" data-dismiss="modal">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- END Page Content -->
 
 <?php require 'inc/_global/views/page_end.php'; ?>
@@ -298,3 +364,42 @@
 <?php $one->get_js('js/pages/be_tables_datatables.min.js'); ?>
 
 <?php require 'inc/_global/views/footer_end.php'; ?>
+
+
+<script type="text/javascript">
+    $('#save').click(function()
+    {
+        let type=$('#type').val();
+        let lib=$('#lib').val();
+        let loc=$('#val-select2').val();
+        $.get('scripts/addecole.php',{type:type,libelle:lib,localite:loc},function()
+        {
+            window.location.reload();
+        })
+    })
+    $('.editecole').click(function()
+    {
+        let id=($(this).data('idecole'));
+        let type=($(this).data('type'));
+        let libelle=($(this).data('lib'));
+        let localite=($(this).data('loc'));
+        $('#idecole').val(id);
+        $('#typeModif').val(type).change();
+        $('#libModif').val(libelle);
+        $('#val-select2Modif').val(localite).change();
+    })
+    $('#saveModif').click(function()
+    {
+        let id=$('#idecole').val();
+        let type=$('#typeModif').val();
+        let lib=$('#libModif').val();
+        let loc=$('#val-select2Modif').val();
+        $.get('scripts/modifecole.php',{idecole:id,type:type,libelle:lib,localite:loc},function()
+        {
+            window.location.reload();
+        })
+    })
+</script>
+
+<!--   -->
+<script src="assets/js/dialogs_ecole.js"></script>
