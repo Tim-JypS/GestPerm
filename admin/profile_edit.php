@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php require 'inc/_global/config.php'; ?>
 <?php require 'inc/backend/config.php'; ?>
 <?php require 'inc/_global/views/head_start.php'; ?>
@@ -42,19 +43,19 @@
                     <div class="col-lg-12 col-xl-12">
                         <div class="form-group">
                             <label for="one-profile-edit-name">Matricule</label>
-                            <input type="text" class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="12345A">
+                            <input type="text" class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="<?php echo $_SESSION['auth']["user"]->MatriculeAgent; ?>">
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Civilité</label>
-                            <input type="text" class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="Monsieur">
+                            <input type="text" class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="<?php echo $_SESSION['auth']["user"]->CiviliteAgent; ?>">
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Nom de jeune fille</label>
-                            <input type="text" class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="12345A">
+                            <input type="text" class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="<?php echo $_SESSION['auth']["user"]->NomJeuneFilleAgent; ?>">
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-username">Nom</label>
-                            <input type="text" class="form-control" id="one-profile-edit-username" name="one-profile-edit-username" value="john.parker">
+                            <input type="text" class="form-control" id="one-profile-edit-username" name="one-profile-edit-username" value="<?php echo $_SESSION['auth']["user"]->NomAgent; ?>">
                         </div>
                         <div class="form-group">
                             <label for="example-static-input-readonly">Prénom(s)</label>
@@ -142,7 +143,7 @@
                     
                     
                     <div class="text-center push">
-                        <button type="button" class="btn btn-sm btn-light">View More..</button>
+                        <button type="button" class="btn btn-sm btn-light">Modifier</button>
                     </div>
                     
                 </div>
