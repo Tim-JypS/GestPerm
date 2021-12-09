@@ -7,6 +7,8 @@
 <?php $one->get_css('js/plugins/datatables/dataTables.bootstrap4.css'); ?>
 <?php $one->get_css('js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css'); ?>
 <?php $one->get_css('js/plugins/select2/css/select2.min.css'); ?>
+<!-- Page JS Plugins CSS -->
+<?php $one->get_css('js/plugins/sweetalert2/sweetalert2.min.css'); ?>
 
 <?php require 'inc/_global/views/head_end.php'; ?>
 <?php require 'inc/_global/views/page_start.php'; ?>
@@ -51,9 +53,10 @@
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
                     <tr>
-                        <th class="text-center" style="width: 12%;">Type</th>
-                        <th>Dénomination</th>
-                        <th class="d-none d-sm-table-cell" style="width: 30%;">Localité</th>
+                        <th class="text-center" style="width: 125;">Type</th>
+                        <th style="width: 30%;">Dénomination</th>
+                        <th class="d-none d-sm-table-cell" style="width: 20%;">Localité</th>
+                        <th class="d-none d-sm-table-cell" style="width: 20%;">Inspection</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
                         <!-- <th style="width: 15%;">Registered</th> -->
                     </tr>
@@ -69,12 +72,15 @@
                         <td class="d-none d-sm-table-cell font-size-sm">
                             <?=DataBase::SelectQuery("SELECT LibelleZone FROM localite WHERE CodeZone='$ecole->LocaliteEcole'")[0]->LibelleZone?>
                         </td>
+                        <td class="d-none d-sm-table-cell font-size-sm">
+                            <?=DataBase::SelectQuery("SELECT NomInspection FROM inspection WHERE IdInspection='$ecole->IdInspection'")[0]->NomInspection?>
+                        </td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <button data-toggle="modal" data-target="#modal-block-popoutModif" type="button" class="btn btn-sm btn-alt-primary editecole" data-toggle="tooltip" data-idecole="<?=$ecole->IdEcole ?>" data-type="<?=($ecole->TypeEcole=="Primaire"?'1':'2') ?>" data-lib="<?=$ecole->NomEcole ?>" data-loc="<?=$ecole->LocaliteEcole ?>" title="Modifier">
+                                <button data-toggle="modal" data-target="#modal-block-popoutModif" type="button" class="btn btn-sm btn-alt-primary editecole" data-toggle="tooltip" data-idecole="<?=$ecole->IdEcole ?>" data-type="<?=($ecole->TypeEcole=="Primaire"?'1':'2') ?>" data-inspection="<?=$ecole->IdInspection?>" data-lib="<?=$ecole->NomEcole ?>" data-loc="<?=$ecole->LocaliteEcole ?>" title="Modifier">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
-                                <button type="button" class="btn btn-sm btn-alt-primary js-swal-confirm" data-toggle="tooltip" data-idecole="<?=$ecole->IdEcole ?>" title="Delete">
+                                <button data-toggle="modal" data-target="#Delete-newdr-modal" type="button" class="btn btn-sm btn-alt-primary todelete" data-toggle="tooltip" data-idecole="<?=$ecole->IdEcole ?>" title="Supprimer">
                                     <i class="fa fa-fw fa-times"></i>
                                 </button>
                             </div>
@@ -264,6 +270,24 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    Inspection
+                                </span>
+                            </div>
+                            <select class="js-select2 form-control" id="val-select2Inspec" name="val-select2" style="width: 77.5%;" data-placeholder="Choisir une..">
+                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                <?php 
+                                    $inspections=Database::SelectQuery("SELECT * FROM inspection ORDER BY NomInspection ASC");
+                                    foreach($inspections as $inpec):
+                                ?>
+                                <option value="<?=$inpec->IdInspection?>"><?=$inpec->NomInspection?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="block-content block-content-full text-right border-top">
                     <button id="close" type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
@@ -331,6 +355,24 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    Inspection
+                                </span>
+                            </div>
+                            <select class="js-select2 form-control" id="val-select2InspecModif" name="val-select2" style="width: 77.5%;" data-placeholder="Choisir une..">
+                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                <?php 
+                                    $inspections=Database::SelectQuery("SELECT * FROM inspection ORDER BY NomInspection ASC");
+                                    foreach($inspections as $inpec):
+                                ?>
+                                <option value="<?=$inpec->IdInspection?>"><?=$inpec->NomInspection?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="block-content block-content-full text-right border-top">
                     <button id="closeModif" type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
@@ -341,6 +383,72 @@
     </div>
 </div>
 <!-- END Page Content -->
+
+<!--Confirm Remove Modal-->
+        <!-- Modal HTML -->
+<div class="modal" id="Delete-newdr-modal" tabindex="-1" role="dialog" aria-labelledby="Delete-newdr-modal" aria-hidden="true">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-icon-warning swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;">
+                <div class="swal2-header">
+                    <ul class="swal2-progress-steps" style="display: none;"></ul>
+                    <div class="swal2-icon swal2-error" style="display: none;"></div>
+                    <div class="swal2-icon swal2-question" style="display: none;"></div>
+                    <div class="swal2-icon swal2-warning swal2-icon-show" style="display: flex;">
+                        <div class="swal2-icon-content">!</div>
+                    </div>
+                    <input id="idtodelete" type="text" style="display: none;" />
+                    <div class="swal2-icon swal2-info" style="display: none;"></div>
+                    <div class="swal2-icon swal2-success" style="display: none;"></div>
+                    <img class="swal2-image" style="display: none;">
+                    <h2 class="swal2-title" id="swal2-title" style="display: flex;">Êtes-vous sûr?</h2>
+                    <button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button>
+                </div>
+                <div class="swal2-content">
+                    <div id="swal2-content" class="swal2-html-container" style="display: block;">Vous ne pourrez plus recupérer cet enregistrement!</div>
+                    <input class="swal2-input" style="display: none;">
+                    <input type="file" class="swal2-file" style="display: none;">
+                    <div class="swal2-range" style="display: none;">
+                        <input type="range">
+                        <output></output>
+                    </div>
+                    <select class="swal2-select" style="display: none;"></select>
+                    <div class="swal2-radio" style="display: none;"></div>
+                    <label for="swal2-checkbox" class="swal2-checkbox" style="display: none;">
+                    <input type="checkbox"><span class="swal2-label"></span></label>
+                    <textarea class="swal2-textarea" style="display: none;"></textarea>
+                    <div class="swal2-validation-message" id="swal2-validation-message"></div>
+                </div>
+                <div class="swal2-actions">
+                    <div class="swal2-loader"></div>
+                    <a id="confirmDelete" href="#ConfirmDelete-modal" data-toggle="modal" class="swal2-confirm btn btn-danger m-1" data-dismiss="modal" title="Edit">Oui, Supprimer!</a>
+                    <button type="button" class="swal2-deny" aria-label="" style="display: none;">Non</button>
+                    <button type="button" class="swal2-cancel btn btn-secondary m-1" aria-label="" data-dismiss="modal" style="display: inline-block;">Annuler</button>
+                </div>
+                <div class="swal2-footer" style="display: none;"></div>
+                <div class="swal2-timer-progress-bar-container">
+                    <div class="swal2-timer-progress-bar" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="ConfirmDelete-modal" tabindex="-1" role="dialog" aria-labelledby="Delete-newdr-modal" aria-hidden="true">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+
+        <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-icon-success swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;"><div class="swal2-header"><ul class="swal2-progress-steps" style="display: none;"></ul><div class="swal2-icon swal2-error" style="display: none;"></div><div class="swal2-icon swal2-question" style="display: none;"></div><div class="swal2-icon swal2-warning" style="display: none;"></div><div class="swal2-icon swal2-info" style="display: none;"></div><div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+            <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
+            <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+            <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+            </div>
+            <img class="swal2-image" style="display: none;"><h2 class="swal2-title" id="swal2-title" style="display: flex;">Supprimé!</h2>
+            <button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button></div><div class="swal2-content"><div id="swal2-content" class="swal2-html-container" style="display: block;">Votre enregistrement à été supprimé.</div><input class="swal2-input" style="display: none;"><input type="file" class="swal2-file" style="display: none;"><div class="swal2-range" style="display: none;"><input type="range"><output></output></div><select class="swal2-select" style="display: none;"></select><div class="swal2-radio" style="display: none;"></div><label for="swal2-checkbox" class="swal2-checkbox" style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea class="swal2-textarea" style="display: none;"></textarea><div class="swal2-validation-message" id="swal2-validation-message"></div></div><div class="swal2-actions"><div class="swal2-loader"></div><button type="button" class="swal2-confirm btn btn-success m-1 deleted" aria-label="" style="display: inline-block;" data-dismiss="modal">OK</button><button type="button" class="swal2-deny" aria-label="" style="display: none;">Non</button><button type="button" class="swal2-cancel btn btn-danger m-1" aria-label="" style="display: none;">Annuler</button></div><div class="swal2-footer" style="display: none;"></div><div class="swal2-timer-progress-bar-container"><div class="swal2-timer-progress-bar" style="display: none;"></div></div></div>
+        </div>
+    </div>
+</div>  
+<!--End Remove modal-->
 
 <?php require 'inc/_global/views/page_end.php'; ?>
 <?php require 'inc/_global/views/footer_start.php'; ?>
@@ -372,7 +480,8 @@
         let type=$('#type').val();
         let lib=$('#lib').val();
         let loc=$('#val-select2').val();
-        $.get('scripts/addecole.php',{type:type,libelle:lib,localite:loc},function()
+        let inspection=$('#val-select2Inspec').val();
+        $.get('scripts/addecole.php',{type:type,libelle:lib,localite:loc,inspect:inspection},function()
         {
             window.location.reload();
         })
@@ -381,25 +490,48 @@
     {
         let id=($(this).data('idecole'));
         let type=($(this).data('type'));
+        let inspect=($(this).data('inspection'));
         let libelle=($(this).data('lib'));
         let localite=($(this).data('loc'));
         $('#idecole').val(id);
         $('#typeModif').val(type).change();
         $('#libModif').val(libelle);
+        $('#val-select2InspecModif').val(inspect).change();
         $('#val-select2Modif').val(localite).change();
     })
+    $('.todelete').click(function()
+    {
+        let idecole=($(this).data('idecole'));
+        $('#idtodelete').val(idecole);
+    })
+    
     $('#saveModif').click(function()
     {
         let id=$('#idecole').val();
         let type=$('#typeModif').val();
         let lib=$('#libModif').val();
+        let inspection=$('#val-select2InspecModif').val();
         let loc=$('#val-select2Modif').val();
-        $.get('scripts/modifecole.php',{idecole:id,type:type,libelle:lib,localite:loc},function()
+        $.get('scripts/modifecole.php',{idecole:id,type:type,libelle:lib,localite:loc,inspect:inspection},function()
         {
             window.location.reload();
         })
     })
+    $('#confirmDelete').click(function()
+    {
+        // let ideco=$('#id').val();
+        // console.log(ideco);
+        let idecole=$('#idtodelete').val();
+        $.get('scripts/supprimerecole.php',{id:idecole},function()
+        {
+            // window.location.reload();
+        })
+    })
+    $('.deleted').click(function()
+    {
+        window.location.reload();
+    })
 </script>
 
 <!--   -->
-<script src="assets/js/dialogs_ecole.js"></script>
+<!-- <script src="assets/js/dialogs_ecole.js"></script> -->

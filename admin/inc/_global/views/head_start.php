@@ -34,8 +34,8 @@
         <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $one->assets_folder; ?>/media/favicons/favicon-192x192.png">
         <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $one->assets_folder; ?>/media/favicons/apple-touch-icon-180x180.png">
         <!-- END Icons -->
-        <script src="assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
+        <!-- <script src="assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
         <script src="assets/js/plugins/es6-promise/es6-promise.auto.min.js"></script>
-        <style src="assets/js/plugins/sweetalert2/sweetalert2.min.css"></style>
+        <style src="assets/js/plugins/sweetalert2/sweetalert2.min.css"></style> -->
 
         <!-- Stylesheets -->
