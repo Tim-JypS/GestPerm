@@ -1,9 +1,17 @@
+<?php session_start(); ?>
 <?php require 'inc/_global/config.php'; ?>
 <?php require 'inc/backend/config.php'; ?>
 <?php require 'inc/_global/views/head_start.php'; ?>
 <?php require 'inc/_global/views/head_end.php'; ?>
 <?php require 'inc/_global/views/page_start.php'; ?>
 
+<?php if(!class_exists("Database"))
+	require '../class/database.php';
+?>
+<!-- Page JS Plugins CSS -->
+<?php $one->get_css('js/plugins/select2/css/select2.min.css'); ?>
+<!-- Page JS Plugins CSS -->
+<?php $one->get_css('js/plugins/sweetalert2/sweetalert2.min.css'); ?>
 <!-- Hero -->
 <div class="bg-image" style="background-image: url('<?php echo $one->assets_folder; ?>/media/photos/photo8@2x.jpg');">
     <div class="bg-black-50">
@@ -11,8 +19,18 @@
             <div class="my-3">
                 <?php $one->get_avatar(13, '', false, true); ?>
             </div>
-            <h1 class="h2 text-white mb-0">John Parker</h1>
-            <span class="text-white-75">UI Designer</span>
+            <h1 class="h2 text-white mb-0"><?php echo $_SESSION['auth']["user"]->NomAgent.' '.$_SESSION['auth']["user"]->PrenomsAgent; ?></h1>
+            <span class="text-white-75">
+            <?php 
+                $IdFonctionAgent = $_SESSION['auth']['user']->IdFonction;
+                $agent1=DataBase::SelectQuery("SELECT * FROM fonction WHERE IdFonction='$IdFonctionAgent'");
+                echo $agent1["0"]->NomFonction;
+            ?>
+            </span>
+            <div></div>
+            <a class="btn btn-light" href="profile_edit.php">
+                <i class="fa fa-pencil-alt text-danger"></i> Modifier mon profil
+            </a>
        </div>
     </div>
 </div>
@@ -62,7 +80,7 @@
                     <div class="col-lg-12 col-xl-12">
                         <div class="form-group">
                             <label for="one-profile-edit-name">Matricule</label>
-                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="12345A">
+                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="<?php echo $_SESSION['auth']["user"]->MatriculeAgent; ?>">
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Civilité</label>
@@ -70,15 +88,15 @@
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Nom de jeune fille</label>
-                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="12345A">
+                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="<?php echo $_SESSION['auth']["user"]->NomJeuneFilleAgent; ?>">
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-username">Nom</label>
-                            <input type="text" readonly class="form-control" id="one-profile-edit-username" name="one-profile-edit-username" value="john.parker">
+                            <input type="text" readonly class="form-control" id="one-profile-edit-username" name="one-profile-edit-username" value="<?php echo $_SESSION['auth']["user"]->NomAgent; ?>">
                         </div>
                         <div class="form-group">
                             <label for="example-static-input-readonly">Prénom(s)</label>
-                            <input type="text" readonly class="form-control" id="example-static-input-readonly" value="email@example.com">
+                            <input type="text" readonly class="form-control" id="example-static-input-readonly" value="<?php echo $_SESSION['auth']["user"]->PrenomsAgent; ?>">
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Sexe</label>
@@ -86,27 +104,55 @@
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Date de naissance</label>
-                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="12345A">
+                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="<?php echo $_SESSION['auth']["user"]->DateNaissanceAgent; ?>">
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Situation matrimoniale</label>
-                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="12345A">
+                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="<?php echo $_SESSION['auth']["user"]->SituationMatrimonialeAgent; ?>">
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Téléphone</label>
-                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="12345A">
+                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="<?php echo $_SESSION['auth']["user"]->TelAgent; ?>">
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-email">Email</label>
-                            <input type="email" readonly class="form-control" id="one-profile-edit-email" name="one-profile-edit-email" value="john.parker@example.com">
+                            <input type="email" readonly class="form-control" id="one-profile-edit-email" name="one-profile-edit-email" value="<?php echo $_SESSION['auth']["user"]->EmailAgent; ?>">
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Date de prise de service</label>
-                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="20/11/2019">
+                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="<?php echo $_SESSION['auth']["user"]->DatePriseServiceAgent; ?>">
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Emploi</label>
                             <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="INSTITUTEUR">
+                        </div>
+                        <div class="form-group">
+                            <label for="emploi">Emploi</label>
+                            <select class="js-select2 form-control" id="emploi" name="emploi" style="width: 100%;"  data-placeholder="Choisir une..">
+                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                <?php 
+                                    $emplois=Database::SelectQuery("SELECT * FROM emploi ORDER BY LibelleEmploi ASC");
+                                    foreach($emplois as $emploi):
+                                ?>
+                                <option value="<?=$emploi->LibelleEmploi?>"><?=$emploi->LibelleEmploi?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                        <div class="form-group">
+                            <select class="js-select2 form-control" id="fonction" name="fonction" style="width: 100%;" data-placeholder="Choose one..">
+                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                <option value="1">HTML</option>
+                                <option value="2">CSS</option>
+                                <option value="3">JavaScript</option>
+                                <option value="4">PHP</option>
+                                <option value="5">MySQL</option>
+                                <option value="6">Ruby</option>
+                                <option value="7">Angular</option>
+                                <option value="8">React</option>
+                                <option value="9">Vue.js</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Fonction</label>
@@ -121,24 +167,14 @@
 
 
                 </div>
-            </div>
-            <!-- END Ratings -->
 
-
-            <!-- END Updates -->
-        </div>
-        <div class="col-md-5 col-xl-4">
+                <div class="col-md-5 col-xl-4">
             <!-- Products -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">
                         <i class="fa fa-briefcase text-muted mr-1"></i> Stats
                     </h3>
-                    <div class="block-options">
-                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                            <i class="si si-refresh"></i>
-                        </button>
-                    </div>
                 </div>
                 <div class="block-content">
                     <div class="media d-flex align-items-center push">
@@ -195,13 +231,27 @@
                 </div>
             </div>
             <!-- END Products -->
-
-           
         </div>
+
+            </div>
+            <!-- END Ratings -->
+
+
+            <!-- END Updates -->
+        </div>
+        
+                                   
+        
     </div>
 </div>
 <!-- END Page Content -->
-
+<?php $one->get_js('js/plugins/datatables/dataTables.bootstrap4.min.js'); ?>
 <?php require 'inc/_global/views/page_end.php'; ?>
 <?php require 'inc/_global/views/footer_start.php'; ?>
 <?php require 'inc/_global/views/footer_end.php'; ?>
+<!-- Page JS Plugins -->
+<?php $one->get_js('js/plugins/select2/js/select2.full.min.js'); ?>
+
+<!-- Page JS Helpers (Select2 plugin) -->
+<script>jQuery(function(){ One.helpers('select2'); });</script>
+
