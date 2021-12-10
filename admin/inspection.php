@@ -8,6 +8,9 @@
 <?php $one->get_css('js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css'); ?>
 <?php $one->get_css('js/plugins/select2/css/select2.min.css'); ?>
 
+<!-- Page JS Plugins CSS -->
+<?php $one->get_css('js/plugins/sweetalert2/sweetalert2.min.css'); ?>
+
 <?php require 'inc/_global/views/head_end.php'; ?>
 <?php require 'inc/_global/views/page_start.php'; ?>
 
@@ -54,23 +57,26 @@
                         <th class="text-center" style="width: 20%;">Nom</th>
                         <th class="d-none d-sm-table-cell" style="width: 12%;">Téléphone</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Commune</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">DRH</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    <?php 
+                        $inspections=Database::SelectQuery("SELECT * FROM   inspection ORDER BY NomInspection ASC");
+                        foreach($inspections as $inspection):
+                    ?>
                     <tr>
-                        <td class="text-center font-size-sm">Test 1</td>
-                        <td class="font-w600 font-size-sm">Test 1</td>
-                        <td class="font-w600 font-size-sm">Test 1</td>
-                        <td class="font-w600 font-size-sm">Test 1</td>
+                        <td class="text-center font-size-sm"><?=$inspection->NomInspection?></td>
+                        <td class="font-w600 font-size-sm"><?=$inspection->TelInspection?></td>
+                        <td class="font-w600 font-size-sm">
+                        <?=DataBase::SelectQuery("SELECT LibelleZone FROM localite WHERE CodeZone='$inspection->CommuneInspection'")[0]->LibelleZone?>
+                        </td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" title="Edit"  data-target="#Edit-newinsp-modal">
+                                <button type="button" class="btn btn-sm btn-alt-primary editinspection" data-toggle="modal" title="Edit" data-idinpection="<?=$inspection->IdInspection ?>" data-nominspection="<?=$inspection->NomInspection ?>" data-telinspection="<?=$inspection->TelInspection ?>" data-locinspection="<?=$inspection->CommuneInspection ?>"  data-target="#Edit-newinsp-modal">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
-                                <button type="button" class="btn btn-sm btn-alt-primary"  data-toggle="modal" data-target="#Delete-newinsp-modal" title="Delete">
+                                <button type="button" class="btn btn-sm btn-alt-primary todelete"  data-toggle="modal" data-target="#Delete-newinsp-modal" data-idinpection="<?=$inspection->IdInspection ?>" title="Delete">
                                     <i class="fa fa-fw fa-times"></i>
                                 </button>
                             </div>
@@ -79,6 +85,7 @@
                             <em class="text-muted font-size-sm"><?php //echo rand(2, 10); ?> days ago</em>
                         </td> -->
                     </tr>
+                    <?php endforeach ?>
                 </tbody>
             </table>
         </div>
@@ -108,12 +115,12 @@
 			    	<div class="form-group form-row">
                         <div class="col-6">
                             <label for="NomInspection">Nom</label>
-                            <input class="form-control" type="text" name="NomInspection" placeholder="Nom Inspection">
+                            <input id="NomInspection" class="form-control" type="text" name="NomInspection" placeholder="Nom Inspection">
                         </div>
 
                         <div class="col-6">
                             <label for="TelInspection">Téléphone</label>
-                            <input class="form-control" type="text" name="TelInspection" placeholder="Numéro de Téléphone">
+                            <input id="TelInspection" class="form-control" type="text" name="TelInspection" placeholder="Numéro de Téléphone">
                         </div>
 				  	</div>
 
@@ -122,28 +129,18 @@
 					    <input class="form-control" type="text" name="first_name">
 				  	</div>-->
 				  	<div class="form-group form-row">
-                      <div class="col-6">
+                      <div class="col-12">
                             <label for="CommuneInspection">Commune</label>
-                            <select class="custom-select my-1 mr-sm-2" id="CommuneInspection"  name="CommuneInspection">
-                                <option selected>Choisissez votre commune...</option>
-                                <option value="1">Bingerville</option>
-                                <option value="2">Cocody</option>
-                                <option value="3">Dabou</option>
-                                <option value="2">Yamoussoukro</option>
-                                <option value="3">Adjamé</option>
+                            <select id="CommuneInspection" class="js-select2 form-control" name="val-select2" data-placeholder="Choisir une..">
+                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                            <?php 
+                                    $localites=Database::SelectQuery("SELECT * FROM localite WHERE NiveauStr>1 ORDER BY LibelleZone ASC");
+                                    foreach($localites as $loc):
+                                ?>
+                                <option value="<?=$loc->CodeZone?>"><?=$loc->LibelleZone?></option>
+                                <?php endforeach ?>
                             </select>
 				  	    </div>
-                        <div class="col-6">
-                            <label for="IdDirectionRegionale">Direction</label>
-                            <select class="custom-select my-1 mr-sm-2" id="IdDirectionRegionale"  name="IdDirectionRegionale">
-                                <option selected>Choisissez votre commune...</option>
-                                <option value="1">Bingerville</option>
-                                <option value="2">Cocody</option>
-                                <option value="3">Dabou</option>
-                                <option value="2">Yamoussoukro</option>
-                                <option value="3">Adjamé</option>
-                            </select>
-                        </div>
                     </div>
 				  	
 				</form>
@@ -153,7 +150,7 @@
                     
                     <div class="block-content block-content-full text-right border-top">
                         <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary" id="btnSubmit">Ajouter Nouvelle Inspection</button>
+                        <button id="save" type="button" class="btn btn-primary" id="btnSubmit">Ajouter Nouvelle Inspection</button>
                     </div>
                 </div>
             </div>
@@ -182,16 +179,16 @@
                     <div class="block-content font-size-sm">
                     <?php /*$one->get_text('small', 2);*/ ?>
                     <form action="save.php" id="form">
-
+                    <input id="IdInspection" class="form-control" type="text" name="IdInspection" style="display: none;">
 			    	<div class="form-group form-row">
                         <div class="col-6">
                             <label for="NomInspection">Nom</label>
-                            <input class="form-control" type="text" name="NomInspection" placeholder="Nom Inspection">
+                            <input id="modifNomInspection" class="form-control" type="text" name="NomInspection" placeholder="Nom Inspection">
                         </div>
 
                         <div class="col-6">
                             <label for="TelInspection">Téléphone</label>
-                            <input class="form-control" type="text" name="TelInspection" placeholder="Numéro de Téléphone">
+                            <input id="modifTelInspection" class="form-control" type="text" name="TelInspection" placeholder="Numéro de Téléphone">
                         </div>
 				  	</div>
 
@@ -200,28 +197,18 @@
 					    <input class="form-control" type="text" name="first_name">
 				  	</div>-->
 				  	<div class="form-group form-row">
-                      <div class="col-6">
+                      <div class="col-12">
                             <label for="CommuneInspection">Commune</label>
-                            <select class="custom-select my-1 mr-sm-2" id="CommuneInspection"  name="CommuneInspection">
-                                <option selected>Choisissez votre commune...</option>
-                                <option value="1">Bingerville</option>
-                                <option value="2">Cocody</option>
-                                <option value="3">Dabou</option>
-                                <option value="2">Yamoussoukro</option>
-                                <option value="3">Adjamé</option>
+                            <select id="modifCommuneInspection" class="js-select2 form-control" name="val-select2" style="width: 81.5%;" data-placeholder="Choisir une..">
+                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                            <?php 
+                                    $localites=Database::SelectQuery("SELECT * FROM localite WHERE NiveauStr>1 ORDER BY LibelleZone ASC");
+                                    foreach($localites as $loc):
+                                ?>
+                                <option value="<?=$loc->CodeZone?>"><?=$loc->LibelleZone?></option>
+                                <?php endforeach ?>
                             </select>
 				  	    </div>
-                        <div class="col-6">
-                            <label for="IdDirectionRegionale">Direction</label>
-                            <select class="custom-select my-1 mr-sm-2" id="IdDirectionRegionale"  name="IdDirectionRegionale">
-                                <option selected>Choisissez votre commune...</option>
-                                <option value="1">Bingerville</option>
-                                <option value="2">Cocody</option>
-                                <option value="3">Dabou</option>
-                                <option value="2">Yamoussoukro</option>
-                                <option value="3">Adjamé</option>
-                            </select>
-                        </div>
                     </div>
 				  	
 				</form>
@@ -231,7 +218,7 @@
                     
                     <div class="block-content block-content-full text-right border-top">
                         <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary" id="btnSubmit">Modifier Inspection</button>
+                        <button id="saveModif" type="button" class="btn btn-primary" id="btnSubmit">Modifier Inspection</button>
                     </div>
                 </div>
             </div>
@@ -240,29 +227,71 @@
     <!-- END Large Block Modal -->
     <!--Fin Edit modal-->
 
-    <!--Remove Modal-->
+    <!--Confirm Remove Modal-->
         <!-- Modal HTML -->
-        <div class="modal" id="Delete-newinsp-modal" tabindex="-1" role="dialog" aria-labelledby="Delete-newinsp-modal" aria-hidden="true">
-            <div class="modal-dialog modal-confirm">
-                <div class="modal-content">
-                    <div class="modal-header flex-column">
-                        <div class="icon-box">
-                            <i class="fa fa-fw fa-times"></i>
-                        </div>						
-                        <h4 class="modal-title w-100">Etes-vous sur?</h4>	
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<div class="modal" id="Delete-newinsp-modal" tabindex="-1" role="dialog" aria-labelledby="Delete-newinsp-modal" aria-hidden="true">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-icon-warning swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;">
+                <div class="swal2-header">
+                    <ul class="swal2-progress-steps" style="display: none;"></ul>
+                    <div class="swal2-icon swal2-error" style="display: none;"></div>
+                    <div class="swal2-icon swal2-question" style="display: none;"></div>
+                    <div class="swal2-icon swal2-warning swal2-icon-show" style="display: flex;">
+                        <div class="swal2-icon-content">!</div>
                     </div>
-                    <div class="modal-body">
-                        <p>Voulez-vous vraiment supprimer ces enregistrements ? Ce processus ne peut pas être annulé.</p>
+                    <input id="idtodelete" type="text" style="display: none;" />
+                    <div class="swal2-icon swal2-info" style="display: none;"></div>
+                    <div class="swal2-icon swal2-success" style="display: none;"></div>
+                    <img class="swal2-image" style="display: none;">
+                    <h2 class="swal2-title" id="swal2-title" style="display: flex;">Êtes-vous sûr?</h2>
+                    <button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button>
+                </div>
+                <div class="swal2-content">
+                    <div id="swal2-content" class="swal2-html-container" style="display: block;">Vous ne pourrez plus recupérer cet enregistrement!</div>
+                    <input class="swal2-input" style="display: none;">
+                    <input type="file" class="swal2-file" style="display: none;">
+                    <div class="swal2-range" style="display: none;">
+                        <input type="range">
+                        <output></output>
                     </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-danger">Supprimer</button>
-                    </div>
+                    <select class="swal2-select" style="display: none;"></select>
+                    <div class="swal2-radio" style="display: none;"></div>
+                    <label for="swal2-checkbox" class="swal2-checkbox" style="display: none;">
+                    <input type="checkbox"><span class="swal2-label"></span></label>
+                    <textarea class="swal2-textarea" style="display: none;"></textarea>
+                    <div class="swal2-validation-message" id="swal2-validation-message"></div>
+                </div>
+                <div class="swal2-actions">
+                    <div class="swal2-loader"></div>
+                    <a id="confirmDelete" href="#ConfirmDelete-modal" data-toggle="modal" class="swal2-confirm btn btn-danger m-1" data-dismiss="modal" title="Edit">Oui, Supprimer!</a>
+                    <button type="button" class="swal2-deny" aria-label="" style="display: none;">Non</button>
+                    <button type="button" class="swal2-cancel btn btn-secondary m-1" aria-label="" data-dismiss="modal" style="display: inline-block;">Annuler</button>
+                </div>
+                <div class="swal2-footer" style="display: none;"></div>
+                <div class="swal2-timer-progress-bar-container">
+                    <div class="swal2-timer-progress-bar" style="display: none;"></div>
                 </div>
             </div>
-        </div>  
-    <!--End Remove modal-->
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="ConfirmDelete-modal" tabindex="-1" role="dialog" aria-labelledby="Delete-newdr-modal" aria-hidden="true">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+
+        <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-icon-success swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;"><div class="swal2-header"><ul class="swal2-progress-steps" style="display: none;"></ul><div class="swal2-icon swal2-error" style="display: none;"></div><div class="swal2-icon swal2-question" style="display: none;"></div><div class="swal2-icon swal2-warning" style="display: none;"></div><div class="swal2-icon swal2-info" style="display: none;"></div><div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+            <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
+            <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+            <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+            </div>
+            <img class="swal2-image" style="display: none;"><h2 class="swal2-title" id="swal2-title" style="display: flex;">Supprimé!</h2>
+            <button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button></div><div class="swal2-content"><div id="swal2-content" class="swal2-html-container" style="display: block;">Votre enregistrement à été supprimé.</div><input class="swal2-input" style="display: none;"><input type="file" class="swal2-file" style="display: none;"><div class="swal2-range" style="display: none;"><input type="range"><output></output></div><select class="swal2-select" style="display: none;"></select><div class="swal2-radio" style="display: none;"></div><label for="swal2-checkbox" class="swal2-checkbox" style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea class="swal2-textarea" style="display: none;"></textarea><div class="swal2-validation-message" id="swal2-validation-message"></div></div><div class="swal2-actions"><div class="swal2-loader"></div><button type="button" class="swal2-confirm btn btn-success m-1 deleted" aria-label="" style="display: inline-block;" data-dismiss="modal">OK</button><button type="button" class="swal2-deny" aria-label="" style="display: none;">Non</button><button type="button" class="swal2-cancel btn btn-danger m-1" aria-label="" style="display: none;">Annuler</button></div><div class="swal2-footer" style="display: none;"></div><div class="swal2-timer-progress-bar-container"><div class="swal2-timer-progress-bar" style="display: none;"></div></div></div>
+        </div>
+    </div>
+</div>  
+<!--End Remove modal-->
                         
     <!-- END Dynamic Table with Export Buttons -->
 </div>
@@ -294,3 +323,6 @@
 <?php $one->get_js('js/pages/be_tables_datatables.min.js'); ?>
 
 <?php require 'inc/_global/views/footer_end.php'; ?>
+
+
+<script src="inc/logical/Crud/crudinspection/inspection.js"></script>
