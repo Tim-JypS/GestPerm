@@ -67,10 +67,10 @@
                         <td class="font-w600 font-size-sm"><?=$emploi->LibelleEmploi?></td>
                         <td class="text-center">
                         <div class="btn-group">
-                                <a href="#Edit-newdr-modal" data-toggle="modal" class="btn btn-sm btn-alt-primary" title="Edit">
+                                <a href="#Edit-newdr-modal" data-toggle="modal" class="btn btn-sm btn-alt-primary editemploi" data-idemploi="<?=$emploi->IdEmploi ?>" data-libelleemploi="<?=$emploi->LibelleEmploi?>" title="Edit">
                                     <i class="fa fa-fw fa-pencil-alt" data-toggle="tooltip" title="Modifier"></i>
                                 </a>
-                                <a href="#Delete-newdr-modal" class="btn btn-sm btn-alt-primary" data-toggle="modal">
+                                <a href="#Delete-newdr-modal" class="btn btn-sm btn-alt-primary todelete" data-idemploi="<?=$emploi->IdEmploi ?>" data-toggle="modal">
                                     <i class="fa fa-fw fa-times" data-toggle="tooltip" title="Supprimer"></i>
                                 </a>
                             </div>
@@ -109,13 +109,13 @@
                                     Emploi
                                 </span>
                             </div>
-                            <input type="text" class="form-control" id="example-group1-input1" name="example-group1-input1">
+                            <input type="text" class="form-control" id="LibelleEmploi" name="example-group1-input1">
                         </div>
                     </div>
                 </div>
                 <div class="block-content block-content-full text-right border-top">
                     <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Enregistrer</button>
+                    <button id="save"  type="button" class="btn btn-primary" data-dismiss="modal">Enregistrer</button>
                 </div>
             </div>
         </div>
@@ -137,6 +137,7 @@
                             <div class="swal2-icon swal2-warning swal2-icon-show" style="display: flex;">
                                 <div class="swal2-icon-content">!</div>
                             </div>
+                            <input id="idtodelete" type="text" style="display: none;" />
                             <div class="swal2-icon swal2-info" style="display: none;"></div>
                             <div class="swal2-icon swal2-success" style="display: none;"></div>
                             <img class="swal2-image" style="display: none;">
@@ -160,7 +161,7 @@
                         </div>
                         <div class="swal2-actions">
                             <div class="swal2-loader"></div>
-                            <a href="#ConfirmDelete-modal" data-toggle="modal" class="swal2-confirm btn btn-danger m-1" data-dismiss="modal" title="Edit">Oui, Supprimer!</a>
+                            <a id="confirmDelete" href="#ConfirmDelete-modal" data-toggle="modal" class="swal2-confirm btn btn-danger m-1" data-dismiss="modal" title="Edit">Oui, Supprimer!</a>
                             <button type="button" class="swal2-deny" aria-label="" style="display: none;">Non</button>
                             <button type="button" class="swal2-cancel btn btn-secondary m-1" aria-label="" data-dismiss="modal" style="display: inline-block;">Annuler</button>
                         </div>
@@ -187,7 +188,7 @@
                     <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
                     </div>
                     <img class="swal2-image" style="display: none;"><h2 class="swal2-title" id="swal2-title" style="display: flex;">Supprimé!</h2>
-                    <button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button></div><div class="swal2-content"><div id="swal2-content" class="swal2-html-container" style="display: block;">Votre enregistrement à été supprimé.</div><input class="swal2-input" style="display: none;"><input type="file" class="swal2-file" style="display: none;"><div class="swal2-range" style="display: none;"><input type="range"><output></output></div><select class="swal2-select" style="display: none;"></select><div class="swal2-radio" style="display: none;"></div><label for="swal2-checkbox" class="swal2-checkbox" style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea class="swal2-textarea" style="display: none;"></textarea><div class="swal2-validation-message" id="swal2-validation-message"></div></div><div class="swal2-actions"><div class="swal2-loader"></div><button type="button" class="swal2-confirm btn btn-success m-1" aria-label="" style="display: inline-block;" data-dismiss="modal">OK</button><button type="button" class="swal2-deny" aria-label="" style="display: none;">Non</button><button type="button" class="swal2-cancel btn btn-danger m-1" aria-label="" style="display: none;">Annuler</button></div><div class="swal2-footer" style="display: none;"></div><div class="swal2-timer-progress-bar-container"><div class="swal2-timer-progress-bar" style="display: none;"></div></div></div>
+                    <button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button></div><div class="swal2-content"><div id="swal2-content" class="swal2-html-container" style="display: block;">Votre enregistrement à été supprimé.</div><input class="swal2-input" style="display: none;"><input type="file" class="swal2-file" style="display: none;"><div class="swal2-range" style="display: none;"><input type="range"><output></output></div><select class="swal2-select" style="display: none;"></select><div class="swal2-radio" style="display: none;"></div><label for="swal2-checkbox" class="swal2-checkbox" style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea class="swal2-textarea" style="display: none;"></textarea><div class="swal2-validation-message" id="swal2-validation-message"></div></div><div class="swal2-actions"><div class="swal2-loader"></div><button type="button" class="swal2-confirm btn btn-success m-1 deleted" aria-label="" style="display: inline-block;" data-dismiss="modal">OK</button><button type="button" class="swal2-deny" aria-label="" style="display: none;">Non</button><button type="button" class="swal2-cancel btn btn-danger m-1" aria-label="" style="display: none;">Annuler</button></div><div class="swal2-footer" style="display: none;"></div><div class="swal2-timer-progress-bar-container"><div class="swal2-timer-progress-bar" style="display: none;"></div></div></div>
                 </div>
             </div>
         </div>  
@@ -219,7 +220,8 @@
 				  	<div class="form-group form-row">
                       <div class="col-12">
                             <label for="LibelleEmploi">Emploi</label>
-                            <input class="form-control" type="text" name="LibelleEmploi" placeholder="Emploi">
+                            <input id="idemploi" style="display: none;" type="text" class="form-control" id="example-group1-input1" name="example-group1-input1">
+                            <input id="LibelleModif" class="form-control" type="text" name="LibelleEmploi" placeholder="Emploi">
 				  	    </div>
                     </div>
 
@@ -231,7 +233,7 @@
                     
                     <div class="block-content block-content-full text-right border-top">
                         <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary" id="btnSubmit">Modifier</button>
+                        <button id="saveModif" type="button" class="btn btn-primary" id="btnSubmit">Modifier</button>
                     </div>
                 </div>
             </div>
@@ -263,3 +265,6 @@
 <?php $one->get_js('js/pages/be_tables_datatables.min.js'); ?>
 
 <?php require 'inc/_global/views/footer_end.php'; ?>
+
+
+<script src="inc/logical/Crud/crudemploi/emploi.js"></script>
