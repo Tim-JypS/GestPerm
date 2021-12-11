@@ -238,7 +238,7 @@ ET DE L'ALPHABETISATION</Text>
               <Name>Text27</Name>
               <Page isRef="2" />
               <Parent isRef="3" />
-              <Text>ANNEE SCOLAIRE 20....../20......</Text>
+              <Text>ANNEE SCOLAIRE 2021/2022</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
@@ -1198,10 +1198,10 @@ ET DE L'ALPHABETISATION</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/4/2021 8:35:05 PM</ReportChanged>
+  <ReportChanged>12/11/2021 3:53:06 PM</ReportChanged>
   <ReportCreated>12/4/2021 5:36:53 PM</ReportCreated>
-  <ReportFile>C:\wamp\www\GestPerm\print\reports\FichePermutation.mrt</ReportFile>
-  <ReportGuid>1a23da3fdf3f4085879de3da914b31d3</ReportGuid>
+  <ReportFile>C:\wamp\www\GestPerm\FichePermutation.mrt</ReportFile>
+  <ReportGuid>2a02ed1ec0be4235afb8f3749abb8538</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

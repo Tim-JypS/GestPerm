@@ -1,7 +1,7 @@
 <?php
     require("inc/config.php");
     $Page="ann";
-    $PageTitle=SITENAME." - Annonces";
+    $PageTitle="GestPerm - Annonces";
 ?>
 
 <!doctype html>

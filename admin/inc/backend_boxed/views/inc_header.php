@@ -17,7 +17,7 @@
         <div class="d-flex align-items-center">
             <!-- Logo -->
             <a class="font-w600 font-size-h5 tracking-wider text-dual mr-3" href="index.php">
-                One<span class="font-w400">UI</span>                
+                Gest<span class="font-w400">Perm</span>                
             </a>
             <!-- END Logo -->
 

@@ -9,7 +9,7 @@
 
 	
     $Page="ann";
-    $PageTitle=SITENAME." - Annonces";
+    $PageTitle="GestPerm - Annonces";
 
 ?>
 
@@ -143,7 +143,7 @@
                                     </span>
                                 </div>
 								<?php 
-									$localite=DataBase::SelectQuery("SELECT * FROM localite WHERE CodeZone='".$annonce[0]->LocaliteDesireeAnnonce."'");
+									$localite=DataBase::SelectQuery("SELECT * FROM localite WHERE CodeZone='".$annonce[0]->LocaliteOrigineAnnonce."'");
 									echo '<input type="text" class="form-control" disabled="disabled" value="'.$localite[0]->LibelleZone.'">';
 								?>                            
 							</div>
@@ -157,7 +157,7 @@
                                     </span>
                                 </div>
                                 <?php 
-									$localite=DataBase::SelectQuery("SELECT * FROM localite WHERE CodeZone='".$annonce[0]->LocaliteOrigineAnnonce."'");
+									$localite=DataBase::SelectQuery("SELECT * FROM localite WHERE CodeZone='".$annonce[0]->LocaliteDesireeAnnonce."'");
 									echo '<input type="text" class="form-control" disabled="disabled" value="'.$localite[0]->LibelleZone.'">';
 								?>
                             </div>
@@ -193,15 +193,16 @@
                                     </span>
                                 </div>
                                 <input type="text" class="form-control" disabled="disabled" value="<?=$agent[0]->TelAgent?>">
-                                <input type="text" name="permutant" style="display:none;opacity:0;" class="form-control" value="<?=$agent[0]->IdAgent?>">
+                                <input type="text" name="permutant" style="display:none;opacity:0;" class="form-control" value="<?=$IdAgent?>">
                                 <input type="text" name="annonce" style="display:none;opacity:0;" class="form-control" value="<?=$annonce[0]->IdAnnonce?>">
                             </div>
                         </div>
-
+                        <?php 
+                        if ($IdAgent!=$annonce[0]->IdAgent):?>
                         <div class="block-content block-content-full text-right border-top">
                             <button type="submit" id="ConfirmPermutant" class="btn btn-primary" id="btnSubmit">Adhérer</button>
                         </div>
-                        
+                        <?php endif ?>
                     </form>
                     <!-- END Form Labels on top - Default Style -->
 

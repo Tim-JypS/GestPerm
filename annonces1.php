@@ -3,7 +3,7 @@
     require("admin/fonctions/annonces_controller.php");
     require("admin/fonctions/connexion.php");
     $Page="ann";
-    $PageTitle=SITENAME." - Annonces";
+    $PageTitle="GestPerm - Annonces";
     $Mode="aff";
     $annonces = "";
     $get_nombre_annonce = "";

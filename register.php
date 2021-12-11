@@ -1,7 +1,7 @@
 <?php
 	require("inc/config.php");
     $Page="reg";
-    $PageTitle=SITENAME." - Nouveau compte";
+    $PageTitle="GestPerm - Nouveau compte";
 
 	if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['dna']) && isset($_POST['mat']) && isset($_POST['pass1']) && isset($_POST['pass2'])) 
 	{
@@ -59,14 +59,19 @@
 				$_SESSION['auth']["status"] = true;
 				$reponse=Database::SelectQuery("select MAX(IdAgent) from agent");
 				$_SESSION['auth']["user"] = $reponse[0];
-				header("location:admin/dashboard.php");
+				header("location:admin/historique.php");
 			}
 		}
 	}
 
     if(isset($_SESSION['auth']["status"]) && $_SESSION['auth']["status"])
     {
-		header("location:admin/dashboard.php");
+		if ($TypeUser==1)
+			header("location:admin/historique.php");
+		elseif($TypeUser==2 || $TypeUser==3)
+			header("location:admin/validation.php");
+		else
+			header("location:admin/dashboard.php");
     }
 
 ?>

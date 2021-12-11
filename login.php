@@ -2,10 +2,15 @@
 	require("inc/config.php");
 	if(isset($_SESSION['auth']["status"]) && $_SESSION['auth']["status"])
     {
-		header("location:admin/dashboard.php");
-    }
+		if ($TypeUser==1)
+			header("location:admin/historique.php");
+		elseif($TypeUser==2 || $TypeUser==3)
+			header("location:admin/validation.php");
+		else
+			header("location:admin/dashboard.php");
+	}
     $Page="log";
-    $PageTitle=SITENAME." - Connexion";
+    $PageTitle="GestPerm - Connexion";
 
 	if(isset($_POST['login']) AND isset($_POST['password'])) 
 	{
@@ -29,7 +34,13 @@
 				$date=date("Y-m-d").' '.date("G:i:s");
 				$_SESSION['auth']["status"] = true;
 				$_SESSION['auth']["user"] = $reponse[0];
-				header("location:admin/dashboard.php");
+				$TypeUser=$_SESSION['auth']["user"]->TypeAgent;
+				if ($TypeUser==1)
+					header("location:admin/historique.php");
+				elseif($TypeUser==2 || $TypeUser==3)
+					header("location:admin/validation.php");
+				else
+					header("location:admin/dashboard.php");
 			}
 			else 
 			{

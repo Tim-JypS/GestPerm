@@ -320,7 +320,7 @@
         let ecole=$('#ecoleAgent').val();
         $.get('scripts/modifagent.php',{idagent:id,nom:nom,prenoms:prenoms,civilite:civilite,nomJeuneFille:nomJeuneFille,sexe:sexe,dateNaissance:dateNaissance,telephone:telephone,email:email,datePriseService:datePriseService,situationMatrimoniale:situationMatrimoniale,fonction:fonction,ecole:ecole},function()
         {
-            window.location.reload();
+            window.location.href="profile.php";
         })
     })
     

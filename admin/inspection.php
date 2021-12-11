@@ -57,7 +57,7 @@
                         <th class="text-center" style="width: 20%;">Nom</th>
                         <th class="d-none d-sm-table-cell" style="width: 12%;">Téléphone</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Commune</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">Action</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

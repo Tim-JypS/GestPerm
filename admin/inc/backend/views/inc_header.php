@@ -7,6 +7,7 @@
  * The header of each page (Backend pages)
  *
  */
+require "../inc/config.php";
 ?>
 
 <!-- Header -->
@@ -64,33 +65,22 @@
             <div class="dropdown d-inline-block ml-2">
                 <button type="button" class="btn btn-sm btn-dual d-flex align-items-center" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle" src="<?php echo $one->assets_folder; ?>/media/avatars/avatar10.jpg" alt="Header Avatar" style="width: 21px;">
-                    <span class="d-none d-sm-inline-block ml-2">Adam</span>
+                    <span class="d-none d-sm-inline-block ml-2"><?=trim($PreUser)?></span>
                     <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block ml-1 mt-1"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-right p-0 border-0" aria-labelledby="page-header-user-dropdown">
                     <div class="p-3 text-center bg-primary-dark rounded-top">
                         <?php $one->get_avatar(10, '', 48, true); ?>
-                        <p class="mt-2 mb-0 text-white font-w500">Adam Smith</p>
-                        <p class="mb-0 text-white-50 font-size-sm">Web Developer</p>
+                        <p class="mt-2 mb-0 text-white font-w500"><?=trim($NomUser." ".$PreUser)?></p>
+                        <p class="mb-0 text-white-50 font-size-sm"><?=trim($LibFonctionUser)?></p>
                     </div>
                     <div class="p-2">
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.php">
-                            <span class="font-size-sm font-w500">Inbox</span>
-                            <span class="badge badge-pill badge-primary ml-2">3</span>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.php">
-                            <span class="font-size-sm font-w500">Profile</span>
-                            <span class="badge badge-pill badge-primary ml-2">1</span>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                            <span class="font-size-sm font-w500">Settings</span>
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="profile.php">
+                            <span class="font-size-sm font-w500">Profil</span>
                         </a>
                         <div role="separator" class="dropdown-divider"></div>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_lock.php">
-                            <span class="font-size-sm font-w500">Lock Account</span>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_signin.php">
-                            <span class="font-size-sm font-w500">Log Out</span>
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="../deco.php">
+                            <span class="font-size-sm font-w500">Déconnexion</span>
                         </a>
                     </div>
                 </div>
@@ -98,7 +88,7 @@
             <!-- END User Dropdown -->
 
             <!-- Notifications Dropdown -->
-            <div class="dropdown d-inline-block ml-2">
+            <?php /*<div class="dropdown d-inline-block ml-2">
                 <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-fw fa-bell"></i>
                     <span class="text-primary">•</span>
@@ -188,7 +178,7 @@
             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
             <button type="button" class="btn btn-sm btn-dual ml-2" data-toggle="layout" data-action="side_overlay_toggle">
                 <i class="fa fa-fw fa-list-ul fa-flip-horizontal"></i>
-            </button>
+            </button>*/?>
             <!-- END Toggle Side Overlay -->
         </div>
         <!-- END Right Section -->

@@ -1,52 +1,8 @@
 <?php
     require("inc/config.php");
     $Page="log";
-    $PageTitle=SITENAME." - Connexion";
+    $PageTitle="GestPerm - Accueil";
 
-	if(isset($_POST['login']) AND isset($_POST['password'])) 
-	{
-		$login= htmlspecialchars($_POST['login']); 
-		$password= htmlspecialchars($_POST['password']);
-		if(isset($_POST['remember']))
-			$remember_me = htmlspecialchars($_POST['remember']);
-		else
-			$remember_me=false;
-		if(!class_exists("Database"))
-			require 'class/database.php';
-
-		$reponse=Database::SelectQuery("select * from agent where MatriculeAgent='".$login."'");
-
-		//
-		if(count($reponse)>0)
-		{
-			//Login correcte, verifie si le mot de passe saisi correspond a celle de la base de donnees
-			$isPasswordCorrect = password_verify($_POST['password'], $reponse[0]->PasswordAgent);
-			if ($isPasswordCorrect) 
-			{
-				//On sauvegarde les info en session
-				$date=date("Y-m-d").' '.date("G:i:s");
-				$_SESSION['auth']["status"] = true;
-				$_SESSION['auth']["user"] = $reponse[0];
-				header("location:admin/dashboard.php");
-			}
-			else 
-			{
-				$ErrMsg="Mot de passe incorrect.";
-				$ErrPage="log1";
-				// echo 'Mauvais mot de passe ! <a href="login.php">Cliquer ici pour revenir a la page de connexion.</a>';
-			}
-
-
-			//Le mot de passe correcte est celui qui a ete retourne par la base de donnees dans l'objet $reponse[0]->password
-
-		}
-		else
-		{
-			$ErrMsg="Matricule non reconnu.";
-			$ErrPage="log1";
-			// echo 'Mauvais identifiant! <a href="index.php">Cliquer ici pour revenir a la page de connexion.</a>';
-		}
-	}
 ?>
 
 <!doctype html>
@@ -374,7 +330,7 @@ prise de service pour les agents mariés.
                     <div class="single-counter">
                         <i class='flaticon-team-building'></i>
                         <h3><span class="counter">5</span></h3>
-                        <p>Membres D'equipes</p>
+                        <p>Membres de l'équipe</p>
                     </div>
                 </div>
             </div>
@@ -387,7 +343,7 @@ prise de service pour les agents mariés.
             <div class="container">
                 <div class="scetion-title text-center">
                     
-                    <h2>Notre Equipes</h2>
+                    <h2>Notre Equipe</h2>
                    
                 </div>
                 <div class="portfolio-slider pt-45 owl-carousel owl-theme">
@@ -433,7 +389,7 @@ prise de service pour les agents mariés.
                     <div class="portfolio-item">
                         <div class="portfolio-img">
                             <a href="portfolio.php">
-                                <img src="assets\img\avatar 5.jpg" alt="Portfolio Images">
+                                <img src="assets\img\avatar 1.jpg" alt="Portfolio Images">
                             </a>
                            
                             <div class="portfolio-content">
@@ -479,7 +435,7 @@ prise de service pour les agents mariés.
             <div class="container">
                 <div class="scetion-title text-center">
                     
-                    <h2>Nos Dernieres Annonces</h2>
+                    <h2>Nos Dernières Annonces</h2>
                 </div>
                 <div class="row pt-45">
                    
@@ -487,7 +443,7 @@ prise de service pour les agents mariés.
 
 <!-- LISTE DES ANNONCES DE PERMUTATIONS -->
 <?php 
-                        $annonces=Database::SelectQuery("SELECT * FROM annonce ORDER BY DateAjoutAnnonce ASC LIMIT 3");
+                        $annonces=Database::SelectQuery("SELECT * FROM annonce ORDER BY DateAjoutAnnonce DESC LIMIT 3");
                         foreach($annonces as $annonce):
                     ?>
                                 
@@ -539,8 +495,23 @@ prise de service pour les agents mariés.
                                             ?>
                                             </td>
                                         </tr>
-                                        <tr><td>Origine : <?=$annonce->LocaliteOrigineAnnonce?></td></tr>
-                                        <tr><td>Localité souhaitée : <?=$annonce->LocaliteDesireeAnnonce?></td></tr>
+                                        <tr>
+                                            <td>Origine : 
+                                                <?php 
+                                                    $localite=DataBase::SelectQuery("SELECT * FROM localite WHERE CodeZone='$annonce->LocaliteOrigineAnnonce'");
+                                                    echo $localite[0]->LibelleZone;
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Localité souhaitée : 
+                                                <?php 
+                                                    $localite=DataBase::SelectQuery("SELECT * FROM localite WHERE CodeZone='$annonce->LocaliteDesireeAnnonce'");
+                                                    echo $localite[0]->LibelleZone;
+                                                ?>
+                                            </td>
+                                        </tr>
                                 </tbody>
                                 </table>
                                 </div>

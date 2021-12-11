@@ -100,7 +100,7 @@
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Sexe</label>
-                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="12345A">
+                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="<?=$_SESSION['auth']["user"]->SexeAgent?>">
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Date de naissance</label>

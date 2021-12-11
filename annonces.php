@@ -1,7 +1,7 @@
 <?php
     require("inc/config.php");
     $Page="ann";
-    $PageTitle=SITENAME." - Annonces";
+    $PageTitle="GestPerm - Annonces";
 ?>
 
 <!doctype html>
@@ -43,7 +43,7 @@
 
                     <!-- LISTE DES ANNONCES DE PERMUTATIONS -->
                     <?php 
-                        $annonces=Database::SelectQuery("SELECT * FROM annonce ORDER BY DateAjoutAnnonce ASC");
+                        $annonces=Database::SelectQuery("SELECT * FROM annonce ORDER BY DateAjoutAnnonce DESC");
                         foreach($annonces as $annonce):
                     ?>
                                 

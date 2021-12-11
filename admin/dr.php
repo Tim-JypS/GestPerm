@@ -39,7 +39,7 @@
     <!-- Dynamic Table Full -->
     <div class="block block-rounded">
         <div class="block-header">
-            <h3 class="block-title">Liste des directions générale <small</small></h3>
+            <h3 class="block-title">Liste des directions générales <small</small></h3>
             <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-alt">
                     <li class="breadcrumb-item">

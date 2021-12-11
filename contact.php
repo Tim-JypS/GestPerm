@@ -1,7 +1,7 @@
 <?php
     require("inc/config.php");
     $Page="con";
-    $PageTitle=SITENAME." - Contact";
+    $PageTitle="GestPerm - Contact";
 ?>
 
 <!doctype html>

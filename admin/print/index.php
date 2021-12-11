@@ -1,4 +1,7 @@
 <?php
+if (!isset($_GET["fiche"]) || empty($_GET["fiche"]))
+	header("location:../index.php");
+extract($_GET);
 require_once "stimulsoft/helper.php";
 ?>
 <!DOCTYPE html>
@@ -54,6 +57,41 @@ require_once "stimulsoft/helper.php";
 
 			var report = new Stimulsoft.Report.StiReport();
 			report.loadFile("reports/FichePermutation.mrt");
+
+			data=JSON.parse(localStorage.getItem('PrintFiche'));
+			report.getComponentByName("txtTutel").text=data["tutel"];
+			report.getComponentByName("txtProgramme").text=data["programme"];
+			report.getComponentByName("txtLibProjet").text=data["projet"];
+			report.getComponentByName("txtAbrevProjet").text=data["abrev"];
+			report.getComponentByName("txtNumOpDef").text="N° "+data["numopd"];
+			report.getComponentByName("txtExercice").text=data["exercice"];
+			report.getComponentByName("txtNumOpProv").text=data["numopp"];
+			report.getComponentByName("txtDate").text=data["date"];
+			report.getComponentByName("txtBenef").text=data["benef"];
+			report.getComponentByName("txtCC").text=data["cc"];
+			report.getComponentByName("txtObjet").text=data["obj"];
+			report.getComponentByName("txtPieces").text=data["piece"];
+			report.getComponentByName("txtMTotal").text=data["mtotal"];
+			report.getComponentByName("txtImpBudget").text=data["impbudget"];
+			report.getComponentByName("txtDotation").text=data["dodation"];
+			report.getComponentByName("txtEngagAnte").text=data["engant"];
+			report.getComponentByName("txtMOpProv").text=data["mopp"];
+			report.getComponentByName("txtEngagActuel").text=data["engact"];
+			report.getComponentByName("txtEngagCumul").text=data["engcum"];
+			report.getComponentByName("txtDispoBudget").text=data["dispobudget"];
+			if(data["bailleur"].toString().toUpperCase()=="TRESOR")
+			{
+				report.getComponentByName("txtTresor").text="X";
+			}else
+			{
+				report.getComponentByName("txtBailleur").text="X";
+			}
+			if(data["modepaie"].toString().toUpperCase()=="CHEQUE")
+				report.getComponentByName("txtCheque").text="X";
+			else if(data["modepaie"].toString().toUpperCase()=="VIREMENT")
+				report.getComponentByName("txtVirement").text="X";
+			else
+				report.getComponentByName("txtEspece").text="X";
 
 			var options = new Stimulsoft.Viewer.StiViewerOptions();
 			var viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);

@@ -35,7 +35,15 @@ class Database
         {
             self::connect();
             $req=self::$connection->prepare($query);
-            $req->execute();
+            try
+            {
+              $req->execute();
+            }
+            catch(Exception $e)
+            {
+                var_dump($query);
+                die($e->getMessage());
+            }
             self::disconnect();
             return $req->fetchAll(PDO::FETCH_OBJ);
         }

@@ -25,7 +25,7 @@
                 <ol class="breadcrumb breadcrumb-alt">
                     <li class="breadcrumb-item">Gestion</li>
                     <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href="">Setting</a>
+                        <a class="link-fx" href="">Paramètre</a>
                     </li>
                 </ol>
             </nav>

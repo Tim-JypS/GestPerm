@@ -3,11 +3,14 @@
     {
         require '../../class/database.php';
         extract($_POST);
-        $query="UPDATE annonce SET AdherantAnnonce='".DataBase::EnleverApost($permutant)."' WHERE IdAnnonce='".$annonce."'";
-        //var_dump($query);
+        $query="UPDATE annonce SET AdherantAnnonce='".DataBase::EnleverApost($permutant)."', StatutAnnonce='VA1' WHERE IdAnnonce='".$annonce."'";
+        // var_dump($query);
         Database::InsertQuery($query);
+        header('location:../historique.php');
     }
-   header('location:../profile.php');
+    else
+        header('location:../annonces.php');
+
     //echo true;
 
  ?>

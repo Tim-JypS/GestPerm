@@ -1,7 +1,7 @@
 <?php
 	require("inc/config.php");
     $Page="log";
-    $PageTitle=SITENAME." - Réinitialiser mot de passe";
+    $PageTitle="GestPerm - Réinitialiser mot de passe";
     if(isset($_SESSION['auth']["status"]) && $_SESSION['auth']["status"])
     {
 		header("location:admin/dashboard.php");

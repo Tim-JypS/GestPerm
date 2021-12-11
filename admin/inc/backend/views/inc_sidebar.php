@@ -30,7 +30,7 @@
                 <i class="fa fa-circle-notch text-primary"></i>
             </span>
             <span class="smini-hide font-size-h5 tracking-wider">
-                One<span class="font-w400">UI</span>
+                Gest<span class="font-w400">Perm</span>
             </span>
         </a>
         <!-- END Logo -->

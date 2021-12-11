@@ -53,7 +53,7 @@
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                 <thead>
                     <tr>
-                        <th class="d-none d-sm-table-cell" style="width: 42%;">Fonction</th>
+                        <th class="d-none d-sm-table-cell" style="width: 42%;">Nom</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
                         <!-- <th style="width: 15%;">Registered</th> -->
                     </tr>
