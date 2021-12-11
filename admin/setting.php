@@ -56,8 +56,19 @@
                     <div class="form-group">
                         <div class="custom-control custom-switch custom-control-lg mb-2">
                             <label>NON</label>
-                            <input type="checkbox" class="custom-control-input" id="example-sw-custom-lg1" name="example-sw-custom-lg1" checked>
-                            <label class="custom-control-label" for="example-sw-custom-lg1">OUI</label>
+                            <input type="checkbox" class="custom-control-input" value="" id="validation" name="validation" 
+                            <?php 
+                                $settings=Database::SelectQuery("SELECT validationconf FROM configsite");
+                                foreach($settings as $sett):
+                            ?>
+                                <?php 
+                                    if (($sett->validationconf)==1) {
+                                       echo "checked";
+                                    }
+                                ?>
+                            <?php endforeach ?>
+                    >
+                            <label class="custom-control-label" for="validation">OUI</label>
                         </div>
                     </div>
                 </div>
@@ -90,3 +101,6 @@
 <?php $one->get_js('js/pages/be_tables_datatables.min.js'); ?>
 
 <?php require 'inc/_global/views/footer_end.php'; ?>
+
+
+<script src="inc/logical/Crud/crudsetting/setting.js"></script>
