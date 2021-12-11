@@ -123,41 +123,52 @@
                             <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="<?php echo $_SESSION['auth']["user"]->DatePriseServiceAgent; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="one-profile-edit-name">Emploi</label>
-                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="INSTITUTEUR">
+                            <label for="one-profile-edit-name">Fonction</label>
+                            <?php 
+									$agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
+									$fonction=DataBase::SelectQuery("SELECT * FROM fonction WHERE IdFonction='".$agent[0]->IdFonction."'");
+									echo '<input type="text" class="form-control" disabled="disabled" value="'.$fonction[0]->NomFonction.'">';
+								?>
                         </div>
                         <div class="form-group">
-                            <label for="emploi">Emploi</label>
-                            <select class="js-select2 form-control" id="emploi" name="emploi" style="width: 100%;"  data-placeholder="Choisir une..">
-                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                <?php 
-                                    $emplois=Database::SelectQuery("SELECT * FROM emploi ORDER BY LibelleEmploi ASC");
-                                    foreach($emplois as $emploi):
+                            <label for="one-profile-edit-name">Direction régionale</label>
+                            <?php 
+                                    $agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
+									$ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
+                                    $inspection=DataBase::SelectQuery("SELECT * FROM inspection WHERE IdInspection='".$ecole[0]->IdInspection."'");
+                                    $dren=DataBase::SelectQuery("SELECT * FROM directionregionale WHERE IdDirectionRegionale='".$inspection[0]->IdDirectionRegionale."'");
+                                    echo '<input type="text" class="form-control" id="IdAgent" name="IdAgent" disabled="disabled" value="'.$dren[0]->NomDirectionRegionale.'">';
                                 ?>
-                                <option value="<?=$emploi->LibelleEmploi?>"><?=$emploi->LibelleEmploi?></option>
-                                <?php endforeach ?>
-                            </select>
                         </div>
+                        <div class="form-group">
+                            <label for="one-profile-edit-name">Inspection</label>
+                            <?php 
+                                	$agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
+                                    $ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
+                                    $inspection=DataBase::SelectQuery("SELECT * FROM inspection WHERE IdInspection='".$ecole[0]->IdInspection."'");
+                                    echo '<input type="text" class="form-control" disabled="disabled" value="'.$inspection[0]->NomInspection.'">';
+                                ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="one-profile-edit-name">Type Etablissement</label>
+                            <?php 
+									$agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
+									$ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
+									echo '<input type="text" class="form-control" disabled="disabled" value="'.$ecole[0]->TypeEcole.'">';
+								?>
+                        </div>
+                        <div class="form-group">
+                            <label for="one-profile-edit-name">Etablissement</label>
+                            <?php 
+									$agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
+									$ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
+									echo '<input type="text" class="form-control" disabled="disabled" value="'.$ecole[0]->NomEcole.'">';
+								?>
+                        </div>
+                        
                     </div>
                 </div>
-                        <div class="form-group">
-                            <select class="js-select2 form-control" id="fonction" name="fonction" style="width: 100%;" data-placeholder="Choose one..">
-                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                <option value="1">HTML</option>
-                                <option value="2">CSS</option>
-                                <option value="3">JavaScript</option>
-                                <option value="4">PHP</option>
-                                <option value="5">MySQL</option>
-                                <option value="6">Ruby</option>
-                                <option value="7">Angular</option>
-                                <option value="8">React</option>
-                                <option value="9">Vue.js</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="one-profile-edit-name">Fonction</label>
-                            <input type="text" readonly class="form-control" id="one-profile-edit-name" name="one-profile-edit-name" value="Instituteur">
-                        </div>
+                        
                     </div>
                 </div>
             </form>

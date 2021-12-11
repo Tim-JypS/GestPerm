@@ -32,114 +32,95 @@
             <div class="container">
                 <div class="scetion-title text-center">
                     <!-- <span>Our Portfolio</span> -->
-                    <h2>We Have Done Business with Thousand of Comapnies</h2>
-                    <p>
+                    <h2>Demande de permutations</h2>
+                    <!--<p>
                         It is a long established fact that a reader will be distracted 
                         by the readable content of a page when looking at its layout.
-                    </p>
+                    </p>-->
                 </div>
                 <div class="row pt-45">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="portfolio-item">
-                            <div class="portfolio-img">
-                                <a href="portfolio.php">
-                                    <img src="assets/img/portfolio/1.jpg" alt="Portfolio Images">
-                                </a>
-                                <div class="portfolio-tag">
-                                    <a href="#"><span>Marketing</span></a>
-                                </div>
-                                <div class="portfolio-content">
-                                    <a href="portfolio.php"><h3>Social Marketing</h3></a>
-                                    <i class='bx bxs-chevron-right'></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="portfolio-item">
-                            <div class="portfolio-img">
-                                <a href="portfolio.php">
-                                    <img src="assets/img/portfolio/2.jpg" alt="Portfolio Images">
-                                </a>
-                                <div class="portfolio-tag">
-                                    <a href="#"><span>Research</span></a>
+                    <!-- LISTE DES ANNONCES DE PERMUTATIONS -->
+                    <?php 
+                        $annonces=Database::SelectQuery("SELECT * FROM annonce ORDER BY DateAjoutAnnonce ASC");
+                        foreach($annonces as $annonce):
+                    ?>
+                                
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="card" style=" margin:10px">
+                            <div class="card-body">
+                                <h5 class="card-title">Permutation</h5>
+                                <div class="card-text">
+                                <table class="table">
+                                <tbody>
+                                        <tr scope="row">
+                                            <td>DRENA : 
+                                            <?php 
+                                                    $agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");
+                                                    $ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
+                                                    $inspection=DataBase::SelectQuery("SELECT * FROM inspection WHERE IdInspection='".$ecole[0]->IdInspection."'");
+                                                    $dren=DataBase::SelectQuery("SELECT * FROM directionregionale WHERE IdDirectionRegionale='".$inspection[0]->IdDirectionRegionale."'");
+                                                    echo $dren[0]->NomDirectionRegionale;
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Inspection : 
+                                                <?php 
+                                                    $agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");
+                                                    $ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
+                                                    $inspection=DataBase::SelectQuery("SELECT * FROM inspection WHERE IdInspection='".$ecole[0]->IdInspection."'");
+                                                    echo $inspection[0]->NomInspection;
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Type école : 
+                                                <?php 
+                                                    $agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");
+                                                    $ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
+                                                    //$typeEcole=DataBase::SelectQuery("SELECT * FROM typeecole WHERE IdTypeEcole='".$ecole[0]->IdTypeEcole."'");
+                                                    echo $ecole[0]->TypeEcole;
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Etab. :
+                                            <?php 
+                                                
+                                                $agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");
+                                                $ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
+                                                echo $ecole[0]->NomEcole;
+                                            ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Origine : 
+                                                <?php 
+                                                    $localite=DataBase::SelectQuery("SELECT * FROM localite WHERE CodeZone='$annonce->LocaliteOrigineAnnonce'");
+                                                    echo $localite[0]->LibelleZone;
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Localité souhaitée : 
+                                                <?php 
+                                                    $localite=DataBase::SelectQuery("SELECT * FROM localite WHERE CodeZone='$annonce->LocaliteDesireeAnnonce'");
+                                                    echo $localite[0]->LibelleZone;
+                                                ?>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                                </table>
                                 </div>
-                                <div class="portfolio-content">
-                                    <a href="portfolio.php"><h3>Data Analysis</h3></a>
-                                    <i class='bx bxs-chevron-right'></i>
-                                </div>
+                                <a href="annonce_details.php?annonce=<?=$annonce->IdAnnonce?>" class="btn btn-primary" style="align:center">Adhérer</a>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="portfolio-item">
-                            <div class="portfolio-img">
-                                <a href="portfolio.php">
-                                    <img src="assets/img/portfolio/3.jpg" alt="Portfolio Images">
-                                </a>
-                                <div class="portfolio-tag">
-                                    <a href="#"><span>Optimizing</span></a>
-                                </div>
-                                <div class="portfolio-content">
-                                    <a href="portfolio.php"><h3>SEO Optimization</h3></a>
-                                    <i class='bx bxs-chevron-right'></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="portfolio-item">
-                            <div class="portfolio-img">
-                                <a href="portfolio.php">
-                                    <img src="assets/img/portfolio/4.jpg" alt="Portfolio Images">
-                                </a>
-                                <div class="portfolio-tag">
-                                    <a href="#"><span>Marketing</span></a>
-                                </div>
-                                <div class="portfolio-content">
-                                    <a href="portfolio.php"><h3>Content Marketing</h3></a>
-                                    <i class='bx bxs-chevron-right'></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="portfolio-item">
-                            <div class="portfolio-img">
-                                <a href="portfolio.php">
-                                    <img src="assets/img/portfolio/5.jpg" alt="Portfolio Images">
-                                </a>
-                                <div class="portfolio-tag">
-                                    <a href="#"><span>Development</span></a>
-                                </div>
-                                <div class="portfolio-content">
-                                    <a href="portfolio.php"><h3>App Development</h3></a>
-                                    <i class='bx bxs-chevron-right'></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="portfolio-item">
-                            <div class="portfolio-img">
-                                <a href="portfolio.php">
-                                    <img src="assets/img/portfolio/6.jpg" alt="Portfolio Images">
-                                </a>
-                                <div class="portfolio-tag">
-                                    <a href="#"><span>Development</span></a>
-                                </div>
-                                <div class="portfolio-content">
-                                    <a href="portfolio.php"><h3>Web Development</h3></a>
-                                    <i class='bx bxs-chevron-right'></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach ?>
+                    <!-- FIN DE LA LISTE DES ANNONCES DE PERMUTATIONS -->
 
                     <div class="col-lg-12">
 						<div class="pagination-area">
