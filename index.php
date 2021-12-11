@@ -81,7 +81,7 @@
                 <div class="brand-slider owl-carousel owl-theme">
                     <div class="brand-item">
                         <a href="#">
-                            <img src="assets/img/inner-banner/im7.jpg" alt="Brand Images">
+                            <img src="assets\img\accueil img\image9.jpg" alt="Brand Images">
                         </a>
                     </div>
                     <div class="brand-item">
@@ -96,12 +96,12 @@
                     </div>
                     <div class="brand-item">
                         <a href="#">
-                            <img src="assets/img/brand/tel2.jpg" alt="Brand Images">
+                            <img src="assets\img\accueil img\image7.jpg" alt="Brand Images">
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#">
-                            <img src="assets/img/brand/tel4.jpg" alt="Brand Images">
+                            <img src="assets\img\accueil img\image8.jpg" alt="Brand Images">
                         </a>
                     </div>
                 </div>
@@ -238,50 +238,30 @@
         <!-- Price Area -->
         <div class="price-area pt-100 pb-70">
             <div class="container">
-                <div class="scetion-title text-center">
-                    
-                    <h2>Table</h2>
-                </div>
-
                 <div id="prices-content">
                     <div id="monthly" class="active prices-content-area animated">
                         <div class="row">
                             <div class="col-lg-4 col-sm-6">
                                 <div class="single-price">
-                                
                                     <div class="single-price-title">
-                                        <h2>Description</h2>
+                                        <h2>Description de l'Application</h2>
                                     </div>
                                     <p>
-                                    Dans notre societe,nombreux sont ces institeurs qui font plusieurs procedures
-                                    et des allez et retour dans les differents DREN pour faire une demande Permutations
-                                    d'une ville a une autre.
-                                    Gestperm a ete mis en place a fin de faciliter la taches a nos braves instituteurs
-                                    qui desirent permutter dans les differentes villes et localités de notre pays.
+                                    Dans un soucis de simplifier vos procédures de permutations et de mutations, le ministère de l’éducation nationale met à votre disposition cette plateforme qui vous vous permettra de réaliser votre demande sans vous déplacer.
                                     </p>
-                                    <a href="#" class="get-btn">Voir Plus</a>
+                                   
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-sm-6">
-                                <div class="single-price current">
+                                <div class="single-price">
                         
                                     <div class="single-price-title">
                                         <h2>Condition de Permutation</h2>
                                     </div>
-                                    <p>Pour etre éligible a une demande de permutation,il vous faut:
-                                    -Etre un instituteur deja en fonction dans une villes
-                                    -.......
-                                    -......
-                                    -.......
-                                    -.......
-                                    -.........
-                                    -..........
-                                    -..........
-                                    -............
-                                    -.............
+                                    <p>Pour être éligible à une demande de permutation, l’agent demandeur doit au préalable s’accorder avec un autre personnel, ayant la même fonction que lui et qui souhaite venir dans la localité de celui-ci et lui, aller dans la localité de ce dernier
                                     </p>
-                                    <a href="#" class="get-btn">Voir Plus</a>
+                                    
                                 </div>
                             </div>
 
@@ -290,20 +270,11 @@
                                     <div class="single-price-title">
                                         <h2>Condition de Mutation</h2>
                                     </div>
-                                    <p>Pour etre éligible a une demande de permutation,il vous faut:
-                                    -Etre un instituteur deja en fonction dans une villes
-                                    -.......
-                                    -......
-                                    -.......
-                                    -.......
-                                    -.........
-                                    -..........
-                                    -..........
-                                    -............
-                                    -.............
-
+                                    <p>Pour être éligible à une demande de mutation, il faut avoir passé, dans la localité d’origine, 
+au moins 5 ans après la prise de service pour les agents non mariés et au moins 3 ans après la 
+prise de service pour les agents mariés.
                                     </p>
-                                    <a href="#" class="get-btn">Voir Plus</a>
+        
                                 </div>
                             </div>
                         </div>
@@ -423,7 +394,7 @@
                     <div class="portfolio-item">
                         <div class="portfolio-img">
                             <a href="portfolio.php">
-                                <img src="assets/img/portfolio/1.jpg" alt="Portfolio Images">
+                                <img src="assets\img\avatar 1.jpg" alt="Portfolio Images">
                             </a>
                             
                             <div class="portfolio-content">
@@ -436,7 +407,7 @@
                     <div class="portfolio-item">
                         <div class="portfolio-img">
                             <a href="portfolio.php">
-                                <img src="assets/img/portfolio/2.jpg" alt="Portfolio Images">
+                                <img src="assets\img\avatar 2.jpg" alt="Portfolio Images">
                             </a>
                             
                             <div class="portfolio-content">
@@ -449,7 +420,7 @@
                     <div class="portfolio-item">
                         <div class="portfolio-img">
                             <a href="portfolio.php">
-                                <img src="assets/img/portfolio/3.jpg" alt="Portfolio Images">
+                                <img src="assets\img\avatar 5.jpg" alt="Portfolio Images">
                             </a>
                            
                             <div class="portfolio-content">
@@ -462,7 +433,20 @@
                     <div class="portfolio-item">
                         <div class="portfolio-img">
                             <a href="portfolio.php">
-                                <img src="assets/img/portfolio/5.jpg" alt="Portfolio Images">
+                                <img src="assets\img\avatar 5.jpg" alt="Portfolio Images">
+                            </a>
+                           
+                            <div class="portfolio-content">
+                                <a href="portfolio.php"><h3>KOUAO AKOUA</h3></a>
+                                <i class='bx bxs-chevron-right'></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <a href="portfolio.php">
+                                <img src="assets\img\avatar 4.jpg" alt="Portfolio Images">
                             </a>
                            
                             <div class="portfolio-content">
@@ -474,7 +458,7 @@
                     <div class="portfolio-item">
                         <div class="portfolio-img">
                             <a href="portfolio.php">
-                                <img src="assets/img/portfolio/5.jpg" alt="Portfolio Images">
+                                <img src="assets\img\avatar 3.png" alt="Portfolio Images">
                             </a>
                            
                             <div class="portfolio-content">
@@ -498,59 +482,80 @@
                     <h2>Nos Dernieres Annonces</h2>
                 </div>
                 <div class="row pt-45">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-card">
-                            <div class="blog-img">
-                                <a href="blog-details.php">
-                                    <img src="assets/img/blog/1.jpg" alt="Blog Images">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <a href="blog-details.php">
-                                    <h3>Monsieur Gueude desire permutter avec un enseignant
-                                        dans la ville d'Aboisso
-                                    </h3>
-                                </a>
-                                <a href="blog-details.php" class="read-btn">Voir Plus</a>
-                            </div>
-                        </div>
-                    </div>
+                   
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-card">
-                            <div class="blog-img">
-                                <a href="blog-details.php">
-                                    <img src="assets/img/blog/2.jpg" alt="Blog Images">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <a href="blog-details.php">
-                                    <h3>Madamme Kouakou desire permutter avec un enseignant
-                                        dans la ville Akoupe
-                                    </h3>
-                                </a>
-                                <a href="blog-details.php" class="read-btn">Voir Plus</a>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
-                        <div class="blog-card">
-                            <div class="blog-img">
-                                <a href="blog-details.php">
-                                    <img src="assets/img/blog/3.jpg" alt="Blog Images">
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <a href="blog-details.php">
-                                    <h3>Monsieur Yapo desire permutter avec un enseignant
-                                        dans la ville d'Abengourou
-                                    </h3>
-                                </a>
-                                <a href="blog-details.php" class="read-btn">Voir plus</a>
+<!-- LISTE DES ANNONCES DE PERMUTATIONS -->
+<?php 
+                        $annonces=Database::SelectQuery("SELECT * FROM annonce ORDER BY DateAjoutAnnonce ASC LIMIT 3");
+                        foreach($annonces as $annonce):
+                    ?>
+                                
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="card" style=" margin:10px">
+                            <div class="card-body">
+                                <h5 class="card-title">Permutation</h5>
+                                <div class="card-text">
+                                <table class="table">
+                                <tbody>
+                                        <tr scope="row">
+                                            <td>DRENA : 
+                                            <?php 
+                                                    $agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");
+                                                    $ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
+                                                    $inspection=DataBase::SelectQuery("SELECT * FROM inspection WHERE IdInspection='".$ecole[0]->IdInspection."'");
+                                                    $dren=DataBase::SelectQuery("SELECT * FROM directionregionale WHERE IdDirectionRegionale='".$inspection[0]->IdDirectionRegionale."'");
+                                                    echo $dren[0]->NomDirectionRegionale;
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Inspection : 
+                                                <?php 
+                                                    $agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");
+                                                    $ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
+                                                    $inspection=DataBase::SelectQuery("SELECT * FROM inspection WHERE IdInspection='".$ecole[0]->IdInspection."'");
+                                                    echo $inspection[0]->NomInspection;
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Type école : 
+                                                <?php 
+                                                    $agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");
+                                                    $ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
+                                                    //$typeEcole=DataBase::SelectQuery("SELECT * FROM typeecole WHERE IdTypeEcole='".$ecole[0]->IdTypeEcole."'");
+                                                    echo $ecole[0]->TypeEcole;
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Etab. :
+                                            <?php 
+                                                
+                                                $agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");
+                                                $ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
+                                                echo $ecole[0]->NomEcole;
+                                            ?>
+                                            </td>
+                                        </tr>
+                                        <tr><td>Origine : <?=$annonce->LocaliteOrigineAnnonce?></td></tr>
+                                        <tr><td>Localité souhaitée : <?=$annonce->LocaliteDesireeAnnonce?></td></tr>
+                                </tbody>
+                                </table>
+                                </div>
+                                <a href="annonce_details.php?annonce=<?=$annonce->IdAnnonce?>" class="btn btn-primary" style="align:center">Adhérer</a>
                             </div>
                         </div>
                     </div>
+                    <?php endforeach ?>
+                    <!-- FIN DE LA LISTE DES ANNONCES DE PERMUTATIONS -->
+
+
+
+
+                   
+
                 </div>
             </div>
         </div>

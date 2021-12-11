@@ -555,6 +555,7 @@ Main Banner Style
   margin-bottom: 40px;
 }
 
+
 .banner-text .banner-btn {
   display: inline-block;
   position: relative;
@@ -1651,7 +1652,7 @@ Price Section
 }
 
 .single-price ul li {
-  color: #444444;
+  color: #67deee;
   display: block;
   margin-top: 10px;
 }
@@ -1697,7 +1698,7 @@ Member Area
 }
 
 .member-card:hover .member-img .member-content .social-icon {
-  opacity: 1;
+  opacity: 2;
 }
 
 .member-card .member-img {
