@@ -3,10 +3,10 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="banner-text">
-                    <h1>Bienvenue Sur NOtre platforme GESTPERM</h1>
+                    <h1>Bienvenue sur notre platforme GESTPERM</h1>
                     <p>
-                       Pour toutes vos demande de permuttation sans vous fatiguer;nous sommes la pour repondre 
-                       a vos demande!
+                       Pour toutes vos demande de permutation sans vous fatiguer, nous sommes la pour repondre 
+                       a vos demandes
                     </p>
                     
                     <div class="banner-btn">
@@ -19,7 +19,7 @@
         
             </div>
             <div class="banner-shape-1">
-                <img src="assets\img\shape\permu4.jpg_name=small" alt="Banner Shape">
+                <img src="assets\img\shape\permu4.jpg_name 2.jpg" alt="Banner Shape">
             </div>
         </div>
     </div>

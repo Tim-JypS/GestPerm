@@ -7,9 +7,9 @@
                             <div class="footer-single">
                                 <div class="footer-single-content">
                                     <a href="index.php">
-                                        <img src="assets\img\logo1.jpg" alt="Logo">
+                                        <img src="assets\img\logo.png" alt="Logo">
                                     </a>
-                                    <p>Gestperm vos faciliter la vie dans vos demarche de permutation est notre priorité.</p>
+                                    <p>Gestperm vous faciliter la vie dans vos demarche de permutation est notre priorité.</p>
                                 </div>
 
                                 <div class="newsletter-area">
@@ -62,12 +62,9 @@
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="testimonial.php">Notre Equipes</a>
+                                        <a href="#">Notre Equipe</a>
                                     </li>
-                                    <li>
-                                        <i class='bx bxs-chevron-right'></i>
-                                        <a href="blog.php">Presentation</a>
-                                    </li>
+                                    
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
                                         <a href="contact.php">Statistique</a>
@@ -90,11 +87,11 @@
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="mailto:email@Gestperm.com">email@Gestperm.com</a>
+                                        <a href="mailto:email@Gestperm.com">email@gestperm.ci</a>
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
-                                        <a href="mailto:hello@Gestperm.com">hello@Gestperm.com</a>
+                                        <a href="mailto:hello@Gestperm.com">hello@gestperm.ci</a>
                                     </li>
                                     <li>
                                         <i class='bx bxs-chevron-right'></i>
@@ -114,7 +111,7 @@
                             <div class="bottom-text text-center">
                                 <p>
                                     Copyright ©2021 TeamDev G001. Universite Virtuelle de Cote D'Ivoire 
-                                    <a href="https://hibootstrap.com/" target="_blank">HiBootstrap</a> 
+                                   
                                 </p>
                             </div>
                         </div>
