@@ -141,7 +141,7 @@
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" data-target="#Edit-newinsp-modal">
-                                        <i id="print" data-values="" class="fa fa-2x fa-print" data-toggle="tooltip" title="Imprimer"></i>
+                                        <a href="print/index.php?fiche=<?=$annonce->IdAnnonce?>" target="_blank"><i id="print" data-values="" class="fa fa-2x fa-print" data-toggle="tooltip" title="Imprimer"></i></a>
                                     </button>
                                     <button type="button" class="btn btn-sm btn-alt-primary"  data-toggle="modal" data-target="#Delete-newdr-modal" title="Annuler">
                                         <i class="fa fa-fw fa-times"></i>
@@ -172,7 +172,7 @@
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" data-target="#Edit-newinsp-modal">
-                                            <i class="fa fa-2x fa-print" data-toggle="tooltip" title="Imprimer"></i>
+                                        <a href="print/index.php?fiche=<?=$annonce->IdAnnonce?>" target="_blank"><i class="fa fa-2x fa-print" data-toggle="tooltip" title="Imprimer"></i></a>
                                         </button>
                                     </div>
                                 </td>

@@ -463,7 +463,7 @@ ET DE L'ALPHABETISATION</Text>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
                 </txtNom1>
-                <txtEmploi Ref="27" type="Text" isKey="true">
+                <txtEmploi1 Ref="27" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <CanGrow>True</CanGrow>
@@ -472,14 +472,14 @@ ET DE L'ALPHABETISATION</Text>
                   <Font>Bookman Old Style,10</Font>
                   <Guid>cca7500681124b599cd07c057dcbcfcf</Guid>
                   <Margins>3,0,0,0</Margins>
-                  <Name>txtEmploi</Name>
+                  <Name>txtEmploi1</Name>
                   <Page isRef="2" />
                   <Parent isRef="14" />
                   <TextBrush>Black</TextBrush>
                   <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
-                </txtEmploi>
+                </txtEmploi1>
                 <txtDR1 Ref="28" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
@@ -514,7 +514,7 @@ ET DE L'ALPHABETISATION</Text>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
                 </txtEtab1>
-                <txtDisciple1 Ref="30" type="Text" isKey="true">
+                <txtDiscipline1 Ref="30" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <CanGrow>True</CanGrow>
@@ -523,14 +523,14 @@ ET DE L'ALPHABETISATION</Text>
                   <Font>Bookman Old Style,10</Font>
                   <Guid>b49ce9fde951444f9216660c46104474</Guid>
                   <Margins>3,0,0,0</Margins>
-                  <Name>txtDisciple1</Name>
+                  <Name>txtDiscipline1</Name>
                   <Page isRef="2" />
                   <Parent isRef="14" />
                   <TextBrush>Black</TextBrush>
                   <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
-                </txtDisciple1>
+                </txtDiscipline1>
                 <txtFonction1 Ref="31" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
@@ -1198,10 +1198,10 @@ ET DE L'ALPHABETISATION</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/11/2021 3:53:06 PM</ReportChanged>
+  <ReportChanged>12/12/2021 12:34:07 AM</ReportChanged>
   <ReportCreated>12/4/2021 5:36:53 PM</ReportCreated>
   <ReportFile>C:\wamp\www\GestPerm\FichePermutation.mrt</ReportFile>
-  <ReportGuid>2a02ed1ec0be4235afb8f3749abb8538</ReportGuid>
+  <ReportGuid>9c64ac91536c401d9b0579e9c8288fe5</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

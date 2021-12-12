@@ -1,6 +1,6 @@
 <?php
 if (!isset($_GET["fiche"]) || empty($_GET["fiche"]))
-	header("location:../index.php");
+	header("location:../../404.php");
 extract($_GET);
 require_once "stimulsoft/helper.php";
 ?>
@@ -15,7 +15,8 @@ require_once "stimulsoft/helper.php";
 	<script type="text/javascript" src="scripts/stimulsoft.reports.maps.js"></script>
 	<script type="text/javascript" src="scripts/stimulsoft.viewer.js"></script>
 	<link rel="icon" type="image/png" href="../assets/img/favicon.png">
-
+	<script src="../../assets/js/app.js"></script>
+	<input type="text" id="idannonce" style="display: none;" value="<?=$fiche?>"/>
 	<?php
 		$options = StiHelper::createOptions();
 		$options->handler = "handler.php";
@@ -56,42 +57,58 @@ require_once "stimulsoft/helper.php";
 				"+m1qqs8t0m89vdK7k8nJTw==";
 
 			var report = new Stimulsoft.Report.StiReport();
-			report.loadFile("reports/FichePermutation.mrt");
+			report.loadFile("Fiche.mrt");
 
-			data=JSON.parse(localStorage.getItem('PrintFiche'));
-			report.getComponentByName("txtTutel").text=data["tutel"];
-			report.getComponentByName("txtProgramme").text=data["programme"];
-			report.getComponentByName("txtLibProjet").text=data["projet"];
-			report.getComponentByName("txtAbrevProjet").text=data["abrev"];
-			report.getComponentByName("txtNumOpDef").text="N° "+data["numopd"];
-			report.getComponentByName("txtExercice").text=data["exercice"];
-			report.getComponentByName("txtNumOpProv").text=data["numopp"];
-			report.getComponentByName("txtDate").text=data["date"];
-			report.getComponentByName("txtBenef").text=data["benef"];
-			report.getComponentByName("txtCC").text=data["cc"];
-			report.getComponentByName("txtObjet").text=data["obj"];
-			report.getComponentByName("txtPieces").text=data["piece"];
-			report.getComponentByName("txtMTotal").text=data["mtotal"];
-			report.getComponentByName("txtImpBudget").text=data["impbudget"];
-			report.getComponentByName("txtDotation").text=data["dodation"];
-			report.getComponentByName("txtEngagAnte").text=data["engant"];
-			report.getComponentByName("txtMOpProv").text=data["mopp"];
-			report.getComponentByName("txtEngagActuel").text=data["engact"];
-			report.getComponentByName("txtEngagCumul").text=data["engcum"];
-			report.getComponentByName("txtDispoBudget").text=data["dispobudget"];
-			if(data["bailleur"].toString().toUpperCase()=="TRESOR")
+			let idannonce=$('#idannonce').val();
+			$.get('../scripts/getdatafiche.php',{idannonce:idannonce},function(data)
 			{
-				report.getComponentByName("txtTresor").text="X";
-			}else
-			{
-				report.getComponentByName("txtBailleur").text="X";
-			}
-			if(data["modepaie"].toString().toUpperCase()=="CHEQUE")
-				report.getComponentByName("txtCheque").text="X";
-			else if(data["modepaie"].toString().toUpperCase()=="VIREMENT")
-				report.getComponentByName("txtVirement").text="X";
-			else
-				report.getComponentByName("txtEspece").text="X";
+				if(data==0)
+					window.location.href="../../404.php";
+				data=JSON.parse(data);
+				console.log(data);
+				report.getComponentByName("txtNom1").text=data.Nom1;
+				report.getComponentByName("txtFille1").text=data.Fille1;
+				report.getComponentByName("txtDna1").text=data.Dna1;
+				report.getComponentByName("txtMatricule1").text=data.Mat1;
+				report.getComponentByName("txtEmploi1").text=data.Emploi1;
+				report.getComponentByName("txtDR1").text=data.DR1;
+				report.getComponentByName("txtEtab1").text=data.Ecole1;
+				report.getComponentByName("txtDiscipline1").text=data.Discipline1;
+				report.getComponentByName("txtFonction1").text=data.Fonction1;
+				
+				report.getComponentByName("txtNom2").text=data.Nom2;
+				report.getComponentByName("txtFille2").text=data.Fille2;
+				report.getComponentByName("txtDna2").text=data.Dna2;
+				report.getComponentByName("txtMatricule2").text=data.Mat2;
+				report.getComponentByName("txtEmploi2").text=data.Emploi2;
+				report.getComponentByName("txtDR2").text=data.DR2;
+				report.getComponentByName("txtEtab2").text=data.Ecole2;
+				report.getComponentByName("txtDiscipline2").text=data.Discipline2;
+				report.getComponentByName("txtFonction2").text=data.Fonction2;
+
+				// report.getComponentByName("txtPieces").text=data["piece"];
+				// report.getComponentByName("txtMTotal").text=data["mtotal"];
+				// report.getComponentByName("txtImpBudget").text=data["impbudget"];
+				// report.getComponentByName("txtDotation").text=data["dodation"];
+				// report.getComponentByName("txtEngagAnte").text=data["engant"];
+				// report.getComponentByName("txtMOpProv").text=data["mopp"];
+				// report.getComponentByName("txtEngagActuel").text=data["engact"];
+				// report.getComponentByName("txtEngagCumul").text=data["engcum"];
+				// report.getComponentByName("txtDispoBudget").text=data["dispobudget"];
+				// if(data["bailleur"].toString().toUpperCase()=="TRESOR")
+				// {
+				// 	report.getComponentByName("txtTresor").text="X";
+				// }else
+				// {
+				// 	report.getComponentByName("txtBailleur").text="X";
+				// }
+				// if(data["modepaie"].toString().toUpperCase()=="CHEQUE")
+				// 	report.getComponentByName("txtCheque").text="X";
+				// else if(data["modepaie"].toString().toUpperCase()=="VIREMENT")
+				// 	report.getComponentByName("txtVirement").text="X";
+				// else
+				// 	report.getComponentByName("txtEspece").text="X";
+			})
 
 			var options = new Stimulsoft.Viewer.StiViewerOptions();
 			var viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);

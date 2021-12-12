@@ -238,7 +238,7 @@ ET DE L'ALPHABETISATION</Text>
               <Name>Text27</Name>
               <Page isRef="2" />
               <Parent isRef="3" />
-              <Text>ANNEE SCOLAIRE 20....../20......</Text>
+              <Text>ANNEE SCOLAIRE 2021/2022</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
@@ -395,9 +395,9 @@ ET DE L'ALPHABETISATION</Text>
                   <Border>None;White;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <CanGrow>True</CanGrow>
-                  <ClientRectangle>13.4,1.52,3.32,0.51</ClientRectangle>
+                  <ClientRectangle>12.87,1.5,3.32,0.51</ClientRectangle>
                   <Conditions isList="true" count="0" />
-                  <Font>Bookman Old Style,10</Font>
+                  <Font>Bookman Old Style,9</Font>
                   <Guid>7b6271fe52aa454c8a2feb7afafaf081</Guid>
                   <HorAlignment>Right</HorAlignment>
                   <Margins>3,0,0,0</Margins>
@@ -414,7 +414,7 @@ ET DE L'ALPHABETISATION</Text>
                   <Border>None;White;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <CanGrow>True</CanGrow>
-                  <ClientRectangle>14,2.24,2.29,0.51</ClientRectangle>
+                  <ClientRectangle>13.6,2.24,2.29,0.51</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <Font>Bookman Old Style,10</Font>
                   <Guid>e9a9cc5d9d7c4397bae687aece5dd444</Guid>
@@ -433,7 +433,7 @@ ET DE L'ALPHABETISATION</Text>
                   <Border>All;Black;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <CanGrow>True</CanGrow>
-                  <ClientRectangle>4.57,1.52,8.89,0.51</ClientRectangle>
+                  <ClientRectangle>4.57,1.52,8.4,0.51</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <Font>Bookman Old Style,10</Font>
                   <Guid>14b4ca50866b48bca951fdf3bb8045d5</Guid>
@@ -450,7 +450,7 @@ ET DE L'ALPHABETISATION</Text>
                   <Border>All;Black;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <CanGrow>True</CanGrow>
-                  <ClientRectangle>4.57,0.76,12.19,0.51</ClientRectangle>
+                  <ClientRectangle>4.57,0.76,11.8,0.51</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <Font>Bookman Old Style,10</Font>
                   <Guid>4cb859f1d7a042228737696e2f3867a4</Guid>
@@ -463,28 +463,28 @@ ET DE L'ALPHABETISATION</Text>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
                 </txtNom1>
-                <txtEmploi Ref="27" type="Text" isKey="true">
+                <txtEmploi1 Ref="27" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <CanGrow>True</CanGrow>
-                  <ClientRectangle>4.57,2.29,8.89,0.5</ClientRectangle>
+                  <ClientRectangle>4.57,2.29,8.4,0.5</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <Font>Bookman Old Style,10</Font>
                   <Guid>cca7500681124b599cd07c057dcbcfcf</Guid>
                   <Margins>3,0,0,0</Margins>
-                  <Name>txtEmploi</Name>
+                  <Name>txtEmploi1</Name>
                   <Page isRef="2" />
                   <Parent isRef="14" />
                   <TextBrush>Black</TextBrush>
                   <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
-                </txtEmploi>
+                </txtEmploi1>
                 <txtDR1 Ref="28" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <CanGrow>True</CanGrow>
-                  <ClientRectangle>4.57,3.05,8.89,0.51</ClientRectangle>
+                  <ClientRectangle>4.57,3.05,8.4,0.51</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <Font>Bookman Old Style,10</Font>
                   <Guid>121c9dc279e3441cb9e0fd555ea59649</Guid>
@@ -501,7 +501,7 @@ ET DE L'ALPHABETISATION</Text>
                   <Border>All;Black;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <CanGrow>True</CanGrow>
-                  <ClientRectangle>4.55,3.83,8.89,0.51</ClientRectangle>
+                  <ClientRectangle>4.55,3.83,8.4,0.51</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <Font>Bookman Old Style,10</Font>
                   <Guid>25ab0af798e044ae8ce4879c08d0d8a1</Guid>
@@ -514,28 +514,28 @@ ET DE L'ALPHABETISATION</Text>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
                 </txtEtab1>
-                <txtDisciple1 Ref="30" type="Text" isKey="true">
+                <txtDiscipline1 Ref="30" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <CanGrow>True</CanGrow>
-                  <ClientRectangle>4.57,4.57,8.89,0.51</ClientRectangle>
+                  <ClientRectangle>4.57,4.57,8.4,0.51</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <Font>Bookman Old Style,10</Font>
                   <Guid>b49ce9fde951444f9216660c46104474</Guid>
                   <Margins>3,0,0,0</Margins>
-                  <Name>txtDisciple1</Name>
+                  <Name>txtDiscipline1</Name>
                   <Page isRef="2" />
                   <Parent isRef="14" />
                   <TextBrush>Black</TextBrush>
                   <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
-                </txtDisciple1>
+                </txtDiscipline1>
                 <txtFonction1 Ref="31" type="Text" isKey="true">
                   <Border>All;Black;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <CanGrow>True</CanGrow>
-                  <ClientRectangle>4.57,5.33,8.89,0.51</ClientRectangle>
+                  <ClientRectangle>4.57,5.33,8.4,0.51</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <Font>Bookman Old Style,10</Font>
                   <Guid>4f1960a31d114ea3a569c344ee50c270</Guid>
@@ -552,7 +552,7 @@ ET DE L'ALPHABETISATION</Text>
                   <Border>All;Black;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <CanGrow>True</CanGrow>
-                  <ClientRectangle>16.76,2.29,2.04,0.5</ClientRectangle>
+                  <ClientRectangle>16.4,2.29,2.44,0.5</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <Font>Bookman Old Style,10</Font>
                   <Guid>a6bac4b8cd74443ea4da7303f40557e9</Guid>
@@ -569,7 +569,7 @@ ET DE L'ALPHABETISATION</Text>
                   <Border>All;Black;1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <CanGrow>True</CanGrow>
-                  <ClientRectangle>16.76,1.52,2.04,0.51</ClientRectangle>
+                  <ClientRectangle>16.4,1.52,2.44,0.51</ClientRectangle>
                   <Conditions isList="true" count="0" />
                   <Font>Bookman Old Style,10</Font>
                   <Guid>3767c4d7d9384985a0f1894691ce4ed1</Guid>
@@ -866,7 +866,7 @@ ET DE L'ALPHABETISATION</Text>
               <Border>None;White;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>13.42,1.52,3.3,0.51</ClientRectangle>
+              <ClientRectangle>12.89,1.54,3.3,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Bookman Old Style,9</Font>
               <Guid>ca174e35b06d4437babf4aa084a646f6</Guid>
@@ -885,7 +885,7 @@ ET DE L'ALPHABETISATION</Text>
               <Border>None;White;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>14.26,2.24,2.03,0.51</ClientRectangle>
+              <ClientRectangle>13.86,2.28,2.03,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Bookman Old Style,10</Font>
               <Guid>c4cc8b48f7be43ca899528bdb4547457</Guid>
@@ -904,7 +904,7 @@ ET DE L'ALPHABETISATION</Text>
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>4.57,1.52,8.89,0.51</ClientRectangle>
+              <ClientRectangle>4.57,1.52,8.4,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Bookman Old Style,10</Font>
               <Guid>d440bf01dc4846c4ac50c8970475148a</Guid>
@@ -921,7 +921,7 @@ ET DE L'ALPHABETISATION</Text>
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>4.57,0.76,12.19,0.51</ClientRectangle>
+              <ClientRectangle>4.57,0.76,11.8,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Bookman Old Style,10</Font>
               <Guid>1758559d2c3a4c68b1e47f20e0cc11e7</Guid>
@@ -938,7 +938,7 @@ ET DE L'ALPHABETISATION</Text>
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>4.57,2.29,8.89,0.5</ClientRectangle>
+              <ClientRectangle>4.57,2.29,8.4,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Bookman Old Style,10</Font>
               <Guid>ffd779a6a01948d18c69771a829119fc</Guid>
@@ -955,7 +955,7 @@ ET DE L'ALPHABETISATION</Text>
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>4.57,3.05,8.89,0.51</ClientRectangle>
+              <ClientRectangle>4.57,3.05,8.4,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Bookman Old Style,10</Font>
               <Guid>782213bb685e40a7bd8ba5eec3dbaba9</Guid>
@@ -972,7 +972,7 @@ ET DE L'ALPHABETISATION</Text>
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>4.57,3.81,8.89,0.51</ClientRectangle>
+              <ClientRectangle>4.57,3.81,8.4,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Bookman Old Style,10</Font>
               <Guid>93fd61c14fd84c3d8359dcbdf511eb91</Guid>
@@ -989,7 +989,7 @@ ET DE L'ALPHABETISATION</Text>
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>4.57,4.57,8.89,0.51</ClientRectangle>
+              <ClientRectangle>4.57,4.57,8.4,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Bookman Old Style,10</Font>
               <Guid>02750b788d2d4668a927b8f94aa19da4</Guid>
@@ -1006,7 +1006,7 @@ ET DE L'ALPHABETISATION</Text>
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>4.57,5.33,8.89,0.51</ClientRectangle>
+              <ClientRectangle>4.57,5.33,8.4,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Bookman Old Style,10</Font>
               <Guid>13256a94937f4bc49d8b175f9aff1fbd</Guid>
@@ -1023,7 +1023,7 @@ ET DE L'ALPHABETISATION</Text>
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>16.76,2.29,2.04,0.5</ClientRectangle>
+              <ClientRectangle>16.4,2.29,2.4,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Bookman Old Style,10</Font>
               <Guid>1c9aa089a2bb46e9bc6567ae299a6989</Guid>
@@ -1040,7 +1040,7 @@ ET DE L'ALPHABETISATION</Text>
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>16.76,1.52,2.04,0.51</ClientRectangle>
+              <ClientRectangle>16.4,1.52,2.4,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Bookman Old Style,10</Font>
               <Guid>7c1a82e868594c438858c546604374cd</Guid>
@@ -1198,10 +1198,10 @@ ET DE L'ALPHABETISATION</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/4/2021 8:35:05 PM</ReportChanged>
+  <ReportChanged>12/12/2021 9:23:52 AM</ReportChanged>
   <ReportCreated>12/4/2021 5:36:53 PM</ReportCreated>
-  <ReportFile>C:\wamp\www\GestPerm\print\reports\FichePermutation.mrt</ReportFile>
-  <ReportGuid>1a23da3fdf3f4085879de3da914b31d3</ReportGuid>
+  <ReportFile>C:\wamp\www\GestPerm\admin\print\Fiche.mrt</ReportFile>
+  <ReportGuid>dd4b9ce100004413b9b477d18b914edd</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
