@@ -47,7 +47,11 @@
                     <?php if(isset($_SESSION["auth"]["status"]) && $_SESSION["auth"]["status"]): ?>
                         <ul class="nav navbar-nav navbar-right nav-avatar">
                             <li class="dropdown" style="width: 12em;">
-                                <a href="" data-toggle="dropdown" class="dropdown-toggle user-action"><img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="avatar rounded-circle" width="40" height="40" alt="Avatar"> Paula Wilson <b class="caret"></b></a>
+                                <a href="" data-toggle="dropdown" class="dropdown-toggle user-action">
+                                    <img src="admin/assets/media/avatars/avatar10.jpg" class="avatar rounded-circle" width="40" height="40" alt="Avatar"> 
+                                    <?=trim($NomUser)?> 
+                                    <b class="caret"></b>
+                                </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="admin/profile.php"><i class="fa fa-user-o"></i> Profil</a></li>
                                     <li class="divider"></li>
