@@ -22,7 +22,11 @@
     <div class="bg-black-75">
         <div class="content content-full text-center">
             <div class="my-3">
-                <?php $one->get_avatar(13, '', false, true); ?>
+            <?php 
+                if($agent1["0"]->photoAgent){
+            ?>
+                <img class="img-avatar img-avatar-thumb" src="<?php echo "upload/avatar/".$agent1["0"]->photoAgent;?>" alt="">
+            <?php } else $one->get_avatar(13, '', false, true); ?>
             </div>
             <h1 class="h2 text-white mb-0">Modification du compte</h1>
             <h2 class="h4 font-w400 text-white-75">
@@ -50,7 +54,7 @@
                     </h3>
                 </div>
                 <div class="block-content">
-                <form >
+                <form  enctype="multipart/form-data">
                 <div class="row push">
                     <div class="col-lg-12 col-xl-12">
                         <div class="form-group">
@@ -222,24 +226,34 @@
                 </div>
                 <div class="block-content">
                     <div class="media d-flex align-items-center push">
+                        <form enctype="multipart/form-data">
                         <div class="form-group">
                                 <label>Votre Photo</label>
-                                <div class="push">
-                                    <?php $one->get_avatar(13); ?>
+                                <div class="push"  style="text-align:center;">
+                                <div class="alert alert-success" style="display:none;"></div>
+                                    <?php 
+                                    if ($agent1["0"]->photoAgent) {
+                                    ?>
+                                    <img class="img-avatar img-avatar21" src="upload/avatar/<?php
+                                       echo $agent1["0"]->photoAgent;
+                                    }
+                                ?>
+                                    " alt="">
                                 </div>
                                 <div class="custom-file">
                                     <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
-                                    <input type="file" class="custom-file-input" data-toggle="custom-file-input" id="one-profile-edit-avatar" name="one-profile-edit-avatar">
-                                    <label class="custom-file-label" for="one-profile-edit-avatar">Choisir une photo</label>
+                                    <input type="file" class="custom-file-input idphoto" data-toggle="custom-file-input" id="idphoto" name="idphoto" data-idprofil="<?=$agent1["0"]->IdAgent ?>">
+                                    <label class="custom-file-label" for="idphoto">Choisir une photo</label>
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div>
                     
                     
-                    <div class="text-center push">
+                    <!--<div class="text-center push">
                         <button type="button" class="btn btn-sm btn-light">Modifier</button>
-                    </div>
+                    </div>-->
                     
                 </div>
             <!-- END Signature Image -->
@@ -259,12 +273,20 @@
                     <div class="media d-flex align-items-center push">
                         <div class="form-group">
                                 <label>Votre signature</label>
-                                <div class="push">
-                                    <?php $one->get_avatar(13); ?>
+                                <div class="push"  style="text-align:center;">
+                                <div class="alert alert-success" style="display:none;"></div>
+                                    <?php 
+                                    if ($agent1["0"]->signatureAgent) {
+                                    ?>
+                                    <img class="img-avatar img-avatar21" src="upload/signature/<?php
+                                       echo $agent1["0"]->signatureAgent;
+                                    }
+                                ?>
+                                    " alt="">
                                 </div>
                                 <div class="custom-file">
                                     <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
-                                    <input type="file" class="custom-file-input" data-toggle="custom-file-input" id="one-profile-edit-avatar" name="one-profile-edit-avatar">
+                                    <input type="file" class="custom-file-input idsignature" data-toggle="custom-file-input" id="idsignature" name="idsignature" data-idprofil="<?=$agent1["0"]->IdAgent ?>">
                                     <label class="custom-file-label" for="one-profile-edit-avatar">Choisir une photo</label>
                                 </div>
                             </div>
@@ -325,3 +347,6 @@
     })
     
 </script>
+
+<script src="inc/logical/Crud/editpiecture/photo.js"></script>
+<script src="inc/logical/Crud/editpiecture/signature.js"></script>

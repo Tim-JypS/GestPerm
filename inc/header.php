@@ -48,7 +48,20 @@
                         <ul class="nav navbar-nav navbar-right nav-avatar">
                             <li class="dropdown" style="width: 12em;">
                                 <a href="" data-toggle="dropdown" class="dropdown-toggle user-action">
-                                    <img src="admin/assets/media/avatars/avatar10.jpg" class="avatar rounded-circle" width="40" height="40" alt="Avatar"> 
+
+                                <?php 
+                                    $IdAgent = $_SESSION['auth']['user']->IdAgent;
+                                    $agent1=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$IdAgent'");
+                                    if($agent1["0"]->photoAgent){
+                                ?>
+                                    <img src="<?php echo "admin/upload/avatar/".$agent1["0"]->photoAgent;?>" class="avatar rounded-circle" width="40" height="40" alt="Avatar">
+
+                                <?php } 
+                                else {?>
+
+                                    <img src="admin/assets/media/avatars/avatar10.jpg" class="avatar rounded-circle" width="40" height="40" alt="Avatar">
+                                <?php } ?>
+                                    
                                     <?=trim($NomUser)?> 
                                     <b class="caret"></b>
                                 </a>

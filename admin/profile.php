@@ -17,7 +17,13 @@
     <div class="bg-black-50">
         <div class="content content-full text-center">
             <div class="my-3">
-                <?php $one->get_avatar(13, '', false, true); ?>
+            <?php 
+                $IdAgent = $_SESSION['auth']['user']->IdAgent;
+                $agent1=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$IdAgent'");
+                if($agent1["0"]->photoAgent){
+            ?>
+                <img class="img-avatar img-avatar-thumb" src="<?php echo "upload/avatar/".$agent1["0"]->photoAgent;?>" alt="">
+            <?php } else $one->get_avatar(13, '', false, true); ?>
             </div>
             <h1 class="h2 text-white mb-0"><?php echo $_SESSION['auth']["user"]->NomAgent.' '.$_SESSION['auth']["user"]->PrenomsAgent; ?></h1>
             <span class="text-white-75">
