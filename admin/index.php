@@ -17,10 +17,10 @@
                                 <i class="fa fa-2x fa-circle-notch text-primary"></i>
                             </p>
                             <h1 class="h4 mb-1">
-                                Sign In
+                                GestPerm - Connectez-vous!
                             </h1>
                             <h2 class="h6 font-w400 text-muted mb-3">
-                                A perfect match for your project
+                                La plateforme de Gesttion des permutations
                             </h2>
                         </div>
                         <!-- END Header -->
@@ -28,34 +28,33 @@
                         <!-- Sign In Form -->
                         <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _js/pages/op_auth_signin.js) -->
                         <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                        <form class="js-validation-signin" action="be_pages_auth_all.php" method="POST">
+                        
+                        <form action="inc/connexion_admin/script_login.php" method="POST">
                             <div class="py-3">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg form-control-alt" id="login-username" name="login-username" placeholder="Username">
+                                    <input type="text" class="form-control form-control-lg form-control-alt" id="login-username" name="login-username" placeholder="Matricule">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg form-control-alt" id="login-password" name="login-password" placeholder="Password">
+                                    <input type="password" class="form-control form-control-lg form-control-alt" id="login-password" name="login-password" placeholder="Mot de passe">
                                 </div>
-                                <div class="form-group">
+                                 <div class="form-group">
                                     <div class="d-md-flex align-items-md-center justify-content-md-between">
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="login-remember" name="login-remember">
-                                            <label class="custom-control-label font-w400" for="login-remember">Remember Me</label>
-                                        </div>
                                         <div class="py-2">
-                                            <a class="font-size-sm font-w500" href="op_auth_reminder2.php">Forgot Password?</a>
+                                            <a class="font-size-sm font-w500" href="resetpassword.php">Mot de passe oublié?</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center mb-0">
                                 <div class="col-md-6 col-xl-5">
-                                    <button type="submit" class="btn btn-block btn-primary">
-                                        <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Sign In
+                                    <button type="submit" name="submit" class="btn btn-block btn-primary">
+                                        <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Connexion
                                     </button>
                                 </div>
                             </div>
                         </form>
+
+                                
                         <!-- END Sign In Form -->
                     </div>
                 </div>
@@ -71,6 +70,8 @@
     </div>
 </div>
 <!-- END Page Content -->
+
+
 
 <?php require 'inc/_global/views/page_end.php'; ?>
 <?php require 'inc/_global/views/footer_start.php'; ?>
