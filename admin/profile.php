@@ -28,9 +28,7 @@
             <h1 class="h2 text-white mb-0"><?php echo $_SESSION['auth']["user"]->NomAgent.' '.$_SESSION['auth']["user"]->PrenomsAgent; ?></h1>
             <span class="text-white-75">
             <?php 
-                $IdFonctionAgent = $_SESSION['auth']['user']->IdFonction;
-                $agent1=DataBase::SelectQuery("SELECT * FROM fonction WHERE IdFonction='$IdFonctionAgent'");
-                echo $agent1["0"]->NomFonction;
+                echo $LibFonctionUser;
             ?>
             </span>
             <div></div>

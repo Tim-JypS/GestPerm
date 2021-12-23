@@ -64,13 +64,19 @@
                             <?php $agent1=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");?>
                             <?php $agent2=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->AdherantAnnonce'");?>
                             <td class="font-w600 font-size-sm"><?=$annonce->DateAjoutAnnonce?></td>
-                            <td class="font-w600 font-size-sm"><?=$agent1->MatriculeAgent?></td>
-                            <td class="font-w600 font-size-sm"><?=$agent1->NomAgent. " ". $agent1->PrenomsAgent?></td>
-                            <td class="font-w600 font-size-sm"><?=DataBase::SelectQuery("SELECT NomFonction FROM fonction WHERE IdFonction='$agent1->IdFonction'")[0]->NomFonction?></td>
-                            <td class="font-w600 font-size-sm">Abidjan</td>
-                            <td class="font-w600 font-size-sm">Tiassalé</td>
-                            <td class="font-w600 font-size-sm"><?=$agent2->MatriculeAgent?></td>
-                            <td class="font-w600 font-size-sm"><?=$agent2->NomAgent. " ". $agent2->PrenomsAgent?></td>
+                            <td class="font-w600 font-size-sm"><?=$agent1[0]->MatriculeAgent?></td>
+                            <td class="font-w600 font-size-sm"><?=$agent1[0]->NomAgent. " ". $agent1[0]->PrenomsAgent?></td>
+                            <td class="font-w600 font-size-sm"><?=DataBase::SelectQuery("SELECT NomFonction FROM fonction WHERE IdFonction='".$agent1[0]->IdFonction."'")[0]->NomFonction?></td>
+                            <td class="font-w600 font-size-sm"><?php
+                                $codeZone=$annonce->LocaliteOrigineAnnonce;
+                                $query="SELECT LibelleZone FROM localite WHERE CodeZone='".$codeZone."'";
+                                echo Database::SelectQuery($query)[0]->LibelleZone ?></td>
+                            <td class="font-w600 font-size-sm"><?php
+                                $codeZone=$annonce->LocaliteDesireeAnnonce;
+                                $query="SELECT LibelleZone FROM localite WHERE CodeZone='".$codeZone."'";
+                                echo Database::SelectQuery($query)[0]->LibelleZone ?></td>
+                            <td class="font-w600 font-size-sm"><?=$agent2[0]->MatriculeAgent?></td>
+                            <td class="font-w600 font-size-sm"><?=$agent2[0]->NomAgent. " ". $agent2[0]->PrenomsAgent?></td>
 
                             <td class="text-center">
                                 <div class="btn-group">
