@@ -30,6 +30,15 @@
         <!-- Portfolio Area -->
         <section class="portfolio-area pt-70 pb-70">
             <div class="container">
+
+            <form class="navbar-form pb-70" role="search">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+            </form>
                 <div class="scetion-title text-center">
                     <!-- <span>Our Portfolio</span> -->
                     <h2>Demande de permutations</h2>
@@ -182,5 +191,6 @@
         <!-- Submission Area End -->
 
         <?php require "inc/footer.php"?>
+        <script src="inc/searchbarre/searchbarre.js"></script>
     </body>
 </html>

@@ -123,7 +123,8 @@
 
 
         <!-- Jquery Min JS -->
-        <script src="assets/js/jquery-3.5.0.min.js"></script>
+        <!--<script src="assets/js/jquery-3.5.0.min.js"></script>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- Popper Min JS -->
         <script src="assets/js/popper.min.js"></script>
         <!-- Bootstrap Min JS -->
@@ -144,3 +145,7 @@
         <script src="assets/js/contact-form-script.js"></script>
         <!-- Custom JS -->
         <script src="assets/js/custom.js"></script>
+
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>-->
+       

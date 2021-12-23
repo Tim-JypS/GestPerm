@@ -56,22 +56,25 @@
 				$query.=" VALUES (NULL,'".Database::EnleverApost($mat)."','".Database::EnleverApost($nom)."','".Database::EnleverApost($prenom)."','".Database::EnleverApost($civ)."','".Database::EnleverApost($nomfille)."','".Database::EnleverApost($sexe)."','".Database::EnleverApost($dna)."','".Database::EnleverApost($email)."','".Database::EnleverApost($sitm)."','".date("Y-m-d")."','".$password_hash."')";
 				$sauvegarder=Database::InsertQuery($query);
 				// var_dump($query,$sauvegarder);die();
+				$LastAgent=Database::SelectQuery("select MAX(IdAgent) as DernierAgent from agent")[0]->DernierAgent;
+				$reponse=Database::SelectQuery("select * from agent where IdAgent='".$LastAgent."'");
 				$_SESSION['auth']["status"] = true;
-				$reponse=Database::SelectQuery("select MAX(IdAgent) from agent");
 				$_SESSION['auth']["user"] = $reponse[0];
-				header("location:admin/historique.php");
+				// die();
 			}
 		}
 	}
 
     if(isset($_SESSION['auth']["status"]) && $_SESSION['auth']["status"])
     {
-		if ($TypeUser==1)
-			header("location:admin/historique.php");
-		elseif($TypeUser==2 || $TypeUser==3)
-			header("location:admin/validation.php");
-		else
-			header("location:admin/dashboard.php");
+		header("location:admin/profile_edit.php");
+		// if ($TypeUser==1)
+		// header("location:admin/historique.php");
+		// elseif($TypeUser==2 || $TypeUser==3)
+		// header("location:admin/validation.php");
+		// else
+		// header("location:admin/dashboard.php");
+		// die("Errooooo");
     }
 
 ?>
