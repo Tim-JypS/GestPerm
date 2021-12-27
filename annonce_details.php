@@ -198,11 +198,29 @@
                             </div>
                         </div>
                         <?php 
-                        if ($IdAgent!=$annonce[0]->IdAgent):?>
+                        $idPostulant = $_SESSION['auth']["user"]->IdAgent;
+                        $postulant=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$idPostulant."'");
+                        //echo 'Agent: '.$idPostulant;
+                        $ecolePostulant=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$postulant[0]->IdEcole."'");
+                        //echo 'ECOLE: '.$postulant[0]->IdEcole;
+                        $localiteEcolePostulant=DataBase::SelectQuery("SELECT * FROM localite WHERE CodeZone='".$ecolePostulant[0]->LocaliteEcole."'");
+                        
+                        //echo $localiteEcolePostulant[0]->CodeZone;
+
+
+
+                        if ($idPostulant!=$annonce[0]->IdAgent && $localiteEcolePostulant[0]->CodeZone == $annonce[0]->LocaliteDesireeAnnonce){
+                            ?>
                         <div class="block-content block-content-full text-right border-top">
                             <button type="submit" id="ConfirmPermutant" class="btn btn-primary" id="btnSubmit">Adhérer</button>
                         </div>
-                        <?php endif ?>
+                        <?php 
+                        }else{
+                        ?>
+                        <div class="block-content block-content-full text-right border-top">
+                            <button type="button"  class="btn btn-primary" id="btnSubmit">Vous ne remplissez pas les conditions pour adhérer</button>
+                        </div>
+                        <?php }  ?>
                     </form>
                     <!-- END Form Labels on top - Default Style -->
 

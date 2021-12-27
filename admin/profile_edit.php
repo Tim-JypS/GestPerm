@@ -1,4 +1,8 @@
-<?php //session_start(); ?>
+<?php 
+    session_start();
+    if (!isset($_SESSION['auth']["user"]->IdAgent)) 
+    header('location:index.php');
+?>
 <?php require 'inc/_global/config.php'; ?>
 <?php require 'inc/backend/config.php'; ?>
 <?php require 'inc/_global/views/head_start.php'; ?>
@@ -333,14 +337,14 @@
         let civilite=$('#civiliteAgent').val();
         let nomJeuneFille=$('#nomJeuneFilleAgent').val();
         let sexe=$('#sexeAgent').val();
-        let dateNaissance=$('#datePriseServiceAgent').val();
+        let dateNaissance=$('#dateNaissanceAgent').val();
         let telephone=$('#telephoneAgent').val();
         let email=$('#emailAgent').val();
         let datePriseService=$('#datePriseServiceAgent').val();
         let situationMatrimoniale=$('#situationMatrimonialeAgent').val();
-        let fonction=$('#fonctionAgent').val();
+        let fonctionAgent=$('#fonctionAgent').val();
         let ecole=$('#ecoleAgent').val();
-        $.get('scripts/modifagent.php',{idagent:id,nom:nom,prenoms:prenoms,civilite:civilite,nomJeuneFille:nomJeuneFille,sexe:sexe,dateNaissance:dateNaissance,telephone:telephone,email:email,datePriseService:datePriseService,situationMatrimoniale:situationMatrimoniale,fonction:fonction,ecole:ecole},function()
+        $.get('scripts/modifagent.php',{idagent:id,nom:nom,prenoms:prenoms,civilite:civilite,nomJeuneFille:nomJeuneFille,sexe:sexe,dateNaissance:dateNaissance,telephone:telephone,email:email,datePriseService:datePriseService,situationMatrimoniale:situationMatrimoniale,fonctionAgent:fonctionAgent,ecole:ecole},function()
         {
             window.location.href="profile.php";
         })

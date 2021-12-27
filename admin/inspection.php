@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    if (!isset($_SESSION['auth']["user"]->IdAgent)) 
+    header('location:index.php');
+?>
 <?php require 'inc/_global/config.php'; ?>
 <?php require '../inc/config.php'; ?>
 <?php require 'inc/backend/config.php'; ?>
@@ -124,14 +129,29 @@
                         </div>
 				  	</div>
 
-				  	<!--<div class="form-group">
-					    <label for="first_name">Téléphone</label>
-					    <input class="form-control" type="text" name="first_name">
-				  	</div>-->
+				  	<div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    Direction Régionale
+                                </span>
+                            </div>
+                            <select class="js-select2 form-control" id="direction" name="direction" style="width: 77.5%;" data-placeholder="Choisir une..">
+                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                <?php 
+                                    $directions=Database::SelectQuery("SELECT * FROM directionregionale ORDER BY NomDirectionRegionale ASC");
+                                    foreach($directions as $direction):
+                                ?>
+                                <option value="<?=$direction->IdDirectionRegionale?>"><?=$direction->NomDirectionRegionale?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+
 				  	<div class="form-group form-row">
                       <div class="col-12">
                             <label for="CommuneInspection">Commune</label>
-                            <select id="CommuneInspection" class="js-select2 form-control" name="val-select2" data-placeholder="Choisir une..">
+                            <select id="CommuneInspection" class="js-select2 form-control" style="width: 81.5%;" name="CommuneInspection" data-placeholder="Choisir une..">
                                 <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                             <?php 
                                     $localites=Database::SelectQuery("SELECT * FROM localite WHERE NiveauStr>1 ORDER BY LibelleZone ASC");

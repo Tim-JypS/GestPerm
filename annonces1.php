@@ -1,7 +1,6 @@
 <?php
     require("inc/config.php");
-    require("admin/fonctions/annonces_controller.php");
-    require("admin/fonctions/connexion.php");
+    require("admin/scripts/annonces_controller.php");
     $Page="ann";
     $PageTitle="GestPerm - Annonces";
     $Mode="aff";

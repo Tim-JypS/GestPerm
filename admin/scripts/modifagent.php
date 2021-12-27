@@ -5,7 +5,7 @@
         require '../../class/database.php';
         require '../../inc/config.php';
         extract($_GET);
-        $query="UPDATE agent SET NomAgent='".DataBase::EnleverApost($nom)."', PrenomsAgent='".DataBase::EnleverApost($prenoms)."', CiviliteAgent='".DataBase::EnleverApost($civilite)."', NomJeuneFilleAgent='".DataBase::EnleverApost($nomJeuneFille)."',SexeAgent='".DataBase::EnleverApost($sexe)."', DateNaissanceAgent='".DataBase::EnleverApost($dateNaissance)."', TelAgent='".DataBase::EnleverApost($telephone)."', EmailAgent='".DataBase::EnleverApost($email)."', DatePriseServiceAgent='".DataBase::EnleverApost($datePriseService)."', SituationMatrimonialeAgent='".DataBase::EnleverApost($situationMatrimoniale)."', IdFonction='".DataBase::EnleverApost($fonction)."', IdEcole='".DataBase::EnleverApost($ecole)."' WHERE IdAgent='".$idagent."'";
+        $query="UPDATE agent SET NomAgent='".DataBase::EnleverApost($nom)."', PrenomsAgent='".DataBase::EnleverApost($prenoms)."', CiviliteAgent='".DataBase::EnleverApost($civilite)."', NomJeuneFilleAgent='".DataBase::EnleverApost($nomJeuneFille)."',SexeAgent='".DataBase::EnleverApost($sexe)."', DateNaissanceAgent='".DataBase::EnleverApost($dateNaissance)."', TelAgent='".DataBase::EnleverApost($telephone)."', EmailAgent='".DataBase::EnleverApost($email)."', DatePriseServiceAgent='".DataBase::EnleverApost($datePriseService)."', SituationMatrimonialeAgent='".DataBase::EnleverApost($situationMatrimoniale)."', IdFonction='".DataBase::EnleverApost($fonctionAgent)."', IdEcole='".DataBase::EnleverApost($ecole)."' WHERE IdAgent='".$idagent."'";
         Database::InsertQuery($query);
         $reponse=Database::SelectQuery("select * from agent where IdAgent='".$idagent."'");
         $_SESSION['auth']["status"] = true;

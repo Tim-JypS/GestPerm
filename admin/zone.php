@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    if (!isset($_SESSION['auth']["user"]->IdAgent)) 
+    header('location:index.php');
+?>
 <?php require 'inc/_global/config.php'; ?>
 <?php require '../inc/config.php'; ?>
 <?php require 'inc/backend/config.php'; ?>
@@ -379,7 +384,7 @@
 		$('body').on('change','#TypeLocalite', function(e){
 		$('#Localite').html('');
 		var v = this.value;
-        //alert(v);
+        alert(v);
 		$.ajax({
 			url : 'scripts/rech_zone.php', 
 			type : 'POST',
@@ -387,10 +392,11 @@
 			dataType: "JSON",
 			success: function(e){
 				if(parseInt(e["total"]) < 1){															
-				//alert('pas de communes');
+				alert('pas de communes');
 			} else {
 				var cm = '';
 				for(var i = 0; i < e["total"]; i++){
+                    alert('il y a des communes');
 					//Elément à insérer
 					$('#Localite').append('<option value="'+e["resultat"][i]["CodeZone"]+'">'+e["resultat"][i]["LibelleZone"]+'</option>');
 				}

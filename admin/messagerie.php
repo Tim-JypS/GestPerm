@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    if (!isset($_SESSION['auth']["user"]->IdAgent)) 
+    header('location:index.php');
+?>
 <?php require 'inc/_global/config.php'; ?>
 <?php require 'inc/backend/config.php'; ?>
 <?php require 'inc/_global/views/head_start.php'; ?>

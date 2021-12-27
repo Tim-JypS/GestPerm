@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php 
+session_start();
+if (!isset($_SESSION['auth']["user"]->IdAgent)) 
+header('location:index.php');
+?>
 <?php require 'inc/_global/config.php'; ?>
 <?php require 'inc/backend/config.php'; ?>
 <?php require 'inc/_global/views/head_start.php'; ?>
@@ -46,19 +50,39 @@
         <div class="row items-push text-center">
             <div class="col-6 col-md-3">
                 <div class="font-size-sm font-w600 text-muted text-uppercase">Demandes</div>
-                <a class="link-fx font-size-h3" href="javascript:void(0)">5</a>
+                <a class="link-fx font-size-h3" href="historique.php">
+                <?php 
+					$nombreAnnonce=DataBase::SelectQuery("SELECT COUNT(IdAnnonce) as nombreAnnonce FROM annonce WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
+					echo $nombreAnnonce[0]->nombreAnnonce;
+				?>
+                </a>
             </div>
             <div class="col-6 col-md-3">
                 <div class="font-size-sm font-w600 text-muted text-uppercase">Demande en cours</div>
-                <a class="link-fx font-size-h3" href="javascript:void(0)">1</a>
+                <a class="link-fx font-size-h3" href="javascript:void(0)">
+                <?php 
+					$nombreAnnonce=DataBase::SelectQuery("SELECT COUNT(IdAnnonce) as nombreAnnonce FROM annonce WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
+					echo $nombreAnnonce[0]->nombreAnnonce;
+				?>
+                </a>
             </div>
             <div class="col-6 col-md-3">
                 <div class="font-size-sm font-w600 text-muted text-uppercase">Messages</div>
-                <a class="link-fx font-size-h3" href="javascript:void(0)">10</a>
+                <a class="link-fx font-size-h3" href="javascript:void(0)">
+                <?php 
+					$nombreMessage=DataBase::SelectQuery("SELECT COUNT(IdMessage) as nombreMessage FROM message WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
+					echo $nombreMessage[0]->nombreMessage;
+				?>
+                </a>
             </div>
             <div class="col-6 col-md-3">
                 <div class="font-size-sm font-w600 text-muted text-uppercase">Notifications</div>
-                <a class="link-fx font-size-h3" href="javascript:void(0)">3</a>
+                <a class="link-fx font-size-h3" href="javascript:void(0)">
+                <?php 
+					$nombreNotification=DataBase::SelectQuery("SELECT COUNT(IdNotification) as nombreNotification FROM notification WHERE LectureNotification=0 AND IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
+					echo $nombreNotification[0]->nombreNotification;
+				?>
+                </a>
             </div>
         </div>
     </div>
@@ -129,9 +153,14 @@
                         <div class="form-group">
                             <label for="one-profile-edit-name">Fonction</label>
                             <?php 
-									$agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
-									$fonction=DataBase::SelectQuery("SELECT * FROM fonction WHERE IdFonction='".$agent[0]->IdFonction."'");
-									echo '<input type="text" class="form-control" disabled="disabled" value="'.$fonction[0]->NomFonction.'">';
+									
+                                    $agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
+									if($agent[0]->IdFonction != -1){
+                                        $fonction=DataBase::SelectQuery("SELECT * FROM fonction WHERE IdFonction='".$agent[0]->IdFonction."'");
+									    echo '<input type="text" class="form-control" disabled="disabled" value="'.$fonction[0]->NomFonction.'">';
+                                    }else{
+                                        echo '<input type="text" class="form-control" disabled="disabled" value="">';
+                                    }
 								?>
                         </div>
                         <div class="form-group">
@@ -202,9 +231,32 @@
                             <div class="font-w600">Infos personnelles</div>
                             <div class="font-size-sm">
                                 <div class="progress push">
-                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                        <span class="font-size-sm font-w600">70%</span>
-                                    </div>
+                                <?php
+                                        $niveauInfosPerso = 0;
+                                        if($agent[0]->NomAgent){ $niveauInfosPerso = $niveauInfosPerso + 12.5; }
+                                        if($agent[0]->NomJeuneFilleAgent){ $niveauInfosPerso = $niveauInfosPerso + 12.5; }
+                                        if($agent[0]->SexeAgent){ $niveauInfosPerso = $niveauInfosPerso + 12.5; }
+                                        if($agent[0]->DateNaissanceAgent){ $niveauInfosPerso = $niveauInfosPerso + 12.5; }
+                                        if($agent[0]->TelAgent){ $niveauInfosPerso = $niveauInfosPerso + 12.5; }
+                                        if($agent[0]->EmailAgent){ $niveauInfosPerso = $niveauInfosPerso + 12.5; }
+                                        if($agent[0]->SituationMatrimonialeAgent){ $niveauInfosPerso = $niveauInfosPerso + 12.5; }
+                                        if($agent[0]->photoAgent){ $niveauInfosPerso = $niveauInfosPerso + 12.5; }
+
+                                        if($niveauInfosPerso < 50){
+                                            echo '<div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="font-size-sm font-w600">25%</span>
+                                        </div>';
+                                        }elseif($niveauInfosPerso >= 75){
+                                            echo '<div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="font-size-sm font-w600">75%</span>
+                                        </div>';
+                                        }elseif($niveauInfosPerso == 100){
+                                            echo '<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="font-size-sm font-w600">100%</span>
+                                        </div>';
+                                        }
+
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -219,9 +271,30 @@
                             <div class="font-w600">Infos professionnelles</div>
                             <div class="font-size-sm">
                                 <div class="progress push">
-                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                        <span class="font-size-sm font-w600">50%</span>
-                                    </div>
+                                    <?php
+                                        $niveauInfosPro = 0;
+                                        if($agent[0]->MatriculeAgent){ $niveauInfosPro = $niveauInfosPro + 25; }
+                                        if($agent[0]->DatePriseServiceAgent){ $niveauInfosPro = $niveauInfosPro + 25; }
+                                        if($agent[0]->IdFonction >= 1){ $niveauInfosPro = $niveauInfosPro + 25; }
+                                        if($agent[0]->IdEcole >= 1){ $niveauInfosPro = $niveauInfosPro + 25; }
+
+                                        if($niveauInfosPro < 50){
+                                            echo '<div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="font-size-sm font-w600">25%</span>
+                                        </div>';
+                                        }elseif($niveauInfosPro == 75){
+                                            echo '<div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="font-size-sm font-w600">75%</span>
+                                        </div>';
+                                        }elseif($niveauInfosPro == 100){
+                                            echo '<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="font-size-sm font-w600">100%</span>
+                                        </div>';
+                                        }
+
+                                    ?>
+                                
+                                    
                                 </div>
                             </div>
                         </div>
@@ -236,9 +309,18 @@
                             <div class="font-w600">Signature</div>
                             <div class="font-size-sm">
                                 <div class="progress push">
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                        <span class="font-size-sm font-w600">100%</span>
-                                    </div>
+                                    <?php
+                                        if($agent[0]->signatureAgent){
+                                            echo '<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="font-size-sm font-w600">100%</span>
+                                                </div>';
+                                        }else{
+                                            echo '<div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">
+                                                    <span class="font-size-sm font-w600">0%</span>
+                                                </div>';
+                                        }
+                                    
+                                    ?>
                                 </div>
                             </div>
                         </div>
