@@ -1,0 +1,13 @@
+ErrorDocument 400 http://localhost/gesperm/GestPerm/400.php
+ErrorDocument 401 http://localhost/gesperm/GestPerm/401.php
+ErrorDocument 402 http://localhost/gesperm/GestPerm/402.php
+ErrorDocument 403 http://localhost/gesperm/GestPerm/403.php
+ErrorDocument 404 http://localhost/gesperm/GestPerm/404.php
+ErrorDocument 405 http://localhost/gesperm/GestPerm/405.php
+ErrorDocument 412 http://localhost/gesperm/GestPerm/404.php
+ErrorDocument 500 http://localhost/gesperm/GestPerm/500.php
+ErrorDocument 501 http://localhost/gesperm/GestPerm/501.php
+ErrorDocument 502 http://localhost/gesperm/GestPerm/502.php
+ErrorDocument 503 http://localhost/gesperm/GestPerm/503.php
+ErrorDocument 504 http://localhost/gesperm/GestPerm/504.php
+ErrorDocument 505 http://localhost/gesperm/GestPerm/505.php

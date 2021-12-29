@@ -151,6 +151,7 @@
                                 <option value="<?=$struc->NiveauStr?>"><?=$struc->LibelleStr?></option>
                                 <?php endforeach ?>
                             </select>
+                            
                         </div>
 				  	</div>
 
@@ -385,29 +386,29 @@
 		$('#Localite').html('');
 		var v = this.value;
         alert(v);
-		$.ajax({
-			url : 'scripts/rech_zone.php', 
-			type : 'POST',
-			data : 'zone='+v,
-			dataType: "JSON",
-			success: function(e){
-				if(parseInt(e["total"]) < 1){															
-				alert('pas de communes');
-			} else {
-				var cm = '';
-				for(var i = 0; i < e["total"]; i++){
-                    alert('il y a des communes');
-					//Elément à insérer
-					$('#Localite').append('<option value="'+e["resultat"][i]["CodeZone"]+'">'+e["resultat"][i]["LibelleZone"]+'</option>');
-				}
-				}
-			}, 
-			error: function(e){
-				alert(e);														
-			}
-		});
-		});		
-	});												
+
+        $.ajax({
+                url : 'scripts/rech_zone.php', 
+                type : 'POST',
+                data : 'zone='+v,
+                dataType: "JSON",
+                success: function(e){
+                    if(parseInt(e["total"]) < 1){															
+                    alert('pas de communes');
+                } else {
+                    for(var i = 0; i < e["total"]; i++){
+                        alert('il y a des communes');
+                        //Elément à insérer
+                        $('#Localite').append('<option value="'+e["resultat"][i]["CodeZone"]+'">'+e["resultat"][i]["LibelleZone"]+'</option>');
+                    }
+                    }
+                }, 
+                error: function(e){
+                    alert(e);														
+                }
+            });
+            });		
+        });												
 </script>
 <script type="text/javascript">
     $('#save').click(function()

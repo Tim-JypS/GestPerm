@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="assets/css/responsive.css">
 
         <!-- Title -->
-        <title>Bonsa - SEO & Marketing Company HTML Template</title>
+        <title>GestPerm - Erreur 404</title>
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
@@ -45,10 +45,10 @@
 				<div class="d-table-cell">
 					<div class="error-content">
 						<h1>4 <span>0</span> 4</h1>
-						<h3>Oops! Page Not Found</h3>
-						<p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
+						<h3>Oups! La page recherchée est introuvable</h3>
+						<p>La page que vous recherchée a peut-être été supprimée ou le nom a été modifiée ou est indisponible temporairement.</p>
 						<a href="index.php" class="default-btn page-btn">
-							Return To Home Page
+							Retour à la page d'accueil
 						</a>
 					</div>
 				</div>

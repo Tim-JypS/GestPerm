@@ -62,6 +62,7 @@
                         <th class="text-center" style="width: 20%;">Nom</th>
                         <th class="d-none d-sm-table-cell" style="width: 12%;">Téléphone</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Commune</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Direction Régionale</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
                     </tr>
                 </thead>
@@ -76,9 +77,12 @@
                         <td class="font-w600 font-size-sm">
                         <?=DataBase::SelectQuery("SELECT LibelleZone FROM localite WHERE CodeZone='$inspection->CommuneInspection'")[0]->LibelleZone?>
                         </td>
+                        <td class="font-w600 font-size-sm">
+                        <?=DataBase::SelectQuery("SELECT NomDirectionRegionale FROM directionregionale WHERE IdDirectionRegionale='$inspection->IdDirectionRegionale'")[0]->NomDirectionRegionale?>
+                        </td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-alt-primary editinspection" data-toggle="modal" title="Edit" data-idinpection="<?=$inspection->IdInspection ?>" data-nominspection="<?=$inspection->NomInspection ?>" data-telinspection="<?=$inspection->TelInspection ?>" data-locinspection="<?=$inspection->CommuneInspection ?>"  data-target="#Edit-newinsp-modal">
+                                <button type="button" class="btn btn-sm btn-alt-primary editinspection" data-toggle="modal" title="Edit" data-idinpection="<?=$inspection->IdInspection ?>" data-nominspection="<?=$inspection->NomInspection ?>" data-telinspection="<?=$inspection->TelInspection ?>" data-locinspection="<?=$inspection->CommuneInspection ?>" data-direction="<?=$inspection->IdDirectionRegionale ?>"  data-target="#Edit-newinsp-modal">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
                                 <button type="button" class="btn btn-sm btn-alt-primary todelete"  data-toggle="modal" data-target="#Delete-newinsp-modal" data-idinpection="<?=$inspection->IdInspection ?>" title="Delete">
@@ -129,29 +133,14 @@
                         </div>
 				  	</div>
 
-				  	<div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    Direction Régionale
-                                </span>
-                            </div>
-                            <select class="js-select2 form-control" id="direction" name="direction" style="width: 77.5%;" data-placeholder="Choisir une..">
-                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                <?php 
-                                    $directions=Database::SelectQuery("SELECT * FROM directionregionale ORDER BY NomDirectionRegionale ASC");
-                                    foreach($directions as $direction):
-                                ?>
-                                <option value="<?=$direction->IdDirectionRegionale?>"><?=$direction->NomDirectionRegionale?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                    </div>
-
+				  	<!--<div class="form-group">
+					    <label for="first_name">Téléphone</label>
+					    <input class="form-control" type="text" name="first_name">
+				  	</div>-->
 				  	<div class="form-group form-row">
                       <div class="col-12">
-                            <label for="CommuneInspection">Commune</label>
-                            <select id="CommuneInspection" class="js-select2 form-control" style="width: 81.5%;" name="CommuneInspection" data-placeholder="Choisir une..">
+                            <label for="CommuneDirectionRegionale">Commune</label>
+                            <select id="CommuneDirectionRegionale" class="js-select2 form-control" name="val-select2" style="width: 100%;" data-placeholder="Choisir une..">
                                 <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                             <?php 
                                     $localites=Database::SelectQuery("SELECT * FROM localite WHERE NiveauStr>1 ORDER BY LibelleZone ASC");
@@ -160,9 +149,25 @@
                                 <option value="<?=$loc->CodeZone?>"><?=$loc->LibelleZone?></option>
                                 <?php endforeach ?>
                             </select>
-				  	    </div>
+                        </div>
+                        </div>
+                    
+                        <div class="form-group form-row">
+                            <div class="col-12">
+                                    <label for="IdDirectionRegionale">Direction Régionale</label>
+                                    <select id="IdDirectionRegionale" class="js-select2 form-control" name="val-select2" style="width: 100%;" data-placeholder="Choisir une..">
+                                        <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                    <?php 
+                                            /*$directions=Database::SelectQuery("SELECT * FROM directionregionale WHERE IdDirectionRegionale>1 ORDER BY NomDirectionRegionale ASC");*/
+                                            $directions=Database::SelectQuery("SELECT * FROM directionregionale ORDER BY NomDirectionRegionale ASC");
+                                            foreach($directions as $direct):
+                                        ?>
+                                        <option value="<?=$direct->IdDirectionRegionale?>"><?=$direct->NomDirectionRegionale?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                        </div>
                     </div>
-				  	
 				</form>
                     </div>
 
@@ -217,15 +222,31 @@
 					    <input class="form-control" type="text" name="first_name">
 				  	</div>-->
 				  	<div class="form-group form-row">
+                      
                       <div class="col-12">
                             <label for="CommuneInspection">Commune</label>
-                            <select id="modifCommuneInspection" class="js-select2 form-control" name="val-select2" style="width: 81.5%;" data-placeholder="Choisir une..">
+                            <select id="modifCommuneInspection" class="js-select2 form-control" name="val-select2" style="width: 100%;" data-placeholder="Choisir une..">
                                 <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                             <?php 
                                     $localites=Database::SelectQuery("SELECT * FROM localite WHERE NiveauStr>1 ORDER BY LibelleZone ASC");
                                     foreach($localites as $loc):
                                 ?>
                                 <option value="<?=$loc->CodeZone?>"><?=$loc->LibelleZone?></option>
+                                <?php endforeach ?>
+                            </select>
+				  	    </div>
+                          </div>
+                          <div class="form-group form-row">
+                          <div class="col-12">
+                            <label for="modifIdDirectionRegionale">Direction Régionale</label>
+                            <select id="modifIdDirectionRegionale" class="js-select2 form-control" name="val-select2" style="width: 100%;" data-placeholder="Choisir une..">
+                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                            <?php 
+                                    /*$directions=Database::SelectQuery("SELECT * FROM directionregionale WHERE IdDirectionRegionale>1 ORDER BY NomDirectionRegionale ASC");*/
+                                    $directions=Database::SelectQuery("SELECT * FROM directionregionale ORDER BY NomDirectionRegionale ASC");
+                                    foreach($directions as $direct):
+                                ?>
+                                <option value="<?=$direct->IdDirectionRegionale?>"><?=$direct->NomDirectionRegionale?></option>
                                 <?php endforeach ?>
                             </select>
 				  	    </div>

@@ -236,7 +236,7 @@ prise de service pour les agents mariés.
                         </div>
                     </div>
 
-                    <div id="yearly" class="animated prices-content-area">
+                   <!-- <div id="yearly" class="animated prices-content-area">
                         <div class="row">
                             <div class="col-lg-4 col-sm-6">
                                 <div class="single-price">
@@ -293,7 +293,7 @@ prise de service pour les agents mariés.
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
         <!-- Price Area End -->
@@ -305,32 +305,52 @@ prise de service pour les agents mariés.
                 <div class="col-lg-3 col-sm-6 col-md-3">
                     <div class="single-counter">
                         <i class='flaticon-success'></i>
-                        <h3><span class="counter">100</span></h3>
-                        <p>Inscrits</p>
+                        <h3><span class="counter">
+                        <?php 
+                            $nombreAgent=DataBase::SelectQuery("SELECT COUNT(IdAgent) as nombreAgent FROM agent ");
+                            echo $nombreAgent[0]->nombreAgent;
+                        ?>
+                        </span></h3>
+                        <p>Agents</p>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-sm-6 col-md-3">
                     <div class="single-counter">
                         <i class='flaticon-launch'></i>
-                        <h3><span class="counter">900</span></h3>
+                        <h3><span class="counter">
+                        <?php 
+                            $nombrePermutation=DataBase::SelectQuery("SELECT COUNT(IdAnnonce) as nombrePermutation FROM annonce ");
+                            echo $nombrePermutation[0]->nombrePermutation;
+                        ?>
+                        </span></h3>
                         <p>Permutations</p>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-sm-6 col-md-3">
                     <div class="single-counter">
-                        <i class='flaticon-customer'></i>
-                        <h3><span class="counter">900</span></h3>
-                        <p>Mutations</p>
+                        <i class='fa fa-building'></i>
+                        <h3><span class="counter">
+                        <?php 
+                            $nombreInspection=DataBase::SelectQuery("SELECT COUNT(IdInspection) as nombreInspection FROM inspection ");
+                            echo $nombreInspection[0]->nombreInspection;
+                        ?>
+                        </span></h3>
+                        <p>Inspections</p>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-sm-6 col-md-3">
                     <div class="single-counter">
-                        <i class='flaticon-team-building'></i>
-                        <h3><span class="counter">5</span></h3>
-                        <p>Membres de l'équipe</p>
+                        <i class='fa fa-building'></i>
+                        <h3><span class="counter">
+                        <?php 
+                            $nombreEcole=DataBase::SelectQuery("SELECT COUNT(IdEcole) as nombreEcole FROM ecole ");
+                            echo $nombreEcole[0]->nombreEcole;
+                        ?>
+                        </span></h3>
+                        <p>Ecoles</p>
                     </div>
                 </div>
             </div>
@@ -349,12 +369,12 @@ prise de service pour les agents mariés.
                 <div class="portfolio-slider pt-45 owl-carousel owl-theme">
                     <div class="portfolio-item">
                         <div class="portfolio-img">
-                            <a href="portfolio.php">
+                            <a href="#">
                                 <img src="assets\img\avatar 1.jpg" alt="Portfolio Images">
                             </a>
                             
                             <div class="portfolio-content">
-                                <a href="portfolio.php"><h3>Kadjo Anthe</h3></a>
+                                <a href="portfolio.php"><h3>KADJO Anthé</h3></a>
                                 <i class='bx bxs-chevron-right'></i>
                             </div>
                         </div>
@@ -362,12 +382,12 @@ prise de service pour les agents mariés.
 
                     <div class="portfolio-item">
                         <div class="portfolio-img">
-                            <a href="portfolio.php">
+                            <a href="#">
                                 <img src="assets\img\avatar 2.jpg" alt="Portfolio Images">
                             </a>
                             
                             <div class="portfolio-content">
-                                <a href="portfolio.php"><h3>Coulibaly Tiemoko</h3></a>
+                                <a href="portfolio.php"><h3>COULIBALY Tiémoko</h3></a>
                                 <i class='bx bxs-chevron-right'></i>
                             </div>
                         </div>
@@ -375,12 +395,12 @@ prise de service pour les agents mariés.
 
                     <div class="portfolio-item">
                         <div class="portfolio-img">
-                            <a href="portfolio.php">
+                            <a href="#">
                                 <img src="assets\img\avatar 5.jpg" alt="Portfolio Images">
                             </a>
                            
                             <div class="portfolio-content">
-                                <a href="portfolio.php"><h3>Djiman Anderson</h3></a>
+                                <a href="portfolio.php"><h3>DJIMAN Anderson</h3></a>
                                 <i class='bx bxs-chevron-right'></i>
                             </div>
                         </div>
@@ -388,12 +408,12 @@ prise de service pour les agents mariés.
 
                     <div class="portfolio-item">
                         <div class="portfolio-img">
-                            <a href="portfolio.php">
+                            <a href="#">
                                 <img src="assets\img\avatar 1.jpg" alt="Portfolio Images">
                             </a>
                            
                             <div class="portfolio-content">
-                                <a href="portfolio.php"><h3>KOUAO AKOUA</h3></a>
+                                <a href="portfolio.php"><h3>KOUAO Akoua</h3></a>
                                 <i class='bx bxs-chevron-right'></i>
                             </div>
                         </div>
@@ -401,24 +421,24 @@ prise de service pour les agents mariés.
 
                     <div class="portfolio-item">
                         <div class="portfolio-img">
-                            <a href="portfolio.php">
+                            <a href="#">
                                 <img src="assets\img\avatar 4.jpg" alt="Portfolio Images">
                             </a>
                            
                             <div class="portfolio-content">
-                                <a href="portfolio.php"><h3>Konan Fulgence</h3></a>
+                                <a href="portfolio.php"><h3>KONAN Fulgence</h3></a>
                                 <i class='bx bxs-chevron-right'></i>
                             </div>
                         </div>
                     </div>
                     <div class="portfolio-item">
                         <div class="portfolio-img">
-                            <a href="portfolio.php">
+                            <a href="#">
                                 <img src="assets\img\avatar 3.png" alt="Portfolio Images">
                             </a>
                            
                             <div class="portfolio-content">
-                                <a href="portfolio.php"><h3>Bechie Maotto</h3></a>
+                                <a href="portfolio.php"><h3>BECHIE Maotto</h3></a>
                                 <i class='bx bxs-chevron-right'></i>
                             </div>
                         </div>
@@ -438,11 +458,8 @@ prise de service pour les agents mariés.
                     <h2>Nos Dernières Annonces</h2>
                 </div>
                 <div class="row pt-45">
-                   
-
-
-<!-- LISTE DES ANNONCES DE PERMUTATIONS -->
-<?php 
+                    <!-- LISTE DES ANNONCES DE PERMUTATIONS -->
+                    <?php 
                         $annonces=Database::SelectQuery("SELECT * FROM annonce ORDER BY DateAjoutAnnonce DESC LIMIT 3");
                         foreach($annonces as $annonce):
                     ?>
