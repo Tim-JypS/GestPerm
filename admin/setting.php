@@ -53,7 +53,7 @@
                     <p class="font-size-sm text-muted">
                         <span style="color:blue; font-size:20px;">Validation électronique</span><br>
                         <small>
-                        Pour la validation électronique, les agents doivent importer leurs différentes signatures.
+                        Pour la validation électronique, tous les utilisateurs doivent importer leurs signatures.
                     </small>
                     </p>
                 </div>

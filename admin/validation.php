@@ -8,6 +8,8 @@
 <?php require 'inc/backend/config.php'; ?>
 <?php require 'inc/_global/views/head_start.php'; ?>
 
+<?php if(!$auto) header('location:../404.php'); ?>
+
 <!-- Page JS Plugins CSS -->
 <?php $one->get_css('js/plugins/datatables/dataTables.bootstrap4.css'); ?>
 <?php $one->get_css('js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css'); ?>
@@ -36,6 +38,20 @@
 </div>
 <!-- END Hero -->
 
+<?php
+    $ErrPage="nosign";
+    $ErrMsg="";
+    if($auto)
+    {
+        $Sign=DataBase::SelectQuery("SELECT signatureAgent FROM agent WHERE IdAgent='".$IdAgent."'")[0]->signatureAgent;
+        $Sign="upload/signature/".$Sign;
+        if(!file_exists($Sign) || $Sign=="upload/signature/")
+        {
+            $ErrMsg="Merci d'ajouter votre signature électronique à votre profil.";
+        }
+    }
+?>
+
 <!-- Page Content -->
 <div class="content">
     <!-- Dynamic Table Full -->
@@ -62,7 +78,7 @@
                     </thead>
                     <tbody>
                         <?php 
-                            $annonces=Database::SelectQuery("SELECT * FROM annonce ORDER BY DateAjoutAnnonce DESC");
+                            $annonces=Database::SelectQuery("SELECT v.IdValidation, a.* FROM annonce a, validationannonce v WHERE a.IdAnnonce=v.IdAnnonce AND v.ValideurValidation='".$IdAgent."' AND StatutValidation='EN' ORDER BY v.DateEnvoiValidation DESC");
                             foreach($annonces as $annonce):
                         ?>
                         <tr>
@@ -75,25 +91,28 @@
                             <td class="font-w600 font-size-sm"><?php
                                 $codeZone=$annonce->LocaliteOrigineAnnonce;
                                 $query="SELECT LibelleZone FROM localite WHERE CodeZone='".$codeZone."'";
-                                echo Database::SelectQuery($query)[0]->LibelleZone ?></td>
+                                $loc1=Database::SelectQuery($query)[0]->LibelleZone;
+                                echo $loc1?></td>
                             <td class="font-w600 font-size-sm"><?php
                                 $codeZone=$annonce->LocaliteDesireeAnnonce;
                                 $query="SELECT LibelleZone FROM localite WHERE CodeZone='".$codeZone."'";
-                                echo Database::SelectQuery($query)[0]->LibelleZone ?></td>
+                                $loc2=Database::SelectQuery($query)[0]->LibelleZone;
+                                echo $loc2 ?></td>
                             <td class="font-w600 font-size-sm"><?=$agent2[0]->MatriculeAgent?></td>
                             <td class="font-w600 font-size-sm"><?=$agent2[0]->NomAgent. " ". $agent2[0]->PrenomsAgent?></td>
 
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" data-target="#Edit-newinsp-modal">
-                                        <i class="fa fa-2x fa-print" data-toggle="tooltip" title="Imprimer"></i>
+                                    <button type="button" class="btn btn-sm btn-alt-primary">
+                                        <a href="print/index.php?fiche=<?=$annonce->IdAnnonce?>" target="_blank"><i id="print" data-values="" class="fa fa-2x fa-print" data-toggle="tooltip" title="Imprimer"></i></a>
                                     </button>
-                                    <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" data-target="#Edit-newinsp-modal">
-                                        <i class="fa fa-2x fa-check-circle" data-toggle="tooltip" title="Valider"></i>
+                                    <?php if($auto) : ?>
+                                    <button type="button" class="btn btn-sm btn-alt-primary validerpermut" data-toggle="modal" data-target="#modal-block-popoutModif" data-idannonce="<?=$annonce->IdAnnonce?>" data-idvalidation="<?=$annonce->IdValidation?>" data-agent1="<?=$agent1[0]->NomAgent. " ". $agent1[0]->PrenomsAgent?>" data-loc1="<?=$loc1?>" data-agent2="<?=$agent2[0]->NomAgent. " ". $agent2[0]->PrenomsAgent?>" data-loc2="<?=$loc2?>">
+                                        <a><i class="fa fa-2x fa-check-circle" data-toggle="tooltip" title="Valider"></i></a>
                                     </button>
-                                    <button type="button" class="btn btn-sm btn-alt-primary"  data-toggle="modal" data-target="#Delete-newinsp-modal">
-                                        <i class="fa fa-2x fa-times" data-toggle="tooltip" title="Refuser"></i>
-                                    </button>
+                                    <button type="button" class="btn btn-sm btn-alt-primary refuserpermut"  data-toggle="modal" data-target="#Delete-newinsp-modal" data-idannonce="<?=$annonce->IdAnnonce?>" data-idvalidation="<?=$annonce->IdValidation?>" data-agent1="<?=$agent1[0]->NomAgent. " ". $agent1[0]->PrenomsAgent?>" data-loc1="<?=$loc1?>" data-agent2="<?=$agent2[0]->NomAgent. " ". $agent2[0]->PrenomsAgent?>" data-loc2="<?=$loc2?>">
+                                        <a><i class="fa fa-2x fa-times" data-toggle="tooltip" title="Refuser"></i></a>
+                                    </button><?php endif ?>
                                 </div>
                             </td>
                             <!-- <td>
@@ -109,13 +128,14 @@
     
     <!-- END Dynamic Table with Export Buttons -->
 </div>
+
 <!-- Pop Out Block Modal -->
-<div class="modal fade" id="modal-block-popout" tabindex="-1" role="dialog" aria-labelledby="modal-block-popout" aria-hidden="true">
+<div class="modal fade" id="modal-block-popoutModif" tabindex="-1" role="dialog" aria-labelledby="modal-block-popout" aria-hidden="true">
     <div class="modal-dialog modal-dialog-popout" role="document">
         <div class="modal-content">
             <div class="block block-rounded block-themed block-transparent mb-0">
                 <div class="block-header bg-primary-dark">
-                    <h3 class="block-title">Ajouter une fonction</h3>
+                    <h3 class="block-title">Valider une permutation</h3>
                     <div class="block-options">
                         <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
                             <i class="fa fa-fw fa-times"></i>
@@ -123,20 +143,44 @@
                     </div>
                 </div>
                 <div class="block-content font-size-sm">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    Fonction
-                                </span>
-                            </div>
-                            <input type="text" class="form-control" id="example-group1-input1" name="example-group1-input1">
+                    <div class="form-group form-row">
+                        <div class="col-12">
+                            <label for="">Instituteur demandeur</label>
+                            <input class="form-control" id="agent1" type="text" readonly="readonly">
+                            <input class="form-control" style="display: none;" id="idvalidation" type="text" readonly="readonly">
+                            <input class="form-control" style="display: none;" id="idannonce" type="text" readonly="readonly">
                         </div>
                     </div>
+                    <div class="form-group form-row">
+                        <div class="col-12">
+                            <label for="">Localité demandeur</label>
+                            <input class="form-control" id="loc1" type="text" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="col-12">
+                            <label for="">Instituteur adhérent</label>
+                            <input class="form-control" id="agent2" type="text" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="col-12">
+                            <label for="">Localité adhérent</label>
+                            <input class="form-control" id="loc2" type="text" readonly="readonly">
+                        </div>
+                    </div>
+                    <?php if($ErrPage=="nosign" && !empty($ErrMsg)): ?>
+                        <div class="col-12">
+                            <div class="alert alert-danger alert-dismissable" role="alert">
+                                <p class="mb-0"><?=$ErrMsg?></p>
+                            </div>
+                        </div><?php endif ?>
                 </div>
                 <div class="block-content block-content-full text-right border-top">
-                    <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Enregistrer</button>
+                    <button id="closeValid" type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
+                    <?php if($ErrPage=="nosign" && empty($ErrMsg)): ?>
+                    <button id="saveValid" type="button" class="btn btn-primary" data-dismiss="modal">Valider</button>
+                    <?php endif ?>
                 </div>
             </div>
         </div>
@@ -145,77 +189,6 @@
 <!-- END Pop Out Block Modal -->
 
 
- <!--Remove Modal-->
-        <!-- Modal HTML -->
-        <div class="modal" id="Delete-newdr-modal" tabindex="-1" role="dialog" aria-labelledby="Delete-newdr-modal" aria-hidden="true">
-            <div class="modal-dialog modal-confirm">
-                <div class="modal-content">
-                    <div class="modal-header flex-column">
-                        <div class="icon-box">
-                            <i class="fa fa-fw fa-times"></i>
-                        </div>						
-                        <h4 class="modal-title w-100">Etes-vous sur?</h4>	
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Voulez-vous vraiment supprimer ces enregistrements ? Ce processus ne peut pas être annulé.</p>
-                    </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-danger">Supprimer</button>
-                    </div>
-                </div>
-            </div>
-        </div>  
-    <!--End Remove modal-->
-
-
-
-
-
-        <!--Edit Modal-->
-
-        <!-- Large Block Modal -->
-        <div class="modal" id="Edit-newdr-modal" tabindex="-1" role="dialog" aria-labelledby="Edit-newdr-modal" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="block block-rounded block-themed block-transparent mb-0">
-                    <div class="block-header bg-primary-dark">
-                        <h3 class="block-title">Modification de la Localité</h3>
-                        <div class="block-options">
-                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                <i class="fa fa-fw fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="block-content font-size-sm">
-                    <?php /*$one->get_text('small', 2);*/ ?>
-                    <form action="save.php" id="form">
-				  	<div class="form-group form-row">
-                      <div class="col-12">
-                            <label for="NomFonction">Fonction</label>
-                            <input class="form-control" type="text" name="NomFonction" placeholder="Fonction">
-				  	    </div>
-                    </div>
-
-				  	
-				</form>
-                    </div>
-
-
-                    
-                    <div class="block-content block-content-full text-right border-top">
-                        <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary" id="btnSubmit">Modifier</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- END Large Block Modal -->
-    <!--Fin Edit modal-->
-<!-- END Page Content -->
 
 <?php require 'inc/_global/views/page_end.php'; ?>
 <?php require 'inc/_global/views/footer_start.php'; ?>
@@ -239,3 +212,45 @@
 <?php $one->get_js('js/pages/be_tables_datatables.min.js'); ?>
 
 <?php require 'inc/_global/views/footer_end.php'; ?>
+
+<script type="text/javascript">
+
+    $('.validerpermut').click(function()
+    {
+        let agent1=($(this).data('agent1'));
+        let loc1=($(this).data('loc1'));
+        let agent2=($(this).data('agent2'));
+        let loc2=($(this).data('loc2'));
+        let idvalidation=($(this).data('idvalidation'));
+        $('#agent1').val(agent1);
+        $('#loc1').val(loc1);
+        $('#agent2').val(agent2);
+        $('#loc2').val(loc2);
+        $('#idvalidation').val(idvalidation);
+        $('#idannonce').val(idannonce);
+    })
+    
+    $('#saveValid').click(function()
+    {
+        let idval=$('#idvalidation').val();
+        let idannonce=$('#idannonce').val();
+        $.get('scripts/validpermutation.php',{idval:idval,idannonce:idannonce},function()
+        {
+            window.location.reload();
+        })
+    })
+    $('#confirmDelete').click(function()
+    {
+        // let ideco=$('#id').val();
+        // console.log(ideco);
+        let idecole=$('#idtodelete').val();
+        $.get('scripts/supprimerecole.php',{id:idecole},function()
+        {
+            // window.location.reload();
+        })
+    })
+    $('.deleted').click(function()
+    {
+        window.location.reload();
+    })
+</script>
