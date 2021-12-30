@@ -36,6 +36,22 @@
 </div>
 <!-- END Hero -->
 
+
+<?php
+    $ErrPage="nosign";
+    $ErrMsg="";
+    if($auto)
+    {
+        $Sign=DataBase::SelectQuery("SELECT signatureAgent FROM agent WHERE IdAgent='".$IdAgent."'")[0]->signatureAgent;
+        $Sign="upload/signature/".$Sign;
+        if(!file_exists($Sign) || $Sign=="upload/signature/")
+        {
+            $ErrMsg="Merci d'ajouter votre signature électronique à votre profil.";
+        }
+    }
+?>
+
+
 <!-- Page Content -->
 <div class="content">
     <!-- Dynamic Table Full -->
@@ -264,11 +280,20 @@
                             </div>
                         </div>
                     </form>
+                        <?php if($ErrPage=="nosign" && !empty($ErrMsg)): ?>
+                            <div class="col-12">
+                                <div class="alert alert-danger alert-dismissable" role="alert">
+                                    <p class="mb-0"><?=$ErrMsg?></p>
+                            </div>
+                            </div>
+                        <?php endif ?>
                     </div>
                     
                     <div class="block-content block-content-full text-right border-top">
                         <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary" id="save">Ajouter Nouvelle Permutation</button>
+                        <?php if($ErrPage=="nosign" && empty($ErrMsg)): ?>
+                        <button type="button" class="btn btn-primary" id="save">Enregistrer</button>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>

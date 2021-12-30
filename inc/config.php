@@ -85,5 +85,12 @@
         if(count($emp)>0){
             $LibEmploiUser=$emp[0]->LibelleEmploi;
         }
+
+        $auto=false;
+        $countParam=Database::SelectQuery("SELECT validationconf FROM configsite");
+        if(count($countParam)>0){
+            if(($countParam[0]->validationconf)==1)
+                $auto=true;
+        }
     }
 ?>

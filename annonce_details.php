@@ -26,7 +26,22 @@
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
     </head>
 
-    <body>        
+    <body>
+        
+    <?php
+        $ErrPage="nosign";
+        $ErrMsg="";
+        if($auto)
+        {
+            $Sign=DataBase::SelectQuery("SELECT signatureAgent FROM agent WHERE IdAgent='".$IdAgent."'")[0]->signatureAgent;
+            $Sign="admin/upload/signature/".$Sign;
+            if(!file_exists($Sign) || $Sign=="admin/upload/signature/")
+            {
+                $ErrMsg="Merci d'ajouter votre signature électronique à votre profil.";
+            }
+        }
+    ?>
+
     <?php require("inc/preloader.php");?>
     <?php require("inc/header.php");?>
     <?php //require("inc/inner.php");?>
@@ -207,7 +222,12 @@
                         
                         //echo $localiteEcolePostulant[0]->CodeZone;
 
-
+                        if($ErrPage=="nosign" && !empty($ErrMsg)): ?>
+                            <div class="col-12">
+                                <div class="alert alert-danger alert-dismissable" role="alert">
+                                    <p class="mb-0"><?=$ErrMsg?></p>
+                                </div>
+                            </div><?php else:
 
                         if ($idPostulant!=$annonce[0]->IdAgent && $localiteEcolePostulant[0]->CodeZone == $annonce[0]->LocaliteDesireeAnnonce){
                             ?>
@@ -217,10 +237,13 @@
                         <?php 
                         }else{
                         ?>
-                        <div class="block-content block-content-full text-right border-top">
-                            <button type="button"  class="btn btn-primary" id="btnSubmit">Vous ne remplissez pas les conditions pour adhérer</button>
-                        </div>
-                        <?php }  ?>
+                        <div class="col-12">
+                                <div class="alert alert-danger alert-dismissable" role="alert">
+                                    <p class="mb-0">Vous ne remplissez pas les conditions pour adhérer à cette demande de permutation</p>
+                                </div>
+                            </div>
+                        <?php } 
+                        endif ?>
                     </form>
                     <!-- END Form Labels on top - Default Style -->
 

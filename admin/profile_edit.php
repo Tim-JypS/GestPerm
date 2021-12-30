@@ -280,13 +280,11 @@
                                 <div class="push"  style="text-align:center;">
                                 <div class="alert alert-success" style="display:none;"></div>
                                     <?php 
-                                    if ($agent1["0"]->signatureAgent) {
+                                    if (count($agent1)>0) {
                                     ?>
                                     <img class="img-avatar img-avatar21" src="upload/signature/<?php
-                                       echo $agent1["0"]->signatureAgent;
-                                    }
-                                ?>
-                                    " alt="">
+                                       echo $agent1["0"]->signatureAgent; ?>" alt=""> 
+                                       <?php } ?>
                                 </div>
                                 <div class="custom-file">
                                     <!-- Populating custom file input label with the selected filename (data-toggle="custom-file-input" is initialized in Helpers.coreBootstrapCustomFileInput()) -->
