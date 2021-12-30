@@ -60,6 +60,16 @@ if($TypeUser==1)
             'name'  => 'Profil',
             'icon'  => 'si si-note',
             'url'   => 'profile.php'
+        ),
+        array(
+            'name'  => 'Modifier le mot de passe',
+            'icon'  => 'si si-note',
+            'url'   => 'modifpassword.php'
+        ),
+        array(
+            'name'  => 'Déconnexion',
+            'icon'  => 'si si-note',
+            'url'   => '../deco.php'
         )
     );
 }
@@ -120,6 +130,16 @@ $one->main_nav                   = array(
         'name'  => 'Paramètre',
         'icon'  => 'si si-note',
         'url'   => 'setting.php'
+    ),
+    array(
+        'name'  => 'Modifier le mot de passe',
+        'icon'  => 'si si-note',
+        'url'   => 'modifpassword.php'
+    ),
+    array(
+        'name'  => 'Déconnexion',
+        'icon'  => 'si si-note',
+        'url'   => '../deco.php'
     )
 );
 }

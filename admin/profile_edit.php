@@ -298,9 +298,9 @@
                     </div>
                     
                     
-                    <div class="text-center push">
+                   <!-- <div class="text-center push">
                         <button type="button" class="btn btn-sm btn-light">Modifier</button>
-                    </div>
+                    </div>-->
                     
                 </div>
             </div>

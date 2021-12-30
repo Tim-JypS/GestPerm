@@ -17,12 +17,12 @@ $("#idphoto").change(function() {
         success: function(data) {
             console.log(data)
             if (data=='invalid') {
-                alert("Une erreur");
+                //alert("Une erreur");
                 loader.hide();
                 alphaProfilNoDone = false;
                 
             }else{
-                alert('sucess');
+                ///alert('sucess');
                 window.location.reload();
             } 
         }

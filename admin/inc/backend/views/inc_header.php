@@ -64,13 +64,39 @@ require "../inc/config.php";
             <!-- User Dropdown -->
             <div class="dropdown d-inline-block ml-2">
                 <button type="button" class="btn btn-sm btn-dual d-flex align-items-center" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle" src="<?php echo $one->assets_folder; ?>/media/avatars/avatar10.jpg" alt="Header Avatar" style="width: 21px;">
+                    
+                
+                <?php 
+                    $IdAgent = $_SESSION['auth']['user']->IdAgent;
+                    $agent1=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$IdAgent'");
+                    if($agent1["0"]->photoAgent){
+                ?>
+                    <img src="<?php echo "upload/avatar/".$agent1["0"]->photoAgent;?>" class="avatar rounded-circle" width="40" height="40" alt="Avatar">
+
+                <?php } 
+                else {?>
+
+                <img class="rounded-circle" src="<?php echo $one->assets_folder; ?>/media/avatars/avatar10.jpg" alt="Header Avatar" style="width: 21px;">                <?php } ?>
+
+
                     <span class="d-none d-sm-inline-block ml-2"><?=trim($PreUser)?></span>
                     <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block ml-1 mt-1"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-right p-0 border-0" aria-labelledby="page-header-user-dropdown">
                     <div class="p-3 text-center bg-primary-dark rounded-top">
-                        <?php $one->get_avatar(10, '', 48, true); ?>
+                        
+                    <?php 
+                        if($agent1["0"]->photoAgent){
+                    ?>
+                        <img src="<?php echo "upload/avatar/".$agent1["0"]->photoAgent;?>" class="avatar rounded-circle" width="40" height="40" alt="Avatar">
+
+                    <?php } 
+                    else {?>
+
+                    <img class="rounded-circle" src="<?php echo $one->assets_folder; ?>/media/avatars/avatar10.jpg" alt="Header Avatar" style="width: 21px;">                <?php } ?>
+
+
+
                         <p class="mt-2 mb-0 text-white font-w500"><?=trim($NomUser." ".$PreUser)?></p>
                         <p class="mb-0 text-white-50 font-size-sm"><?=trim($LibFonctionUser)?></p>
                     </div>

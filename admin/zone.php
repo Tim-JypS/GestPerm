@@ -144,7 +144,7 @@
                             <label for="Localite">Issue de ...</label>
                             <select id="Localite" class="js-select2 form-control" name="val-select2" style="width: 100%;" data-placeholder="Choisir une..">
                                 <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                            <?php 
+                                <?php 
                                     $structures=Database::SelectQuery("SELECT * FROM struct_localite WHERE NiveauStr>1 ORDER BY LibelleStr ASC");
                                     foreach($structures as $struc):
                                 ?>
@@ -399,7 +399,8 @@
                     for(var i = 0; i < e["total"]; i++){
                         alert('il y a des communes');
                         //Elément à insérer
-                        $('#Localite').append('<option value="'+e["resultat"][i]["CodeZone"]+'">'+e["resultat"][i]["LibelleZone"]+'</option>');
+                        $('#Localite').append('<option value="'+e["resultat"][i]["CodeZone"]+'">'
+                        +e["resultat"][i]["LibelleZone"]+'</option>');
                     }
                     }
                 }, 
