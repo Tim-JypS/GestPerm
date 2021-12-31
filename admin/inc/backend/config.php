@@ -176,6 +176,11 @@ $one->main_nav                   = array(
         'url'   => 'emploi.php'
     ),
     array(
+        'name'  => 'Agent',
+        'icon'  => 'si si-note',
+        'url'   => 'agent.php'
+    ),
+    array(
         'name'  => 'Validation permutation',
         'icon'  => 'si si-note',
         'url'   => 'validation.php'
@@ -243,6 +248,11 @@ $one->main_nav                   = array(
                 'name'  => 'Emploi',
                 'icon'  => 'si si-note',
                 'url'   => 'emploi.php'
+            ),
+            array(
+                'name'  => 'Agent',
+                'icon'  => 'si si-note',
+                'url'   => 'agent.php'
             ),
             array(
                 'name'  => 'Validation permutation',
@@ -313,6 +323,11 @@ $one->main_nav                   = array(
                 'name'  => 'Emploi',
                 'icon'  => 'si si-note',
                 'url'   => 'emploi.php'
+            ),
+            array(
+                'name'  => 'Agent',
+                'icon'  => 'si si-note',
+                'url'   => 'agent.php'
             ),
             array(
                 'name'  => 'Historique validation',

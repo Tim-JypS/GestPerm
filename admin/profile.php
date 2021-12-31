@@ -166,37 +166,53 @@ header('location:index.php');
                         <div class="form-group">
                             <label for="one-profile-edit-name">Direction régionale</label>
                             <?php 
+                                if($agent[0]->IdEcole != -1){
                                     $agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
 									$ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
                                     $inspection=DataBase::SelectQuery("SELECT * FROM inspection WHERE IdInspection='".$ecole[0]->IdInspection."'");
                                     $dren=DataBase::SelectQuery("SELECT * FROM directionregionale WHERE IdDirectionRegionale='".$inspection[0]->IdDirectionRegionale."'");
                                     echo '<input type="text" class="form-control" id="IdAgent" name="IdAgent" disabled="disabled" value="'.$dren[0]->NomDirectionRegionale.'">';
-                                ?>
+                                }else{
+                                    echo '<input type="text" class="form-control"  disabled="disabled" value="">';
+                                }  
+                            ?>
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Inspection</label>
                             <?php 
-                                	$agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
+                                if($agent[0]->IdEcole != -1){	
+                                    $agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
                                     $ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
                                     $inspection=DataBase::SelectQuery("SELECT * FROM inspection WHERE IdInspection='".$ecole[0]->IdInspection."'");
                                     echo '<input type="text" class="form-control" disabled="disabled" value="'.$inspection[0]->NomInspection.'">';
+                                }else{
+                                    echo '<input type="text" class="form-control" disabled="disabled" value="">';
+                                } 
                                 ?>
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Type Etablissement</label>
-                            <?php 
+                            <?php
+                                if($agent[0]->IdEcole != -1){ 
 									$agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
 									$ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
 									echo '<input type="text" class="form-control" disabled="disabled" value="'.$ecole[0]->TypeEcole.'">';
-								?>
+                                }else{
+                                    echo '<input type="text" class="form-control" disabled="disabled" value="">';
+                                } 
+							?>
                         </div>
                         <div class="form-group">
                             <label for="one-profile-edit-name">Etablissement</label>
                             <?php 
+                                if($agent[0]->IdEcole != -1){
 									$agent=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$_SESSION['auth']["user"]->IdAgent."'");
 									$ecole=DataBase::SelectQuery("SELECT * FROM ecole WHERE IdEcole='".$agent[0]->IdEcole."'");
 									echo '<input type="text" class="form-control" disabled="disabled" value="'.$ecole[0]->NomEcole.'">';
-								?>
+                                }else{
+                                    echo '<input type="text" class="form-control" disabled="disabled" value="">';
+                                } 
+							?>
                         </div>
                         
                     </div>

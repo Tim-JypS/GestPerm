@@ -178,7 +178,7 @@
                             <dl class="mb-0">
                                 <dt class="font-size-h2 font-w700">
                                 <?php 
-                                    $nombrePermutationRefusees=DataBase::SelectQuery("SELECT COUNT(IdAnnonce) as nombrePermutation FROM annonce WHERE StatutAnnonce ='NON' ");
+                                    $nombrePermutationRefusees=DataBase::SelectQuery("SELECT COUNT(IdAnnonce) as nombrePermutation FROM annonce WHERE StatutAnnonce ='AN' ");
                                     echo $nombrePermutationRefusees[0]->nombrePermutation;
                                 ?>
                                 </dt>
