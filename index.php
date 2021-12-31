@@ -367,23 +367,11 @@ prise de service pour les agents mariés.
                    
                 </div>
                 <div class="portfolio-slider pt-45 owl-carousel owl-theme">
-                    <div class="portfolio-item">
-                        <div class="portfolio-img">
-                            <a href="#">
-                                <img src="assets\img\avatar 1.jpg" alt="Portfolio Images">
-                            </a>
-                            
-                            <div class="portfolio-content">
-                                <a href="portfolio.php"><h3>KADJO Anthé</h3></a>
-                                <i class='bx bxs-chevron-right'></i>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="portfolio-item">
                         <div class="portfolio-img">
                             <a href="#">
-                                <img src="assets\img\avatar 2.jpg" alt="Portfolio Images">
+                                <img src="assets\img\Tim.png" alt="Portfolio Images">
                             </a>
                             
                             <div class="portfolio-content">
@@ -396,7 +384,7 @@ prise de service pour les agents mariés.
                     <div class="portfolio-item">
                         <div class="portfolio-img">
                             <a href="#">
-                                <img src="assets\img\avatar 5.jpg" alt="Portfolio Images">
+                                <img src="assets\img\avatar.png" alt="Portfolio Images">
                             </a>
                            
                             <div class="portfolio-content">
@@ -409,7 +397,20 @@ prise de service pour les agents mariés.
                     <div class="portfolio-item">
                         <div class="portfolio-img">
                             <a href="#">
-                                <img src="assets\img\avatar 1.jpg" alt="Portfolio Images">
+                                <img src="assets\img\Kadjo.png" alt="Portfolio Images">
+                            </a>
+                            
+                            <div class="portfolio-content">
+                                <a href="portfolio.php"><h3>KADJO Anthé</h3></a>
+                                <i class='bx bxs-chevron-right'></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <a href="#">
+                                <img src="assets\img\Sarah.png" alt="Portfolio Images">
                             </a>
                            
                             <div class="portfolio-content">
@@ -422,11 +423,11 @@ prise de service pour les agents mariés.
                     <div class="portfolio-item">
                         <div class="portfolio-img">
                             <a href="#">
-                                <img src="assets\img\avatar 4.jpg" alt="Portfolio Images">
+                                <img src="assets\img\Full.png" alt="Portfolio Images">
                             </a>
                            
                             <div class="portfolio-content">
-                                <a href="portfolio.php"><h3>KONAN Fulgence</h3></a>
+                                <a href="portfolio.php"><h3>KOUASSI Fulgence</h3></a>
                                 <i class='bx bxs-chevron-right'></i>
                             </div>
                         </div>
@@ -434,11 +435,11 @@ prise de service pour les agents mariés.
                     <div class="portfolio-item">
                         <div class="portfolio-img">
                             <a href="#">
-                                <img src="assets\img\avatar 3.png" alt="Portfolio Images">
+                                <img src="assets\img\Junior.png" alt="Portfolio Images">
                             </a>
                            
                             <div class="portfolio-content">
-                                <a href="portfolio.php"><h3>BECHIE Maotto</h3></a>
+                                <a href="portfolio.php"><h3>MAOTTO Bechie</h3></a>
                                 <i class='bx bxs-chevron-right'></i>
                             </div>
                         </div>
@@ -460,7 +461,7 @@ prise de service pour les agents mariés.
                 <div class="row pt-45">
                     <!-- LISTE DES ANNONCES DE PERMUTATIONS -->
                     <?php 
-                        $annonces=Database::SelectQuery("SELECT * FROM annonce ORDER BY DateAjoutAnnonce DESC LIMIT 3");
+                        $annonces=Database::SelectQuery("SELECT * FROM annonce WHERE StatutAnnonce='VA0' AND AdherantAnnonce=-1 ORDER BY DateAjoutAnnonce DESC LIMIT 3");
                         foreach($annonces as $annonce):
                     ?>
                                 

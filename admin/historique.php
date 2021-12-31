@@ -71,26 +71,27 @@
         </div>
         <div class="block-content block-content-full">
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-            <table  id="example" class="table table-bordered table-striped table-vcenter js-dataTable-full nowrap"  style="width:100%">
+            <table id="example" class="table table-bordered table-striped table-vcenter nowrap"  style="width:100%">
                 <thead>
                     <tr>
                         <?php if($TypeUser==1) :?>
-                            <th class="text-center" style="width: 20%;">Date</th>
-                            <th class="d-none d-sm-table-cell" style="width: 12%;">Localité d'origine</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Localité désirée</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Permutant</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Statut</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
+                            <th class="text-center">Date</th>
+                            <th class="d-none d-sm-table-cell">Localité d'origine</th>
+                            <th class="d-none d-sm-table-cell">Localité désirée</th>
+                            <th class="d-none d-sm-table-cell">Permutant</th>
+                            <th class="d-none d-sm-table-cell">Statut</th>
+                            <th class="d-none d-sm-table-cell">Actions</th>
                         <?php else:?>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Date</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Matricule Demandeur</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Nom Demandeur</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Origine Demandeur</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Matricule Permutant</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Nom Permutant</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Origine Permuttant</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Statut</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
+                            <th class="d-none d-sm-table-cell">Date</th>
+                            <th class="d-none d-sm-table-cell">Matricule Demandeur</th>
+                            <th class="d-none d-sm-table-cell">Nom Demandeur</th>
+                            <th class="d-none d-sm-table-cell">Fonction</th>
+                            <th class="d-none d-sm-table-cell">Localité d'origine</th>
+                            <th class="d-none d-sm-table-cell">Localité désirée</th>
+                            <th class="d-none d-sm-table-cell">Matricule Adhérent</th>
+                            <th class="d-none d-sm-table-cell">Nom Adhérent</th>
+                            <th class="d-none d-sm-table-cell">Statut</th>
+                            <th class="d-none d-sm-table-cell">Actions</th>
                         <?php endif?>
                     </tr>
                 </thead>
@@ -153,9 +154,13 @@
                                 {
                                     echo "Attente (DRH)";
                                 }
-                                else
+                                elseif($annonce->StatutAnnonce=="VA")
                                 {
                                     echo "Validée";
+                                }
+                                elseif($annonce->StatutAnnonce=="AN")
+                                {
+                                    echo "Refusée";
                                 }
                             ?>
                             </td>
@@ -164,36 +169,55 @@
                                     <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" data-target="#Edit-newinsp-modal">
                                         <a href="print/index.php?fiche=<?=$annonce->IdAnnonce?>" target="_blank"><i id="print" data-values="" class="fa fa-2x fa-print" data-toggle="tooltip" title="Imprimer"></i></a>
                                     </button>
+                                    <?php if($annonce->StatutAnnonce!="VA" && $annonce->StatutAnnonce!="AN"):?>
                                     <button type="button" class="btn btn-sm btn-alt-primary"  data-toggle="modal" data-target="#Delete-newdr-modal" title="Annuler">
                                         <i class="fa fa-fw fa-times"></i>
-                                    </button>
+                                    </button> <?php endif ?>
                                 </div>
                             </td>
                         </tr>
                         <?php
                         endforeach;
                         else:
-                            $annonces=Database::SelectQuery("SELECT va.IdValidation,va.DateEnvoiValidation,va.DateValidation,va.StatutValidation,va.MotifRejetValidation,a.* FROM annonce a, validationannonce va WHERE va.IdAnnonce=a.IdAnnonce AND va.ValideurValidation='".$IdAgent."' ORDER BY a.DateAjoutAnnonce DESC");
+                            $annonces=Database::SelectQuery("SELECT v.StatutValidation,v.DateValidation, a.* FROM annonce a, validationannonce v WHERE a.IdAnnonce=v.IdAnnonce AND v.ValideurValidation='".$IdAgent."' AND StatutValidation<>'EN' AND DateValidation IS NOT NULL ORDER BY v.DateValidation DESC");
                             foreach($annonces as $annonce):
                                 $agent1=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");
                                 $agent2=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->AdherantAnnonce'");?>
                             <tr>
-                                <td class="font-w600 font-size-sm"><?=$annonce->DateAjoutAnnonce?></td>
+                                <?php $agent1=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");?>
+                                <?php $agent2=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->AdherantAnnonce'");?>
+                                <td class="font-w600 font-size-sm"><?=$annonce->DateValidation?></td>
                                 <td class="font-w600 font-size-sm"><?=$agent1[0]->MatriculeAgent?></td>
                                 <td class="font-w600 font-size-sm"><?=$agent1[0]->NomAgent. " ". $agent1[0]->PrenomsAgent?></td>
                                 <td class="font-w600 font-size-sm"><?=DataBase::SelectQuery("SELECT NomFonction FROM fonction WHERE IdFonction='".$agent1[0]->IdFonction."'")[0]->NomFonction?></td>
-                                <td class="font-w600 font-size-sm">Abidjan</td>
-                                <td class="font-w600 font-size-sm">Tiassalé</td>
+                                <td class="font-w600 font-size-sm"><?php
+                                    $codeZone=$annonce->LocaliteOrigineAnnonce;
+                                    $query="SELECT LibelleZone FROM localite WHERE CodeZone='".$codeZone."'";
+                                    $loc1=Database::SelectQuery($query)[0]->LibelleZone;
+                                    echo $loc1?></td>
+                                <td class="font-w600 font-size-sm"><?php
+                                    $codeZone=$annonce->LocaliteDesireeAnnonce;
+                                    $query="SELECT LibelleZone FROM localite WHERE CodeZone='".$codeZone."'";
+                                    $loc2=Database::SelectQuery($query)[0]->LibelleZone;
+                                    echo $loc2 ?></td>
                                 <td class="font-w600 font-size-sm"><?=$agent2[0]->MatriculeAgent?></td>
                                 <td class="font-w600 font-size-sm"><?=$agent2[0]->NomAgent. " ". $agent2[0]->PrenomsAgent?></td>
-
-                                <td class="text-center">
-                                    Validée
+                                <td class="font-w600 font-size-sm">
+                                <?php 
+                                    if($annonce->StatutValidation=="VA")
+                                    {
+                                        echo "Validée";
+                                    }
+                                    elseif($annonce->StatutValidation=="AN")
+                                    {
+                                        echo "Refusée";
+                                    }
+                                ?>
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" data-target="#Edit-newinsp-modal">
-                                        <a href="print/index.php?fiche=<?=$annonce->IdAnnonce?>" target="_blank"><i class="fa fa-2x fa-print" data-toggle="tooltip" title="Imprimer"></i></a>
+                                        <button type="button" class="btn btn-sm btn-alt-primary">
+                                            <a href="print/index.php?fiche=<?=$annonce->IdAnnonce?>" target="_blank"><i id="print" data-values="" class="fa fa-2x fa-print" data-toggle="tooltip" title="Imprimer"></i></a>
                                         </button>
                                     </div>
                                 </td>
@@ -441,6 +465,12 @@
 
 
 <script type="text/javascript">
+    $(document).ready(function() {
+        $('#example').DataTable( {
+            "scrollY": 200,
+            "scrollX": true
+        } );
+    } );
     $('#save').click(function()
     {
         let type=$('#TypeAnnonce').val();

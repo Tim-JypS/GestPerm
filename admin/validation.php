@@ -61,30 +61,29 @@
         </div>
         <div class="block-content block-content-full">
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+            <table  id="example" class="table table-bordered table-striped table-vcenter nowrap"  style="width:100%">
                 <thead>
                         <tr>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Date</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Matricule Demandeur</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Nom Demandeur</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Fonction</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Localité d'origine</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Localité désirée</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Matricule Adhérent</th>
-                            <th class="d-none d-sm-table-cell" style="width: 30%;">Nom Adhérent</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">Actions</th>
-                            <!-- <th style="width: 15%;">Registered</th> -->
+                            <th class="d-none d-sm-table-cell">Date</th>
+                            <th class="d-none d-sm-table-cell">Matricule Demandeur</th>
+                            <th class="d-none d-sm-table-cell">Nom Demandeur</th>
+                            <th class="d-none d-sm-table-cell">Fonction</th>
+                            <th class="d-none d-sm-table-cell">Localité d'origine</th>
+                            <th class="d-none d-sm-table-cell">Localité désirée</th>
+                            <th class="d-none d-sm-table-cell">Matricule Adhérent</th>
+                            <th class="d-none d-sm-table-cell">Nom Adhérent</th>
+                            <th class="d-none d-sm-table-cell">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php 
-                            $annonces=Database::SelectQuery("SELECT v.IdValidation, a.* FROM annonce a, validationannonce v WHERE a.IdAnnonce=v.IdAnnonce AND v.ValideurValidation='".$IdAgent."' AND StatutValidation='EN' ORDER BY v.DateEnvoiValidation DESC");
+                            $annonces=Database::SelectQuery("SELECT v.IdValidation, v.DateEnvoiValidation, a.* FROM annonce a, validationannonce v WHERE a.IdAnnonce=v.IdAnnonce AND v.ValideurValidation='".$IdAgent."' AND StatutValidation='EN' ORDER BY v.DateEnvoiValidation DESC");
                             foreach($annonces as $annonce):
                         ?>
                         <tr>
                             <?php $agent1=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");?>
                             <?php $agent2=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->AdherantAnnonce'");?>
-                            <td class="font-w600 font-size-sm"><?=$annonce->DateAjoutAnnonce?></td>
+                            <td class="font-w600 font-size-sm"><?=$annonce->DateEnvoiValidation?></td>
                             <td class="font-w600 font-size-sm"><?=$agent1[0]->MatriculeAgent?></td>
                             <td class="font-w600 font-size-sm"><?=$agent1[0]->NomAgent. " ". $agent1[0]->PrenomsAgent?></td>
                             <td class="font-w600 font-size-sm"><?=DataBase::SelectQuery("SELECT NomFonction FROM fonction WHERE IdFonction='".$agent1[0]->IdFonction."'")[0]->NomFonction?></td>
@@ -149,6 +148,7 @@
                             <input class="form-control" id="agent1" type="text" readonly="readonly">
                             <input class="form-control" style="display: none;" id="idvalidation" type="text" readonly="readonly">
                             <input class="form-control" style="display: none;" id="idannonce" type="text" readonly="readonly">
+                            <input class="form-control" style="display: none;" id="iduser" type="text" value="<?=$IdAgent?>" readonly="readonly">
                         </div>
                     </div>
                     <div class="form-group form-row">
@@ -214,7 +214,12 @@
 <?php require 'inc/_global/views/footer_end.php'; ?>
 
 <script type="text/javascript">
-
+    $(document).ready(function() {
+        $('#example').DataTable( {
+            "scrollY": 200,
+            "scrollX": true
+        } );
+    });
     $('.validerpermut').click(function()
     {
         let agent1=($(this).data('agent1'));
@@ -222,6 +227,7 @@
         let agent2=($(this).data('agent2'));
         let loc2=($(this).data('loc2'));
         let idvalidation=($(this).data('idvalidation'));
+        let idannonce=($(this).data('idannonce'));
         $('#agent1').val(agent1);
         $('#loc1').val(loc1);
         $('#agent2').val(agent2);
@@ -234,7 +240,8 @@
     {
         let idval=$('#idvalidation').val();
         let idannonce=$('#idannonce').val();
-        $.get('scripts/validpermutation.php',{idval:idval,idannonce:idannonce},function()
+        let iduser=$('#iduser').val();
+        $.get('scripts/validpermutation.php',{idval:idval,idannonce:idannonce,iduser:iduser},function()
         {
             window.location.reload();
         })
