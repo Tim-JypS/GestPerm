@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 29 déc. 2021 à 22:13
+-- Généré le : ven. 31 déc. 2021 à 11:55
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -46,11 +46,11 @@ CREATE TABLE IF NOT EXISTS `agent` (
   `IdEmploi` int(11) NOT NULL DEFAULT '-1',
   `IdFonction` int(11) NOT NULL DEFAULT '-1',
   `TypeAgent` int(11) NOT NULL DEFAULT '1',
-  `IdEcole` int(11) NOT NULL DEFAULT '1',
+  `IdEcole` int(11) NOT NULL DEFAULT '-1',
   `photoAgent` text,
   `signatureAgent` text,
   PRIMARY KEY (`IdAgent`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `agent`
@@ -63,10 +63,12 @@ INSERT INTO `agent` (`IdAgent`, `MatriculeAgent`, `NomAgent`, `PrenomsAgent`, `C
 (4, '12345A', 'MAOTTO', 'ERIC', 'Monsieur', '', 'M', '2021-05-20', '0748968679', 'maotto@live.fr', '2021-12-14', 'Celibat', '2021-12-11', '$2y$10$x8dN75ea8ECDdUAr4kaMU.JFVvVLyZwXL.t3pfRbeRh7FY7UIcBwK', 1, 1, 1, 1, '4.png', NULL),
 (5, '12345C', 'COULIBALY', 'TIEMOKO', 'Monsieur', '', 'M', '1995-10-15', '0707070707', 'coulibaly@gmail.com', '2021-12-14', 'Celibat', '2021-12-26', '$2y$10$K29ZAEm2Ub8zV8PTlY.sJ.fxYlwxY8VEw8iUqWsbPD/vy0EHdRKC.', -1, 1, 1, 1, NULL, NULL),
 (6, '12345K', 'KADJO', 'ANTHE RUTH BENEDICTE', 'Madame', 'ANTHOU', 'F', '1993-03-15', '0707070707', 'kadjoruth@gmail.com', '2018-12-19', 'Marie', '2021-12-26', '$2y$10$YxRjSRlp.G28lgBBWAeMAOE77sxgvrtkG.Drlc5nJ8HD6vXbzvlei', -1, 1, 1, 6, NULL, NULL),
-(7, '12345S', 'AKOUA', 'SARAH', 'Mademoiselle', 'CHOUPIE', 'F', '1997-02-10', '0707070707', 'sarahakoua@gmail.com', '2014-12-16', 'Celibat', '2021-12-26', '$2y$10$z13h/RSrm/FnY5d1DgW4GODBjBLA0r9exuFQqx7Emyhj0HZg20Qbm', -1, 1, 1, 2, NULL, NULL),
+(7, '12345S', 'AKOUA', 'SARAH', 'Mademoiselle', 'CHOUPIE', 'F', '1997-02-10', '0707070707', 'sarahakoua@gmail.com', '2014-12-16', 'Celibat', '2021-12-26', '$2y$10$z13h/RSrm/FnY5d1DgW4GODBjBLA0r9exuFQqx7Emyhj0HZg20Qbm', -1, 1, 3, 2, NULL, NULL),
 (8, '12345F', 'KOUASSI', 'FULGENCE', 'Monsieur', '', 'M', '1991-08-15', '0707070707', 'kouassifulgence@gmail.com', '2021-12-15', 'Celibat', '2021-12-26', '$2y$10$.CUkJ8t7avBIOakcR88TA.9ZPneVF2njo9Vrrip5HWJ5xABb9ZhRK', -1, 1, 1, 1, NULL, NULL),
 (9, '12345D', 'DJIMAN', 'KOUAME ANDERSON', 'Monsieur', '', 'M', '1990-01-25', '0707070707', 'djimankouame@gmail.com', '2016-12-15', 'Celibat', '2021-12-26', '$2y$10$VR4jg9cc9GXcqjFBIaFxtOYeIWyMK8ORZc0KhkSzzHnniL6QjxQAe', -1, 1, 1, 1, NULL, NULL),
-(10, '12345L', 'BLE', 'LINDA', 'Mademoiselle', 'LINDOLE', 'F', '1995-07-15', '0707070707', 'blezoukoulinda@gmail.com', '2019-12-02', 'Celibat', '2021-12-26', '$2y$10$Z38MGyooOWn86PyYnhwyeOF/.jmEEpwzoeAsLOa8yiv3Mj6wJB9nK', -1, 1, 4, 4, '10.jpg', '10.png');
+(10, '12345L', 'BLE', 'LINDA', 'Mademoiselle', 'LINDOLE', 'F', '1995-07-15', '0707070707', 'blezoukoulinda@gmail.com', '2019-12-02', 'Celibat', '2021-12-26', '$2y$10$Z38MGyooOWn86PyYnhwyeOF/.jmEEpwzoeAsLOa8yiv3Mj6wJB9nK', -1, 1, 4, 4, '10.jpg', '10.png'),
+(11, '12345Z', 'BECHIE', 'SOPIE PRISCA', 'Mademoiselle', 'BECHIE', 'F', '1995-04-23', '0707070707', 'bechiesopieprisca@gmail.com', '2018-12-12', 'Celibat', '2021-12-29', '$2y$10$jBOMb2TiRE6w77W530PNi.DUZOL4VLtzevXnQtASRk/ABqDgBKCEO', -1, 2, 2, 4, '11.jpeg', NULL),
+(12, '12345W', 'KOUASSI', 'DESIREE', 'Monsieur', '', 'M', '1991-02-15', '', 'desirekouassi@gmail.com', NULL, 'Marie', '2021-12-31', '$2y$10$Y.okv6SHK8iOog2/fG8/m.hTOh..QV4h/IyTOMHUWj3AJvKO.JMF6', -1, -1, 1, -1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -118,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `configsite` (
 --
 
 INSERT INTO `configsite` (`validationconf`) VALUES
-(0);
+(1);
 
 -- --------------------------------------------------------
 
@@ -175,8 +177,7 @@ INSERT INTO `directionregionale` (`IdDirectionRegionale`, `NomDirectionRegionale
 (32, 'Direction Régionale de Sassandra', '0707070707', 'drenasassandra@gmail.com', '44'),
 (33, 'Direction Régionale de Séguéla', '0707070707', 'drenaseguela@gmail.com', '140'),
 (34, 'Direction Régionale de Soubré', '0707070707', 'drensoubre@gmail.com', '107'),
-(35, 'Direction Régionale de Touba', '0707070707', 'drenatouba@gmail.com', '10'),
-(36, 'Direction Régionale de Grand-Bassam', '', 'drenabassam@gmail.com', '126');
+(35, 'Direction Régionale de Touba', '0707070707', 'drenatouba@gmail.com', '10');
 
 -- --------------------------------------------------------
 
@@ -219,7 +220,7 @@ INSERT INTO `ecole` (`IdEcole`, `NomEcole`, `TypeEcole`, `TelEcole`, `EmailEcole
 (1, 'EPP Congo 2 Grand-Bassam', 'Primaire', '223034567', '', 126, 2),
 (2, 'EPP Habitat-Koffikro 1', 'Primaire', '', '', 101, 1),
 (3, 'EPP MOMO1', 'Primaire', '', '', 22, 1),
-(4, 'EPP ADZOPE 1', 'Primaire', '', '', 87, 1),
+(4, 'EPP ADZOPE 1', 'Primaire', '', '', 87, 3),
 (5, 'EPP Kennedy 1', 'Primaire', '', '', 68, 4),
 (6, 'EPP Patrick Achi', 'Primaire', '', '', 46, 3);
 
@@ -279,7 +280,7 @@ CREATE TABLE IF NOT EXISTS `inspection` (
   `CommuneInspection` varchar(255) NOT NULL,
   `IdDirectionRegionale` int(11) NOT NULL,
   PRIMARY KEY (`IdInspection`)
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `inspection`
@@ -383,13 +384,36 @@ INSERT INTO `inspection` (`IdInspection`, `NomInspection`, `TelInspection`, `Com
 (95, 'Inspection d\'Enseignement Primaire d\'Oumé', '', '47', 5),
 (96, 'Inspection d\'Enseignement Primaire de Sériho', '', '46', 5),
 (97, 'Inspection d\'Enseignement Primaire d\'Ouragahio', '', '46', 5),
-(98, 'Inspection d\'Enseignement Primaire de Bassam', '', '126', 36),
-(99, 'Inspection d\'Enseignement Primaire de Bonoua', '', '126', 36),
+(98, 'Inspection d\'Enseignement Primaire de Bassam', '', '126', 1),
+(99, 'Inspection d\'Enseignement Primaire de Bonoua', '', '126', 1),
 (100, 'Inspection d\'Enseignement Primaire de Bloléquin', '', '30', 25),
 (101, 'Inspection d\'Enseignement Primaire de Guiglo 1', '', '31', 25),
 (102, 'Inspection d\'Enseignement Primaire de Guiglo 2', '', '31', 25),
 (103, 'Inspection d\'Enseignement Primaire de Taï', '', '32', 25),
-(104, 'Inspection d\'Enseignement Primaire de Toulepleu', '', '33', 25);
+(104, 'Inspection d\'Enseignement Primaire de Toulepleu', '', '33', 25),
+(105, 'Inspection d\'Enseignement Primaire d\'Iboghué', '', '69', 2),
+(106, 'Inspection d\'Enseignement Primaire d\'Issia 1', '', '69', 2),
+(107, 'Inspection d\'Enseignement Primaire d\'Issia 2', '', '68', 2),
+(108, 'Inspection d\'Enseignement Primaire de Saïoua', '', '168', 2),
+(109, 'Inspection d\'Enseignement Primaire de Daoukro', '', '73', 20),
+(110, 'Inspection d\'Enseignement Primaire de M\'bahiakro', '', '74', 20),
+(111, 'Inspection d\'Enseignement Primaire de Bonguera', '', '73', 20),
+(112, 'Inspection d\'Enseignement Primaire d\'Ettrokro', '', '73', 20),
+(113, 'Inspection d\'Enseignement Primaire de Prikro', '', '75', 20),
+(114, 'Inspection d\'Enseignement Primaire de Bocanda', '', '109', 21),
+(115, 'Inspection d\'Enseignement Primaire de Nzécrézéssou', '', '110', 21),
+(116, 'Inspection d\'Enseignement Primaire de Kouassi-Kouassikro', '', '111', 21),
+(117, 'Inspection d\'Enseignement Primaire de Dimbokro', '', '110', 21),
+(118, 'Inspection d\'Enseignement Primaire de Divo Plateau', '', '92', 22),
+(119, 'Inspection d\'Enseignement Primaire de Divo Municipalité', '', '92', 22),
+(120, 'Inspection d\'Enseignement Primaire de Divo 3', '', '92', 22),
+(121, 'Inspection d\'Enseignement Primaire de Guitry', '', '93', 22),
+(122, 'Inspection d\'Enseignement Primaire de Hiré', '', '92', 22),
+(123, 'Inspection d\'Enseignement Primaire d\'Ogodou', '', '92', 22),
+(124, 'Inspection d\'Enseignement Primaire de Niambézaria', '', '92', 22),
+(125, 'Inspection d\'Enseignement Primaire de Lakota Commerce', '', '94', 22),
+(126, 'Inspection d\'Enseignement Primaire de Lakota 2', '', '94', 22),
+(127, 'Inspection d\'Enseignement Primaire de Zikisso', '', '92', 22);
 
 -- --------------------------------------------------------
 
@@ -404,7 +428,7 @@ CREATE TABLE IF NOT EXISTS `localite` (
   `CodeZoneMere` bigint(19) NOT NULL,
   `NiveauStr` smallint(6) NOT NULL,
   PRIMARY KEY (`CodeZone`)
-) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `localite`
@@ -573,7 +597,8 @@ INSERT INTO `localite` (`CodeZone`, `LibelleZone`, `CodeZoneMere`, `NiveauStr`) 
 (166, 'LAGOS', 164, 2),
 (167, 'KANO', 164, 2),
 (168, 'SAIOUA', 68, 5),
-(169, 'DISTRICT DE YAMOUSSOUKRO', 1, 2);
+(169, 'DISTRICT DE YAMOUSSOUKRO', 1, 2),
+(170, 'BONOUA', 123, 6);
 
 -- --------------------------------------------------------
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 24 déc. 2021 à 00:30
+-- Généré le : ven. 31 déc. 2021 à 11:55
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -46,11 +46,11 @@ CREATE TABLE IF NOT EXISTS `agent` (
   `IdEmploi` int(11) NOT NULL DEFAULT '-1',
   `IdFonction` int(11) NOT NULL DEFAULT '-1',
   `TypeAgent` int(11) NOT NULL DEFAULT '1',
-  `IdEcole` int(11) NOT NULL DEFAULT '1',
+  `IdEcole` int(11) NOT NULL DEFAULT '-1',
   `photoAgent` text,
   `signatureAgent` text,
   PRIMARY KEY (`IdAgent`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `agent`
@@ -59,8 +59,16 @@ CREATE TABLE IF NOT EXISTS `agent` (
 INSERT INTO `agent` (`IdAgent`, `MatriculeAgent`, `NomAgent`, `PrenomsAgent`, `CiviliteAgent`, `NomJeuneFilleAgent`, `SexeAgent`, `DateNaissanceAgent`, `TelAgent`, `EmailAgent`, `DatePriseServiceAgent`, `SituationMatrimonialeAgent`, `DateCreationAgent`, `PasswordAgent`, `IdEmploi`, `IdFonction`, `TypeAgent`, `IdEcole`, `photoAgent`, `signatureAgent`) VALUES
 (1, '12345B', 'BECHIE', 'Maotto Jean Martial', 'Monsieur', '', 'M', '2021-01-01', '0748968679', 'tiemoko.coulibaly@uvci.edu.ci', '2021-06-08', 'Marie', '2021-12-01', '$2y$10$x8dN75ea8ECDdUAr4kaMU.JFVvVLyZwXL.t3pfRbeRh7FY7UIcBwK', 1, 1, 1, 1, NULL, NULL),
 (2, '15028B', 'KOUAO', 'Akoua Sarah', 'Madame', 'Labelle', 'F', '2021-12-07', '2122405689', 'akoua.kouao@uvci.edu.ci', '2021-12-07', 'Marie', '2021-12-11', '$2y$10$aMbCBWLZaQ9/BKLuJ2fdv.jfRRBi/loyPYaB/hesnRvHqm6rplO4W', 1, 1, 1, 2, NULL, NULL),
-(3, '15029', 'COULIBALY', 'Tim', 'Monsieur', '', 'M', '2021-12-14', '', 'tiemoko.coulibaly@uvci.edu.ci', '2021-12-14', 'Marie', '2021-12-11', '$2y$10$usGNsQzAG9Zy06nHdW8gy.2gCAqyvvVIHKJuzIzFKeJpAf1b33x3W', 1, 1, 4, 1, '3.png', NULL),
-(4, '12345A', 'BECHIE', 'MAOTTO', 'Monsieur', '', 'M', '2021-05-20', '', 'maotto@live.fr', NULL, 'Celibat', '2021-12-11', '$2y$10$x8dN75ea8ECDdUAr4kaMU.JFVvVLyZwXL.t3pfRbeRh7FY7UIcBwK', 1, 1, 1, 1, '4.png', NULL);
+(3, '12029C', 'COULIBALY', 'Tim', 'Monsieur', '', 'M', '2021-12-14', '', 'tiemoko.coulibaly@uvci.edu.ci', '2021-12-14', 'Marie', '2021-12-11', '$2y$10$aMbCBWLZaQ9/BKLuJ2fdv.jfRRBi/loyPYaB/hesnRvHqm6rplO4W', 1, 1, 4, 1, '3.png', NULL),
+(4, '12345A', 'MAOTTO', 'ERIC', 'Monsieur', '', 'M', '2021-05-20', '0748968679', 'maotto@live.fr', '2021-12-14', 'Celibat', '2021-12-11', '$2y$10$x8dN75ea8ECDdUAr4kaMU.JFVvVLyZwXL.t3pfRbeRh7FY7UIcBwK', 1, 1, 1, 1, '4.png', NULL),
+(5, '12345C', 'COULIBALY', 'TIEMOKO', 'Monsieur', '', 'M', '1995-10-15', '0707070707', 'coulibaly@gmail.com', '2021-12-14', 'Celibat', '2021-12-26', '$2y$10$K29ZAEm2Ub8zV8PTlY.sJ.fxYlwxY8VEw8iUqWsbPD/vy0EHdRKC.', -1, 1, 1, 1, NULL, NULL),
+(6, '12345K', 'KADJO', 'ANTHE RUTH BENEDICTE', 'Madame', 'ANTHOU', 'F', '1993-03-15', '0707070707', 'kadjoruth@gmail.com', '2018-12-19', 'Marie', '2021-12-26', '$2y$10$YxRjSRlp.G28lgBBWAeMAOE77sxgvrtkG.Drlc5nJ8HD6vXbzvlei', -1, 1, 1, 6, NULL, NULL),
+(7, '12345S', 'AKOUA', 'SARAH', 'Mademoiselle', 'CHOUPIE', 'F', '1997-02-10', '0707070707', 'sarahakoua@gmail.com', '2014-12-16', 'Celibat', '2021-12-26', '$2y$10$z13h/RSrm/FnY5d1DgW4GODBjBLA0r9exuFQqx7Emyhj0HZg20Qbm', -1, 1, 3, 2, NULL, NULL),
+(8, '12345F', 'KOUASSI', 'FULGENCE', 'Monsieur', '', 'M', '1991-08-15', '0707070707', 'kouassifulgence@gmail.com', '2021-12-15', 'Celibat', '2021-12-26', '$2y$10$.CUkJ8t7avBIOakcR88TA.9ZPneVF2njo9Vrrip5HWJ5xABb9ZhRK', -1, 1, 1, 1, NULL, NULL),
+(9, '12345D', 'DJIMAN', 'KOUAME ANDERSON', 'Monsieur', '', 'M', '1990-01-25', '0707070707', 'djimankouame@gmail.com', '2016-12-15', 'Celibat', '2021-12-26', '$2y$10$VR4jg9cc9GXcqjFBIaFxtOYeIWyMK8ORZc0KhkSzzHnniL6QjxQAe', -1, 1, 1, 1, NULL, NULL),
+(10, '12345L', 'BLE', 'LINDA', 'Mademoiselle', 'LINDOLE', 'F', '1995-07-15', '0707070707', 'blezoukoulinda@gmail.com', '2019-12-02', 'Celibat', '2021-12-26', '$2y$10$Z38MGyooOWn86PyYnhwyeOF/.jmEEpwzoeAsLOa8yiv3Mj6wJB9nK', -1, 1, 4, 4, '10.jpg', '10.png'),
+(11, '12345Z', 'BECHIE', 'SOPIE PRISCA', 'Mademoiselle', 'BECHIE', 'F', '1995-04-23', '0707070707', 'bechiesopieprisca@gmail.com', '2018-12-12', 'Celibat', '2021-12-29', '$2y$10$jBOMb2TiRE6w77W530PNi.DUZOL4VLtzevXnQtASRk/ABqDgBKCEO', -1, 2, 2, 4, '11.jpeg', NULL),
+(12, '12345W', 'KOUASSI', 'DESIREE', 'Monsieur', '', 'M', '1991-02-15', '', 'desirekouassi@gmail.com', NULL, 'Marie', '2021-12-31', '$2y$10$Y.okv6SHK8iOog2/fG8/m.hTOh..QV4h/IyTOMHUWj3AJvKO.JMF6', -1, -1, 1, -1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -79,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `annonce` (
   `IdAgent` bigint(20) NOT NULL,
   `IdTypeAnnonce` int(11) NOT NULL,
   PRIMARY KEY (`IdAnnonce`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `annonce`
@@ -88,7 +96,12 @@ CREATE TABLE IF NOT EXISTS `annonce` (
 INSERT INTO `annonce` (`IdAnnonce`, `DateAjoutAnnonce`, `LocaliteOrigineAnnonce`, `LocaliteDesireeAnnonce`, `AdherantAnnonce`, `StatutAnnonce`, `IdAgent`, `IdTypeAnnonce`) VALUES
 (1, '2021-12-11', '126', '10', '2', 'VA1', 1, 1),
 (2, '2021-12-11', '126', '10', '2', 'VA1', 1, 1),
-(17, '2021-12-24', '126', '141', '-1', 'VA0', 4, 1);
+(17, '2021-12-24', '126', '141', '-1', 'VA0', 4, 1),
+(18, '2021-12-26', '101', '125', '-1', 'VA0', 7, 1),
+(19, '2021-12-26', '101', '124', '-1', 'VA0', 6, 1),
+(20, '2021-12-26', '126', '114', '-1', 'VA0', 5, 1),
+(21, '2021-12-26', '126', '22', '-1', 'VA0', 8, 1),
+(22, '2021-12-26', '126', '87', '-1', 'VA0', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -107,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `configsite` (
 --
 
 INSERT INTO `configsite` (`validationconf`) VALUES
-(0);
+(1);
 
 -- --------------------------------------------------------
 
@@ -123,14 +136,48 @@ CREATE TABLE IF NOT EXISTS `directionregionale` (
   `EmailDirectionRegionale` varchar(255) NOT NULL,
   `CommuneDirectionRegionale` varchar(255) NOT NULL,
   PRIMARY KEY (`IdDirectionRegionale`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `directionregionale`
 --
 
 INSERT INTO `directionregionale` (`IdDirectionRegionale`, `NomDirectionRegionale`, `TelDirectionRegionale`, `EmailDirectionRegionale`, `CommuneDirectionRegionale`) VALUES
-(1, 'Direction Régionale de Bonoua', '43567890', 'drbonoua@gmail.com', '109');
+(1, 'Direction Régionale d\'Aboisso', '43567890', 'drenaaboisso@gmail.com', '125'),
+(2, 'Direction Régionale de Daloa', '0707070707', 'drenadaloa@gmail.com', '68'),
+(3, 'Direction Régionale de Korhogo', '0707070707', 'drenakorhogo@gmail.com', '114'),
+(4, 'Direction Régionale de Bouaké', '0707070707', 'drenabouake@gmail.com', '40'),
+(5, 'Direction Régionale de Gagnoa', '0707070707', 'drenagagnoa@gmail.com', '46'),
+(6, 'Direction Régionale de Yamoussoukro', '0707070707', 'drenayakro@gmail.com', '142'),
+(7, 'Direction Régionale de Bondoukou', '0707070707', 'drenabondoukou@gmail.com', '49'),
+(8, 'Direction Régionale de Abidjan 1', '0707070707', 'drenaabidjan1@gmail.com', '141'),
+(9, 'Direction Régionale de Abidjan 2', '0707070707', 'drenaabidjan2@gmail.com', '141'),
+(10, 'Direction Régionale de Abidjan 3', '0707070707', 'drenaabidjan3@gmail.com', '141'),
+(11, 'Direction Régionale de Abidjan 4', '0707070707', 'drenaabidjan4@gmail.com', '141'),
+(12, 'Direction Régionale d\'Abengourou', '0707070707', 'drenaabengourou@gmail.com', '77'),
+(13, 'Direction Régionale d\'Adzopé', '0707070707', 'drenaadzope@gmail.com', '87'),
+(14, 'Direction Régionale d\'Agboville', '0707070707', 'drenaagboville@gmail.com', '3'),
+(15, 'Direction Régionale de Bongouanou', '0707070707', 'drenabongouanou@gmail.com', '101'),
+(16, 'Direction Régionale de Bouaflé', '0707070707', 'drenabouafle@gmail.com', '96'),
+(17, 'Direction Régionale de Bouna', '0707070707', 'drenabouna@gmail.com', '25'),
+(18, 'Direction Régionale de Boundiali', '0707070707', 'drenaboundiali@gmail.com', '12'),
+(19, 'Direction Régionale de Dabou', '0707070707', 'drenadabou@gmail.com', '55'),
+(20, 'Direction Régionale de Daoukro', '0707070707', 'drenadaoukro@gmail.com', '73'),
+(21, 'Direction Régionale de Dimbokro', '0707070707', 'drenadimbokro@gmail.com', '110'),
+(22, 'Direction Régionale de Divo', '0707070707', 'drenadivo@gmail.com', '92'),
+(23, 'Direction Régionale de Duékoué', '0707070707', 'drendke@gmail.com', '60'),
+(24, 'Direction Régionale de Ferké', '0707070707', 'drenaferke@gmail.com', '129'),
+(25, 'Direction Régionale de Guiglo', '0707070707', 'drenaguiglo@gmail.com', '31'),
+(26, 'Direction Régionale de Katiola', '0707070707', 'drenakatiola', '65'),
+(27, 'Direction Régionale de Man', '0707070707', 'drenaman@gmail.com', '135'),
+(28, 'Direction Régionale de Mankono', '0707070707', 'drenamankono@gmail.com', '23'),
+(29, 'Direction Régionale de Minignan', '0707070707', 'drenaminignan@gmail.com', '36'),
+(30, 'Direction Régionale d\'Odiéné', '0707070707', 'drenodiene@gmail.com', '83'),
+(31, 'Direction Régionale de San-Pédro', '0707070707', 'drenasanpedro@gmail.com', '121'),
+(32, 'Direction Régionale de Sassandra', '0707070707', 'drenasassandra@gmail.com', '44'),
+(33, 'Direction Régionale de Séguéla', '0707070707', 'drenaseguela@gmail.com', '140'),
+(34, 'Direction Régionale de Soubré', '0707070707', 'drensoubre@gmail.com', '107'),
+(35, 'Direction Régionale de Touba', '0707070707', 'drenatouba@gmail.com', '10');
 
 -- --------------------------------------------------------
 
@@ -163,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `ecole` (
   `LocaliteEcole` bigint(20) NOT NULL DEFAULT '1',
   `IdInspection` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`IdEcole`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ecole`
@@ -171,7 +218,11 @@ CREATE TABLE IF NOT EXISTS `ecole` (
 
 INSERT INTO `ecole` (`IdEcole`, `NomEcole`, `TypeEcole`, `TelEcole`, `EmailEcole`, `LocaliteEcole`, `IdInspection`) VALUES
 (1, 'EPP Congo 2 Grand-Bassam', 'Primaire', '223034567', '', 126, 2),
-(2, 'EPP Habitat-Koffikro 1', 'Primaire', '', '', 101, 1);
+(2, 'EPP Habitat-Koffikro 1', 'Primaire', '', '', 101, 1),
+(3, 'EPP MOMO1', 'Primaire', '', '', 22, 1),
+(4, 'EPP ADZOPE 1', 'Primaire', '', '', 87, 3),
+(5, 'EPP Kennedy 1', 'Primaire', '', '', 68, 4),
+(6, 'EPP Patrick Achi', 'Primaire', '', '', 46, 3);
 
 -- --------------------------------------------------------
 
@@ -229,15 +280,140 @@ CREATE TABLE IF NOT EXISTS `inspection` (
   `CommuneInspection` varchar(255) NOT NULL,
   `IdDirectionRegionale` int(11) NOT NULL,
   PRIMARY KEY (`IdInspection`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `inspection`
 --
 
 INSERT INTO `inspection` (`IdInspection`, `NomInspection`, `TelInspection`, `CommuneInspection`, `IdDirectionRegionale`) VALUES
-(1, 'Inspection d\'enseignement de Bongouanou', '', '101', 1),
-(2, 'Inspection 2 Abobo', '', '125', 1);
+(1, 'Inspection d\'Enseignement Primaire de Bongouanou', '', '101', 15),
+(2, 'Inspection d\'Enseignement Primaire de Biétry', '', '141', 9),
+(3, 'Inspection d\'enseignement préscolaire et primaire d\'Adzopé', '0707070707', '87', 1),
+(4, 'Inspection d\'Enseignement Préscolaire et Primaire de Daloa', '0707070707', '68', 2),
+(5, 'Inspection d\'Enseignement Préscolaire et Primaire d\'Adjamé 220 logements', '0707070707', '141', 8),
+(6, 'Inspection d\'Enseignement Préscolaire et Primaire de Yamoussoukro', '0707070707', '142', 6),
+(7, 'Inspection d\'Enseignement Préscolaire et Primaire de Bouaké', '0707070707', '40', 4),
+(8, 'Inspection d\'Enseignement Primaire de Koumassi SICOGI', '', '141', 9),
+(9, 'Inspection d\'Enseignement Primaire de Koumassi PRODOMO', '', '141', 9),
+(10, 'Inspection d\'Enseignement Primaire de Koumassi Remblais', '', '141', 9),
+(11, 'Inspection d\'Enseignement Primaire de Marcory', '', '141', 9),
+(12, 'Inspection d\'Enseignement Primaire de Port-Bouët', '', '141', 9),
+(13, 'Inspection d\'Enseignement Primaire de Treichville', '', '141', 9),
+(14, 'Inspection d\'Enseignement Primaire de Vridi', '', '141', 9),
+(15, 'Inspection d\'Enseignement Primaire d\'Adjamé Municipalité', '', '141', 8),
+(16, 'Inspection d\'Enseignement Primaire de Bingerville', '', '141', 8),
+(17, 'Inspection d\'Enseignement Primaire de Cocody II Plateaux', '', '141', 8),
+(18, 'Inspection d\'Enseignement Primaire de Cocody Blockhauss', '', '141', 8),
+(19, 'Inspection d\'Enseignement Primaire de Cocody Attoban', '', '141', 8),
+(20, 'Inspection d\'Enseignement Primaire de Cocody Akouédo', '', '141', 8),
+(21, 'Inspection d\'Enseignement Primaire du Plateau', '', '141', 8),
+(22, 'Inspection d\'Enseignement Primaire d\'Attécoubé', '', '141', 10),
+(23, 'Inspection d\'Enseignement Primaire d\'Yopougon Andokoi', '', '141', 10),
+(24, 'Inspection d\'Enseignement Primaire de Yopougon Siporex', '', '141', 10),
+(25, 'Inspection d\'Enseignement Primaire de Yopougon Tout Rouge', '', '141', 10),
+(26, 'Inspection d\'Enseignement Primaire de Yopougon Ananeraie', '', '141', 10),
+(27, 'Inspection d\'Enseignement Primaire de Yopougon Selmer', '', '141', 10),
+(28, 'Inspection d\'Enseignement Primaire de Yopougon-Centre', '', '141', 10),
+(29, 'Inspection d\'Enseignement Primaire de Yopougon Gesco', '', '141', 10),
+(30, 'Inspection d\'Enseignement Primaire de Yopougon Kouté', '', '141', 10),
+(31, 'Inspection d\'Enseignement Primaire de Yopougon Maroc', '', '141', 10),
+(32, 'Inspection d\'Enseignement Primaire de Yopougon Sideci', '', '141', 10),
+(33, 'Inspection d\'Enseignement Primaire de Yopougon Niangon', '', '141', 10),
+(34, 'Inspection d\'Enseignement Primaire de Yopougon Songon', '', '141', 10),
+(35, 'Inspection d\'Enseignement Primaire d\'Abobo Houantoué', '', '141', 11),
+(36, 'Inspection d\'Enseignement Primaire d\'Abobo Agbékoi', '', '141', 11),
+(37, 'Inspection d\'Enseignement Primaire d\'Abobo Avocatier', '', '141', 11),
+(38, 'Inspection d\'Enseignement Primaire d\'Abobo Banco', '', '141', 11),
+(39, 'Inspection d\'Enseignement Primaire d\'Abobo Agnissankoi', '', '141', 11),
+(40, 'Inspection d\'Enseignement Primaire d\'Abobo Anonkoi Kouté', '', '141', 11),
+(41, 'Inspection d\'Enseignement Primaire d\'Abobo Plateau Dokui', '', '141', 11),
+(42, 'Inspection d\'Enseignement Primaire d\'Abobo Anyama 1', '', '141', 11),
+(43, 'Inspection d\'Enseignement Primaire d\'Abobo Anyama 2', '', '141', 11),
+(44, 'Inspection d\'Enseignement Primaire de Dabakala', '', '65', 26),
+(45, 'Inspection d\'Enseignement Primaire de Katiola', '', '65', 26),
+(46, 'Inspection d\'Enseignement Primaire de Niakaraman', '', '65', 26),
+(47, 'Inspection d\'Enseignement Primaire de Boniérédougou', '', '65', 26),
+(48, 'Inspection d\'Enseignement Primaire de Fronan', '', '65', 26),
+(49, 'Inspection d\'Enseignement Primaire de Satama Sokoura', '', '65', 26),
+(50, 'Inspection d\'Enseignement Primaire de Tafiré', '', '65', 26),
+(51, 'Inspection d\'Enseignement Primaire de Korhogo Nord', '', '114', 3),
+(52, 'Inspection d\'Enseignement Primaire de Korhogo Sud', '', '114', 3),
+(53, 'Inspection d\'Enseignement Primaire de Korhogo Est', '', '114', 3),
+(54, 'Inspection d\'Enseignement Primaire de Sinématiali', '', '114', 3),
+(55, 'Inspection d\'Enseignement Primaire de Sirasso', '', '114', 3),
+(56, 'Inspection d\'Enseignement Primaire de Dikodougou', '', '114', 3),
+(57, 'Inspection d\'Enseignement Primaire de Mbengue', '', '114', 3),
+(58, 'Inspection d\'Enseignement Primaire de Niofoin', '', '114', 3),
+(59, 'Inspection d\'Enseignement Primaire de Korhogo Centre', '', '114', 3),
+(60, 'Inspection d\'Enseignement Primaire de Karakoro', '', '114', 3),
+(61, 'Inspection d\'Enseignement Primaire de Napié', '', '114', 3),
+(62, 'Inspection d\'Enseignement Primaire de Biankouman', '', '135', 27),
+(63, 'Inspection d\'Enseignement Primaire de Gbonné', '', '135', 27),
+(64, 'Inspection d\'Enseignement Primaire de Logoualé', '', '135', 27),
+(65, 'Inspection d\'Enseignement Primaire de Man Koko', '', '135', 27),
+(66, 'Inspection d\'Enseignement Primaire de Man-Doyagouiné', '', '135', 27),
+(67, 'Inspection d\'Enseignement Primaire de Man Libreville', '', '135', 27),
+(68, 'Inspection d\'Enseignement Primaire de Sangouiné', '', '135', 27),
+(69, 'Inspection d\'Enseignement Primaire de Sipilou', '', '135', 27),
+(70, 'Inspection d\'Enseignement Primaire de Dianra', '', '21', 28),
+(71, 'Inspection d\'Enseignement Primaire de Mankono', '', '23', 28),
+(72, 'Inspection d\'Enseignement Primaire de Kounhahiri', '', '22', 28),
+(73, 'Inspection d\'Enseignement Primaire de Sahrala', '', '23', 28),
+(74, 'Inspection d\'Enseignement Primaire de Tiénningboué', '', '23', 28),
+(75, 'Inspection d\'Enseignement Primaire de Kaniasso', '', '35', 29),
+(76, 'Inspection d\'Enseignement Primaire de Minignan', '', '36', 29),
+(77, 'Inspection d\'Enseignement Primaire de Bangolo 1', '', '59', 23),
+(78, 'Inspection d\'Enseignement Primaire de Bangolo 2', '', '59', 23),
+(79, 'Inspection d\'Enseignement Primaire de Gbapleu', '', '60', 23),
+(80, 'Inspection d\'Enseignement Primaire de Duékoué 1', '', '60', 23),
+(81, 'Inspection d\'Enseignement Primaire de Duékoué 2', '', '60', 23),
+(82, 'Inspection d\'Enseignement Primaire de Sémien', '', '60', 23),
+(83, 'Inspection d\'Enseignement Primaire de Facobly', '', '61', 23),
+(84, 'Inspection d\'Enseignement Primaire de Guézon', '', '60', 23),
+(85, 'Inspection d\'Enseignement Primaire de Kouibly', '', '60', 23),
+(86, 'Inspection d\'Enseignement Primaire de Ferké Nord', '', '129', 24),
+(87, 'Inspection d\'Enseignement Primaire de Diawala', '', '129', 24),
+(88, 'Inspection d\'Enseignement Primaire de Kong', '', '130', 24),
+(89, 'Inspection d\'Enseignement Primaire de Koumbala', '', '129', 24),
+(90, 'Inspection d\'Enseignement Primaire de Ouangolo', '', '131', 24),
+(91, 'Inspection d\'Enseignement Primaire de Diégonéfla', '', '46', 5),
+(92, 'Inspection d\'Enseignement Primaire de Gagnoa Lonaci', '', '46', 5),
+(93, 'Inspection d\'Enseignement Primaire de Gagnoa Dioulabougou', '', '46', 5),
+(94, 'Inspection d\'Enseignement Primaire de Guibéroua', '', '46', 5),
+(95, 'Inspection d\'Enseignement Primaire d\'Oumé', '', '47', 5),
+(96, 'Inspection d\'Enseignement Primaire de Sériho', '', '46', 5),
+(97, 'Inspection d\'Enseignement Primaire d\'Ouragahio', '', '46', 5),
+(98, 'Inspection d\'Enseignement Primaire de Bassam', '', '126', 1),
+(99, 'Inspection d\'Enseignement Primaire de Bonoua', '', '126', 1),
+(100, 'Inspection d\'Enseignement Primaire de Bloléquin', '', '30', 25),
+(101, 'Inspection d\'Enseignement Primaire de Guiglo 1', '', '31', 25),
+(102, 'Inspection d\'Enseignement Primaire de Guiglo 2', '', '31', 25),
+(103, 'Inspection d\'Enseignement Primaire de Taï', '', '32', 25),
+(104, 'Inspection d\'Enseignement Primaire de Toulepleu', '', '33', 25),
+(105, 'Inspection d\'Enseignement Primaire d\'Iboghué', '', '69', 2),
+(106, 'Inspection d\'Enseignement Primaire d\'Issia 1', '', '69', 2),
+(107, 'Inspection d\'Enseignement Primaire d\'Issia 2', '', '68', 2),
+(108, 'Inspection d\'Enseignement Primaire de Saïoua', '', '168', 2),
+(109, 'Inspection d\'Enseignement Primaire de Daoukro', '', '73', 20),
+(110, 'Inspection d\'Enseignement Primaire de M\'bahiakro', '', '74', 20),
+(111, 'Inspection d\'Enseignement Primaire de Bonguera', '', '73', 20),
+(112, 'Inspection d\'Enseignement Primaire d\'Ettrokro', '', '73', 20),
+(113, 'Inspection d\'Enseignement Primaire de Prikro', '', '75', 20),
+(114, 'Inspection d\'Enseignement Primaire de Bocanda', '', '109', 21),
+(115, 'Inspection d\'Enseignement Primaire de Nzécrézéssou', '', '110', 21),
+(116, 'Inspection d\'Enseignement Primaire de Kouassi-Kouassikro', '', '111', 21),
+(117, 'Inspection d\'Enseignement Primaire de Dimbokro', '', '110', 21),
+(118, 'Inspection d\'Enseignement Primaire de Divo Plateau', '', '92', 22),
+(119, 'Inspection d\'Enseignement Primaire de Divo Municipalité', '', '92', 22),
+(120, 'Inspection d\'Enseignement Primaire de Divo 3', '', '92', 22),
+(121, 'Inspection d\'Enseignement Primaire de Guitry', '', '93', 22),
+(122, 'Inspection d\'Enseignement Primaire de Hiré', '', '92', 22),
+(123, 'Inspection d\'Enseignement Primaire d\'Ogodou', '', '92', 22),
+(124, 'Inspection d\'Enseignement Primaire de Niambézaria', '', '92', 22),
+(125, 'Inspection d\'Enseignement Primaire de Lakota Commerce', '', '94', 22),
+(126, 'Inspection d\'Enseignement Primaire de Lakota 2', '', '94', 22),
+(127, 'Inspection d\'Enseignement Primaire de Zikisso', '', '92', 22);
 
 -- --------------------------------------------------------
 
@@ -252,7 +428,7 @@ CREATE TABLE IF NOT EXISTS `localite` (
   `CodeZoneMere` bigint(19) NOT NULL,
   `NiveauStr` smallint(6) NOT NULL,
   PRIMARY KEY (`CodeZone`)
-) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `localite`
@@ -421,7 +597,8 @@ INSERT INTO `localite` (`CodeZone`, `LibelleZone`, `CodeZoneMere`, `NiveauStr`) 
 (166, 'LAGOS', 164, 2),
 (167, 'KANO', 164, 2),
 (168, 'SAIOUA', 68, 5),
-(169, 'DISTRICT DE YAMOUSSOUKRO', 1, 2);
+(169, 'DISTRICT DE YAMOUSSOUKRO', 1, 2),
+(170, 'BONOUA', 123, 6);
 
 -- --------------------------------------------------------
 
@@ -432,9 +609,9 @@ INSERT INTO `localite` (`CodeZone`, `LibelleZone`, `CodeZoneMere`, `NiveauStr`) 
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
   `IdMessage` int(11) NOT NULL AUTO_INCREMENT,
-  `LibelleEmploi` varchar(255) NOT NULL,
   `ContenuMessage` text NOT NULL,
   `ObjetMessage` varchar(255) NOT NULL,
+  `IdAgent` int(11) NOT NULL,
   PRIMARY KEY (`IdMessage`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -447,13 +624,20 @@ CREATE TABLE IF NOT EXISTS `message` (
 DROP TABLE IF EXISTS `notification`;
 CREATE TABLE IF NOT EXISTS `notification` (
   `IdNotification` int(11) NOT NULL AUTO_INCREMENT,
-  `LibelleEmploi` varchar(255) NOT NULL,
   `ContentNotification` text NOT NULL,
   `PermalinkNotification` text NOT NULL,
   `DateEnvoieNotification` date NOT NULL,
-  `LectureNotification` varchar(255) NOT NULL,
+  `LectureNotification` tinyint(1) NOT NULL DEFAULT '0',
+  `IdAgent` int(11) NOT NULL,
   PRIMARY KEY (`IdNotification`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `notification`
+--
+
+INSERT INTO `notification` (`IdNotification`, `ContentNotification`, `PermalinkNotification`, `DateEnvoieNotification`, `LectureNotification`, `IdAgent`) VALUES
+(1, 'Bienvenue, sur la plateforme de gestion des permutations', '#Bienvenue', '2021-12-01', 0, 4);
 
 -- --------------------------------------------------------
 
