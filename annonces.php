@@ -166,11 +166,15 @@
                                 </div>
                                 <?php
                                     $date_creation = date_create($annonce->DateAjoutAnnonce);
-                                    if($annonce->IdAgent == $_SESSION['auth']["user"]->IdAgent  && date_format($date_creation, 'Y') == date("Y")){
-
-                                    }else{
+                                    if(!empty($_SESSION['auth']["user"]->IdAgent)){
+                                        if($annonce->IdAgent == $_SESSION['auth']["user"]->IdAgent  && date_format($date_creation, 'Y') == date("Y")){
                                         
-                                        echo '<a href="annonce_details.php?annonce='.$annonce->IdAnnonce.'" class="btn btn-primary" style="align:center">Adhérer</a> ';
+                                        }else{
+                                            echo '<a href="annonce_details.php?annonce='.$annonce->IdAnnonce.'" class="btn btn-primary" style="align:center">Adhérer</a> ';
+
+                                        }
+                                    }else{
+                                        echo '<a href="login.php" class="btn btn-primary" style="align:center">Connectez-vous pour adhérer</a> ';
                                     }
 
                                 ?>

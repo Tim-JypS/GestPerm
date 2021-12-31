@@ -81,7 +81,7 @@
                         </td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-alt-primary editzone" data-toggle="modal" title="Edit"  data-target="#Edit-newZone-modal">
+                                <button type="button" class="btn btn-sm btn-alt-primary editzone" data-toggle="modal" title="Edit"  data-target="#Edit-newZone-modal" data-idzone="<?=$zone->CodeZone ?>" data-typezone="<?=$zone->NiveauStr ?>" data-libellezone="<?=$zone->LibelleZone ?>" data-zonemere="<?=$zone->CodeZoneMere ?>">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
                                 <button type="button" class="btn btn-sm btn-alt-primary todelete"  data-toggle="modal" data-target="#Delete-newZone-modal" data-idzone="<?=$zone->CodeZone ?>" title="Supprimer">
@@ -116,68 +116,55 @@
 
                     <div class="block-content font-size-sm">
                     <?php /*$one->get_text('small', 2);*/ ?>
-                    <form action="save.php" id="form">
+                    <form id="form">
 
-			    	<div class="form-group form-row">
-                    <div class="col-12">
-                            <label for="TypeLocalite">Type</label>
-                            <select id="TypeLocalite" class="js-select2 form-control" name="val-select2" style="width: 100%;" data-placeholder="Choisir une..">
-                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                            <?php 
-                                    $structures=Database::SelectQuery("SELECT * FROM struct_localite WHERE NiveauStr>1 ORDER BY LibelleStr ASC");
-                                    foreach($structures as $struc):
-                                ?>
-                                <option value="<?=$struc->NiveauStr?>"><?=$struc->LibelleStr?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-				  	</div>
+                            <div class="form-group form-row">
+                            <div class="col-12">
+                                    <label for="TypeLocalite">Type</label>
+                                    <select id="TypeLocalite" class="js-select2 form-control" name="val-select2" style="width: 100%;" data-placeholder="Choisir une..">
+                                        <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                    <?php 
+                                            $structures=Database::SelectQuery("SELECT * FROM struct_localite WHERE NiveauStr>1 ORDER BY LibelleStr ASC");
+                                            foreach($structures as $struc):
+                                        ?>
+                                        <option value="<?=$struc->NiveauStr?>"><?=$struc->LibelleStr?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
 
-				  	<div class="form-group form-row">
-                      <div class="col-12">
-                            <label for="LibelléZone">Libellé</label>
-                            <input class="form-control" type="text" name="LibelléZone" placeholder="Entrer le nom de la loclité ">
-				  	    </div>
-                    </div>
-                    <div class="form-group form-row">
-                    <div class="col-12">
-                            <label for="Localite">Issue de ...</label>
-                            <select id="Localite" class="js-select2 form-control" name="val-select2" style="width: 100%;" data-placeholder="Choisir une..">
-                                <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                <?php 
-                                    $structures=Database::SelectQuery("SELECT * FROM struct_localite WHERE NiveauStr>1 ORDER BY LibelleStr ASC");
-                                    foreach($structures as $struc):
-                                ?>
-                                <option value="<?=$struc->NiveauStr?>"><?=$struc->LibelleStr?></option>
-                                <?php endforeach ?>
-                            </select>
+                            <div class="form-group form-row">
+                            <div class="col-12">
+                                    <label for="LibelleZone">Libellé</label>
+                                    <input class="form-control" type="text" id="LibelleZone" name="LibelleZone" placeholder="Entrer le nom de la localité ">
+                                </div>
+                            </div>
+                            <div class="form-group form-row">
+                            <div class="col-12">
+                                    <label for="Localite">Issue de ...</label>
+                                    <select id="Localite" class="js-select2 form-control" name="val-select2" style="width: 100%;" data-placeholder="Choisir une..">
+                                        <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                        <?php 
+                                            $localites=Database::SelectQuery("SELECT * FROM localite WHERE NiveauStr>1 ORDER BY LibelleZone ASC");
+                                            foreach($localites as $loc):
+                                                $structure=DataBase::SelectQuery("SELECT * FROM struct_localite WHERE NiveauStr='$loc->NiveauStr'");
+                                        ?>
+                                        <option value="<?=$loc->CodeZone?>"><?=$structure[0]->LibelleStr?> | <?=$loc->LibelleZone?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                    
+                                </div>
+                            </div>
+
                             
-                        </div>
-				  	</div>
-
-
-                    <!--div class="form-group form-row">
-                      <div class="col-12">
-                            <label for="IdVilles">Villes</label>
-                            <select class="custom-select my-1 mr-sm-2" id="IdVilles"  name="IdVilles">
-                                <option selected>Votre Choix...</option>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                            </select>
-				  	    </div>
-                    </div-->
-				  	
-				</form>
+                        </form>
                     </div>
 
 
                     
                     <div class="block-content block-content-full text-right border-top">
                         <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary" id="btnSubmit">Ajouter</button>
+                        <button type="button" class="btn btn-primary" id="save">Ajouter</button>
                     </div>
                 </div>
             </div>
@@ -205,76 +192,56 @@
 
                     <div class="block-content font-size-sm">
                     <?php /*$one->get_text('small', 2);*/ ?>
-                    <form action="save.php" id="form">
+                    <form id="form">
 
-			    	<!--div class="form-group form-row">
-                        <div class="col-6">
-                            <label for="NomZone">Nom</label>
-                            <input class="form-control" type="text" name="NomZone" placeholder="Nom ">
-                        </div>
+                            <div class="form-group form-row">
+                            <input id="IdZone" class="form-control" type="text" name="IdZone" style="display: none;">
+                            <div class="col-12">
+                                    <label for="modifTypeLocalite">Type</label>
+                                    <select id="modifTypeLocalite" class="js-select2 form-control" name="modifTypeLocalite" style="width: 100%;" data-placeholder="Choisir une..">
+                                        <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                    <?php 
+                                            $structures=Database::SelectQuery("SELECT * FROM struct_localite WHERE NiveauStr>1 ORDER BY LibelleStr ASC");
+                                            foreach($structures as $struc):
+                                        ?>
+                                        <option value="<?=$struc->NiveauStr?>"><?=$struc->LibelleStr?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
 
-                        <div class="col-6">
-                            <label for="TelZone">Téléphone</label>
-                            <input class="form-control" type="text" name="TelZone" placeholder="Numéro de Téléphone">
-                        </div>
-				  	</div-->
+                            <div class="form-group form-row">
+                            <div class="col-12">
+                                    <label for="modifLibelleZone">Libellé</label>
+                                    <input class="form-control" type="text" id="modifLibelleZone" name="modifLibelleZone" placeholder="Entrer le nom de la localité ">
+                                </div>
+                            </div>
+                            <div class="form-group form-row">
+                            <div class="col-12">
+                                    <label for="modifLocalite">Issue de ...</label>
+                                    <select id="modifLocalite" class="js-select2 form-control" name="modifLocalite" style="width: 100%;" data-placeholder="Choisir une..">
+                                        <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
+                                        <?php 
+                                            $localites=Database::SelectQuery("SELECT * FROM localite WHERE NiveauStr>1 ORDER BY LibelleZone ASC");
+                                            foreach($localites as $loc):
+                                                $structure=DataBase::SelectQuery("SELECT * FROM struct_localite WHERE NiveauStr='$loc->NiveauStr'");
+                                        ?>
+                                        <option value="<?=$loc->CodeZone?>"><?=$structure[0]->LibelleStr?> | <?=$loc->LibelleZone?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                    
+                                </div>
+                            </div>
 
-				  	<!--<div class="form-group">
-					    <label for="first_name">Téléphone</label>
-					    <input class="form-control" type="text" name="first_name">
-				  	</div>-->
-				  	<div class="form-group form-row">
-                      <!--div class="col-6">
-                            <label for="LibelléZone">Email</label>
-                            <input class="form-control" type="text" name="LibelléZone" placeholder="Email ">
-				  	    </div-->
-                        <div class="col-4">
-                            <label for="CommuneZone">Localites</label>
-                            <select class="custom-select my-1 mr-sm-2" id="CommuneZone"  name="CommuneZone">
-                                <option selected>Choix...</option>
-                                <option value="1">Bouna</option>
-                                <option value="2">n'zaranou</option>
-                                <option value="3">Mossou</option>
-                                <option value="2">Sipilou</option>
-                                <option value="3">Agboville</option>
-                            </select>
-                        </div>
-                        <div class="col-4">
-                            <label for="CommuneZone">Zones</label>
-                            <select class="custom-select my-1 mr-sm-2" id="CommuneZone"  name="CommuneZone">
-                                <option selected>Choix...</option>
-                                <option value="1">ZONE 1</option>
-                                <option value="2">ZONE 2</option>
-                                <option value="3">ZONE 3</option>
-                                <option value="2">ZONE 4</option>
-                                <option value="3">ZONE 5</option>
-                            </select>
-                        </div>
-                          <div class="col-4">
-                            <label for="IdVilles">villes</label>
-                            <select class="custom-select my-1 mr-sm-2" id="IdVilles"  name="IdVilles">
-                                <option selected>Choix...</option>
-                                <option value="1">Abidjan</option>
-                                <option value="2">Aboisso</option>
-                                <option value="3">Bonoua</option>
-                                <option value="2">Grand Bassam</option>
-                                <option value="3">Cocody</option>
-                            </select>
-				  	    </div>
-                    </div>
-
-                    <div class="form-group form-row">
-                      
-                    </div>
-				  	
-				</form>
+                            
+                        </form>
                     </div>
 
 
                     
                     <div class="block-content block-content-full text-right border-top">
                         <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary" id="btnSubmit">Modifier</button>
+                        <button type="button" class="btn btn-primary" id="saveModif">Modifier</button>
                     </div>
                 </div>
             </div>
@@ -380,57 +347,49 @@
 
 <?php require 'inc/_global/views/footer_end.php'; ?>
 
-<script> 
-	$(document).ready(function(){
-		$('body').on('change','#TypeLocalite', function(e){
-		$('#Localite').html('');
-		var v = this.value;
-        alert(v);
 
-        $.ajax({
-                url : 'scripts/rech_zone.php', 
-                type : 'POST',
-                data : 'zone='+v,
-                dataType: "JSON",
-                success: function(e){
-                    if(parseInt(e["total"]) < 1){															
-                    alert('pas de communes');
-                } else {
-                    for(var i = 0; i < e["total"]; i++){
-                        alert('il y a des communes');
-                        //Elément à insérer
-                        $('#Localite').append('<option value="'+e["resultat"][i]["CodeZone"]+'">'
-                        +e["resultat"][i]["LibelleZone"]+'</option>');
-                    }
-                    }
-                }, 
-                error: function(e){
-                    alert(e);														
-                }
-            });
-            });		
-        });												
-</script>
 <script type="text/javascript">
     $('#save').click(function()
     {
-        let type=$('#type').val();
-        let lib=$('#lib').val();
-        let loc=$('#val-select2').val();
-        let inspection=$('#val-select2Inspec').val();
-        $.get('scripts/addecole.php',{type:type,libelle:lib,localite:loc,inspect:inspection},function()
+        let type=$('#TypeLocalite').val();
+        let lib=$('#LibelleZone').val();
+        let loc=$('#Localite').val();
+        $.get('scripts/addzone.php',{type:type,libelle:lib,localite:loc},function()
         {
             window.location.reload();
         })
+    })
+
+    $('.editzone').click(function()
+    {
+        let id=($(this).data('idzone'));
+        let lib=($(this).data('libellezone'));
+        let zonemere=($(this).data('zonemere'));
+        let struc=($(this).data('typezone'));
+        $('#IdZone').val(id);
+        $('#modifLibelleZone').val(lib);
+        $('#modifLocalite').val(zonemere).change();
+        $('#modifTypeLocalite').val(struc).change();
+    })
+
+    $('#saveModif').click(function()
+    {
+        let id=$('#IdZone').val();
+        let lib=$('#modifLibelleZone').val();
+        let zonemere=$('#modifLocalite').val();
+        let struc=$('#modifTypeLocalite').val();
+        $.get('scripts/modifzone.php',{idzone:id,libelle:lib,zonemere:zonemere,structure:struc},function()
+        {
+            window.location.reload();
+        })
+
     })
     
     $('.todelete').click(function()
     {
         let idzone=($(this).data('idzone'));
-        alert(idzone)
         $('#idtodelete').val(idzone);
     })
-    
     
     $('#confirmDelete').click(function()
     {
