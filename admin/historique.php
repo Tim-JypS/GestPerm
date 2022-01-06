@@ -179,14 +179,17 @@
                         <?php
                         endforeach;
                         else:
-                            $annonces=Database::SelectQuery("SELECT v.StatutValidation,v.DateValidation, a.* FROM annonce a, validationannonce v WHERE a.IdAnnonce=v.IdAnnonce AND v.ValideurValidation='".$IdAgent."' AND StatutValidation<>'EN' AND DateValidation IS NOT NULL ORDER BY v.DateValidation DESC");
+                            $query="SELECT (SELECT StatutValidation FROM validationannonce WHERE ValideurValidation='".$IdAgent."' AND StatutValidation<>'EN' AND DateValidation IS NOT NULL AND IdAnnonce=a.IdAnnonce) as StatutValidation, (SELECT DateValidation FROM validationannonce WHERE ValideurValidation='".$IdAgent."' AND StatutValidation<>'EN' AND DateValidation IS NOT NULL AND IdAnnonce=a.IdAnnonce) as DateValidation, a.* FROM annonce a ORDER BY DateAjoutAnnonce DESC";
+                            // $query="SELECT v.StatutValidation,v.DateValidation, a.* FROM annonce a, validationannonce v WHERE a.IdAnnonce=v.IdAnnonce AND v.ValideurValidation='".$IdAgent."' AND StatutValidation<>'EN' AND DateValidation IS NOT NULL ORDER BY v.DateValidation DESC";
+                            $annonces=Database::SelectQuery($query);
                             foreach($annonces as $annonce):
                                 $agent1=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");
                                 $agent2=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->AdherantAnnonce'");?>
                             <tr>
                                 <?php $agent1=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->IdAgent'");?>
                                 <?php $agent2=DataBase::SelectQuery("SELECT * FROM agent WHERE IdAgent='$annonce->AdherantAnnonce'");?>
-                                <td class="font-w600 font-size-sm"><?=$annonce->DateValidation?></td>
+                                <td class="font-w600 font-size-sm">
+                                    <?php if(empty($annonce->DateValidation)) echo $annonce->DateAjoutAnnonce; else echo $annonce->DateValidation;?></td>
                                 <td class="font-w600 font-size-sm"><?=$agent1[0]->MatriculeAgent?></td>
                                 <td class="font-w600 font-size-sm"><?=$agent1[0]->NomAgent. " ". $agent1[0]->PrenomsAgent?></td>
                                 <td class="font-w600 font-size-sm"><?=DataBase::SelectQuery("SELECT NomFonction FROM fonction WHERE IdFonction='".$agent1[0]->IdFonction."'")[0]->NomFonction?></td>
@@ -211,6 +214,10 @@
                                     elseif($annonce->StatutValidation=="AN")
                                     {
                                         echo "Refusée";
+                                    }
+                                    else
+                                    {
+                                        echo "Validée";
                                     }
                                 ?>
                                 </td>

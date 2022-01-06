@@ -8,6 +8,9 @@ $Dna1="";
 $Ecole1="";
 $Discipline1="";
 $Fonction1="";
+$ImgAg1="";
+$ImgInsp1="";
+$ImgDr1="";
 
 $NomPrens2="";
 $JeuneFille2="";
@@ -18,6 +21,12 @@ $Dna2="";
 $Ecole2="";
 $Discipline2="";
 $Fonction2="";
+$ImgAg2="";
+$ImgInsp2="";
+$ImgDr2="";
+$ImgDRH="";
+$DateValidation="";
+
 require "../../inc/config.php";
 if(isset($_GET["idannonce"]) && !empty($_GET["idannonce"]))
 {
@@ -41,6 +50,11 @@ if(isset($_GET["idannonce"]) && !empty($_GET["idannonce"]))
         $Ecole1=Database::SelectQuery("SELECT NomEcole FROM ecole WHERE IdEcole='".$InfoAgent[0]->IdEcole."'")[0]->NomEcole;
         $Fonction1=Database::SelectQuery("SELECT NomFonction FROM fonction WHERE IdFonction='".$InfoAgent[0]->IdFonction."'")[0]->NomFonction;
 
+        if(file_exists("../print/reports/".$idannonce."/ImgAg1.png"))
+        {
+            $ImgAg1="ImgAg1.png";
+        }
+
         $InfoAgent=Database::SelectQuery("SELECT * FROM agent WHERE IdAgent='".$InfoAnnonce[0]->AdherantAnnonce."'");
         $NomPrens2=trim($InfoAgent[0]->NomAgent." ".$InfoAgent[0]->PrenomsAgent);
         $JeuneFille2=trim($InfoAgent[0]->NomJeuneFilleAgent);
@@ -52,7 +66,7 @@ if(isset($_GET["idannonce"]) && !empty($_GET["idannonce"]))
         $Fonction2=Database::SelectQuery("SELECT NomFonction FROM fonction WHERE IdFonction='".$InfoAgent[0]->IdFonction."'")[0]->NomFonction;
     }
 }
-$arr=array("Nom1"=>$NomPrens1,"Fille1"=>$JeuneFille1,"Discipline1"=>$Discipline1,"Dna1"=>$Dna1,"Mat1"=>$Mat1,"Emploi1"=>$Emploi1,"DR1"=>$DR1,"Ecole1"=>$Ecole1,"Fonction1"=>$Fonction1,"Nom2"=>$NomPrens2,"Fille2"=>$JeuneFille2,"Discipline1"=>$Discipline2,"Dna2"=>$Dna2,"Mat2"=>$Mat2,"Emploi2"=>$Emploi2,"DR2"=>$DR2,"Ecole2"=>$Ecole2,"Fonction2"=>$Fonction2);
+$arr=array("Nom1"=>$NomPrens1,"Fille1"=>$JeuneFille1,"Discipline1"=>$Discipline1,"Dna1"=>$Dna1,"Mat1"=>$Mat1,"Emploi1"=>$Emploi1,"DR1"=>$DR1,"Ecole1"=>$Ecole1,"Fonction1"=>$Fonction1,"ImgAg1"=>$ImgAg1,"ImgInsp1"=>$ImgInsp1,"ImgDr1"=>$ImgDr1,"Nom2"=>$NomPrens2,"Fille2"=>$JeuneFille2,"Discipline1"=>$Discipline2,"Dna2"=>$Dna2,"Mat2"=>$Mat2,"Emploi2"=>$Emploi2,"DR2"=>$DR2,"Ecole2"=>$Ecole2,"Fonction2"=>$Fonction2,"ImgAg2"=>$ImgAg2,"ImgInsp2"=>$ImgInsp2,"ImgDr2"=>$ImgDr2,"ImgDRH"=>$ImgDRH,"DateValidation"=>$DateValidation);
 $data=json_encode($arr);
 echo $data;
 ?>

@@ -1,4 +1,7 @@
 <?php
+ header("Access-Control-Allow-Origin: *");?>
+
+<?php
 if (!isset($_GET["fiche"]) || empty($_GET["fiche"]))
 	header("location:../../404.php");
 extract($_GET);
@@ -15,7 +18,8 @@ require_once "stimulsoft/helper.php";
 	<script type="text/javascript" src="scripts/stimulsoft.reports.maps.js"></script>
 	<script type="text/javascript" src="scripts/stimulsoft.viewer.js"></script>
 	<link rel="icon" type="image/png" href="../assets/img/favicon.png">
-	<script src="../../assets/js/app.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- <script src="../../assets/js/app.js"></script> -->
 	<input type="text" id="idannonce" style="display: none;" value="<?=$fiche?>"/>
 	<?php
 		$options = StiHelper::createOptions();
@@ -57,15 +61,18 @@ require_once "stimulsoft/helper.php";
 				"+m1qqs8t0m89vdK7k8nJTw==";
 
 			var report = new Stimulsoft.Report.StiReport();
-			report.loadFile("Fiche.mrt");
-
+			report.loadFile("FicheSign.mrt");
+			
 			let idannonce=$('#idannonce').val();
 			$.get('../scripts/getdatafiche.php',{idannonce:idannonce},function(data)
 			{
+				// console.log(data);
 				if(data==0)
 					window.location.href="../../404.php";
+				
 				data=JSON.parse(data);
-				console.log(data);
+				var root="C:/wamp/www/GestPerm/admin/print/reports/"+idannonce;
+
 				report.getComponentByName("txtNom1").text=data.Nom1;
 				report.getComponentByName("txtFille1").text=data.Fille1;
 				report.getComponentByName("txtDna1").text=data.Dna1;
@@ -85,6 +92,15 @@ require_once "stimulsoft/helper.php";
 				report.getComponentByName("txtEtab2").text=data.Ecole2;
 				report.getComponentByName("txtDiscipline2").text=data.Discipline2;
 				report.getComponentByName("txtFonction2").text=data.Fonction2;
+
+				if(data.ImgAg1!="")
+				{
+					// console.log("file://"+root+"/"+data.ImgAg1);return;
+					// var img=Stimulsoft.System.IO.Http.getFile(root+"/"+data.ImgAg1,true);
+					// console.log(img);
+					// var stiImage = Stimulsoft.System.Drawing.Image.fromFile(root+"/"+data.ImgAg1);
+					// report.getComponentByName("ImgAg1").Image = stiImage;
+				}
 
 				// report.getComponentByName("txtPieces").text=data["piece"];
 				// report.getComponentByName("txtMTotal").text=data["mtotal"];

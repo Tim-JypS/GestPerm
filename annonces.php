@@ -186,7 +186,7 @@
                     <?php 
                         endforeach ;
                     }else{
-                        echo 'Aucun résultat trouvé pour cette recherche';
+                        echo 'Aucune annonce trouvée.';
                     } 
                     ?>
 
