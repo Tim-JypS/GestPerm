@@ -5,10 +5,10 @@ require_once 'adapters/mssql.php';
 require_once 'adapters/firebird.php';
 require_once 'adapters/postgresql.php';
 require_once 'adapters/oracle.php';
-require_once 'email/class.phpmailer.php';
-require_once 'email/class.pop3.php';
-require_once 'email/class.smtp.php';
-require_once 'email/PHPMailerAutoload.php';
+// require_once 'email/class.phpmailer.php';
+// require_once 'email/class.pop3.php';
+// require_once 'email/class.smtp.php';
+// require_once 'email/PHPMailerAutoload.php';
 
 
 function stiErrorHandler($errNo, $errStr, $errFile, $errLine) {
