@@ -61,14 +61,14 @@
                     <tr>
                         <th class="text-center" style="width: 20%;">Localites</th>
                         <th class="d-none d-sm-table-cell" style="width: 12%;">Zones</th>
-                        <th class="d-none d-sm-table-cell" style="width: 15%;">ville</th>
+                        <th class="d-none d-sm-table-cell" style="width: 15%;">Issue de</th>
                         
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php 
-                        $zones=Database::SelectQuery("SELECT * FROM  Localite ORDER BY LibelleZone ASC");
+                        $zones=Database::SelectQuery("SELECT * FROM localite ORDER BY LibelleZone ASC");
                         foreach($zones as $zone):
                     ?>
                     <tr>
@@ -77,7 +77,7 @@
                             <?=DataBase::SelectQuery("SELECT LibelleStr FROM struct_localite WHERE NiveauStr='$zone->NiveauStr'")[0]->LibelleStr?>    
                         </td>
                         <td class="font-w600 font-size-sm">
-                            <?=DataBase::SelectQuery("SELECT LibelleZone FROM Localite WHERE CodeZone='$zone->CodeZoneMere'")[0]->LibelleZone?>    
+                            <?=DataBase::SelectQuery("SELECT REPLACE(LibelleZone,'&APOST;','\'') as LibelleZone FROM localite WHERE CodeZone='$zone->CodeZoneMere'")[0]->LibelleZone?>    
                         </td>
                         <td class="text-center">
                             <div class="btn-group">
